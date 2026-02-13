@@ -31,7 +31,7 @@ No required textbook. But, lecture notes are mostly based on
 - [A Course on the Theory of Quantum Computing](https://arxiv.org/pdf/2507.11536) by John Watrous, see also his IBM-Qiskit Textbook (free online: [qiskit.org/textbook](https://quantum.cloud.ibm.com/learning/en/courses))
 - [Quantum country](https://quantum.country/) by Andy Matuschak and [Michael Nielsen](https://michaelnielsen.org/)  see also his great [introduction to neural networks](http://neuralnetworksanddeeplearning.com/)
 - [Pennylane tutorials and documentation](https://pennylane.ai/qml)
-  
+- [Quantum Algorithm Zoo](https://quantumalgorithmzoo.org/)
 
 **Software & Frameworks:**
 - Qiskit,PennyLane, PyTorch, NumPy/SciPy 
