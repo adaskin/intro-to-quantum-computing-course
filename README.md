@@ -40,7 +40,7 @@ No required textbook. But, lecture notes are mostly based on
 
 
 ### **Grading Policy**
-- 40% 3-5 assignments including python implementations
+- 40% 3-5 assignments including python implementations (you can work as groups of 1-3 people)
 - 20% Midterm
 - 40% Final
 
