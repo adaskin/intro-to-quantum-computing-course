@@ -49,12 +49,14 @@ No required textbook. But, lecture notes are mostly based on
 
 #### **Unit 1: Mathematical Foundations (Weeks 1-3)**
 **Week 1: Classical vs. Quantum Information**
+reading: [Thirty years of quantum computing](https://doi.org/10.1088/2058-9565/ade0e4),David P DiVincenzo, Quantum Sci. Technol. 10 (2025) 030501. 
+lecture note: [lecture1](lecture1.md)
 - Bits vs. qubits: the need for new computational models
 - Stern-Gerlach experiment: sequential measurements as computation
 - Polarization: a complete qubit analogy
 - Quantum postulates (preview)
 - **AI Tool Demo:** Using ChatGPT to generate Stern-Gerlach analogies
-- **Assignment 1 Released:** Classical reversible circuits and quantum intuition
+
 
 **Week 2: Linear Algebra for Quantum Computing**
 - Dirac notation: kets, bras, and inner products
@@ -70,7 +72,7 @@ No required textbook. But, lecture notes are mostly based on
 - Hadamard and phase gates
 - Quantum circuit diagrams and composition rules
 - **AI Tool Demo:** Using GitHub Copilot for Qiskit boilerplate code
-- **Assignment 1 Due; Assignment 2 Released:** Single-qubit state evolution and measurements
+
 
 #### **Unit 2: Quantum Information Theory (Weeks 4-6)**
 **Week 4: Multi-Qubit Systems & Entanglement**
@@ -85,7 +87,7 @@ No required textbook. But, lecture notes are mostly based on
 - Superdense coding
 - No-cloning theorem: proof and implications
 - Quantum key distribution (BB84) analysis
-- **Assignment 2 Due; Assignment 3 Released:** Entanglement and basic protocols
+
 
 **Week 6: Quantum Algorithms I: Oracle Problems**
 - Quantum oracle model and query complexity
@@ -93,11 +95,10 @@ No required textbook. But, lecture notes are mostly based on
 - Bernstein-Vazirani algorithm
 - Simon's problem (introduction)
 - **AI Tool Demo:** Using AI to generate oracle functions
-- **Midterm Review Session**
+
 
 #### **Unit 3: Core Quantum Algorithms (Weeks 7-9)**
 **Week 7: Quantum Fourier Transform**
-- **Midterm Exam** (covers Weeks 1-6)
 - Discrete Fourier transform review
 - Quantum Fourier Transform (QFT) circuit construction
 - Phase estimation algorithm
@@ -114,7 +115,6 @@ No required textbook. But, lecture notes are mostly based on
 - Optimality proof (quadratic speedup)
 - Amplitude amplification generalization
 - Applications to unstructured search and SAT
-- **Assignment 3 Due; Assignment 4 Released:** Quantum algorithm analysis
 
 #### **Unit 4: Advanced Topics (Weeks 10-12)**
 **Week 10: Quantum Error Correction**
@@ -130,7 +130,6 @@ No required textbook. But, lecture notes are mostly based on
 - Quantum Approximate Optimization Algorithm (QAOA)
 - Classical optimization loops
 - **AI Tool Demo:** Using AI to suggest optimization strategies
-- **Assignment 4 Due; Assignment 5 Released:** Error correction and variational methods
 
 **Week 12: Quantum Machine Learning Foundations**
 - Quantum data encoding strategies
@@ -151,7 +150,6 @@ No required textbook. But, lecture notes are mostly based on
 - Entanglement measures
 - Quantum channels and CPTP maps
 - Quantum Shannon theory (overview)
-- **Assignment 5 Due; Assignment 6 Released:** Complexity and information theory problems
 
 **Week 15: Presentations & Future Directions**
 - **Final Project Presentations**
