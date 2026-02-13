@@ -2,61 +2,50 @@
 *Introduction to quantum information and computing with an emphasis on AI*  
 *Prepared/written with the help of DeepSeek AI*
 
-## **Quantum Computing & Information: From Qubits to AI**
-**Course Numbers:** BIL474/YZM 522 (Undergraduate/Graduate)  
-**Instructor:** Ammar Daskin  
-**Semester:** Spring 2026  
-**Office Hours:** [Day/Time], [Location]  
-**Course Website:** [https://github.com/adaskin/intro-to-quantum-computing-course](https://github.com/adaskin/intro-to-quantum-computing-course)
 
 ### **Course Description**
 This course introduces quantum computing and information from a computer science perspective. Using mathematical rigor and algorithmic analysis, we develop quantum mechanics from first principles, establish the quantum circuit model, analyze key algorithms and protocols, and explore applications in optimization and machine learning. After mathematical formalism, computational complexity, and quantum information theory, in the final weeks of the course, the emphasis is given on the application of quantum computing to AI and optimization.
 
 ### **Prerequisites**
-- **Required:** Data Structures & Algorithms
-- **Required:** Linear Algebra (vector spaces, inner products, eigenvalues, unitary matrices)
-- **Required:** Discrete Mathematics or equivalent
-- **Required:** Python programming proficiency (assignments include implementation components)
+- Data Structures & Algorithms (basics)
+- Linear Algebra (basics)
+- Discrete Mathematics or equivalent
+- Python programming (assignments include implementation components)
 
 ### **Learning Outcomes**
 Upon completion, students will be able to:
-1. **Formalize** quantum states, operations, and measurements using Dirac notation and linear algebra
-2. **Prove** fundamental results (no-cloning, teleportation correctness, algorithm bounds)
-3. **Analyze** quantum algorithms' computational complexity and advantages
-4. **Design** quantum circuits for specified computational tasks
-5. **Compare** quantum and classical approaches to optimization, machine learning, and information processing
-6. **Critique** research papers and claims about quantum computing capabilities
+1. Formalize quantum states, operations, and measurements using Dirac notation and linear algebra
+2. Understand fundamental results (no-cloning, teleportation correctness, algorithm bounds)
+3. Analyze quantum algorithms' computational complexity and advantages
+4. Design quantum circuits for specified computational tasks
+5. Compare quantum and classical approaches to optimization, machine learning, and information processing
+6. Critique research papers and claims about quantum computing capabilities
 
 ### **Textbooks & Resources**
-**Primary Textbooks:**
-1. **"Quantum Computation and Quantum Information"** by Nielsen & Chuang (primary theoretical reference)
-2. **"An Introduction to Quantum Computing"** by Kaye, Laflamme, Mosca (CS-focused theory)
-3. **"Quantum Computing for Computer Scientists"** by Yanofsky & Mannucci (accessible approach)
+No required textbook. But, lecture notes are mostly based on
+- "Quantum Computation and Quantum Information" by Nielsen & Chuang (primary theoretical reference)
+- "An Introduction to Quantum Computing" by Kaye, Laflamme, Mosca (CS-focused theory)
+- "Quantum Computing for Computer Scientists" by Yanofsky & Mannucci (CS-focused and more basics)  
+
+**Online available** notes-books:
+- [A Course on the Theory of Quantum Computing](https://arxiv.org/pdf/2507.11536) by John Watrous, see also his IBM-Qiskit Textbook (free online: [qiskit.org/textbook](https://quantum.cloud.ibm.com/learning/en/courses))
+- [Quantum country](https://quantum.country/) by Andy Matuschak and [Michael Nielsen](https://michaelnielsen.org/)  see also his great [introduction to neural networks](http://neuralnetworksanddeeplearning.com/)
+- [Pennylane tutorials and documentation](https://pennylane.ai/qml)
+  
 
 **Software & Frameworks:**
-- **Qiskit** (IBM Quantum): Primary quantum programming framework
-- **PennyLane** (Xanadu): For quantum machine learning implementations
-- **NumPy/SciPy:** For classical simulation components
-- **You can also use other software packages**
+- Qiskit,PennyLane, PyTorch, NumPy/SciPy 
+- You can also use other software packages
 
-**Supplementary Resources:**
-- Lecture notes and selected research papers
-- Qiskit Textbook (free online: [qiskit.org/textbook](https://quantum.cloud.ibm.com/learning/en/courses))
-- Pennylane tutorials and documentation
 
 
 ### **Grading Policy**
-| Component | Weight | Description |
-|-----------|--------|-------------|
-| **Problem Sets & Python Simulations** | 30% | 3-5 assignments blending proofs, analysis, and implementations |
-| **Midterm Exam** | 20% | covers Weeks 1-8 |
-| **Class/Quiz Participation** | 10% | Determined by in-class quiz questions |
-| **Final Exam** | 40% | Comprehensive, covers entire semester |
-
-**Late Policy:** Assignments submitted within 24 hours of deadline receive 20% penalty. No submissions accepted after 24 hours without prior arrangement.
+- 40% 3-5 assignments including python implementations
+- 20% Midterm
+- 40% Final
 
 
-### **Course Schedule (15 Weeks)**
+### **Tentative: Course Schedule (15 Weeks)**
 
 #### **Unit 1: Mathematical Foundations (Weeks 1-3)**
 **Week 1: Classical vs. Quantum Information**
@@ -166,44 +155,7 @@ Upon completion, students will be able to:
 
 **Week 15: Presentations & Future Directions**
 - **Final Project Presentations**
-- Student-led discussions on AI-quantum synergy
-- Course synthesis: what's proven, what's plausible, what's speculative
-- **Final Papers Due**
 
-### **Assignment Structure**
-Each assignment will typically include:
-
-1. **Proof Problems:** Formal proofs of quantum information results
-2. **Circuit Analysis:** Designing and analyzing quantum circuits for given tasks
-3. **Computational Problems:** Calculating probabilities, state evolutions, etc.
-4. **Algorithm Analysis:** Analyzing time/space complexity of quantum algorithms
-5. **Python Implementation:** Hands-on experience with Qiskit or PennyLane
-
-**Example Assignment Topics:**
-- **A1:** Classical reversible computing and quantum notation (Python: basic gate implementation)
-- **A2:** Single-qubit states and measurements (Python: state tomography simulation)
-- **A3:** Entanglement and teleportation proofs (Python: teleportation circuit with noise)
-- **A4:** Quantum algorithm correctness and complexity (Python: Grover's algorithm implementation)
-- **A5:** Error correction and variational methods (Python: VQE for small molecules)
-- **A6:** Advanced topics synthesis (Python: quantum kernel method for classification)
-
-### **Final Project Options**
-Students may choose from:
-1. **Implementation Project:** Implement and analyze a quantum algorithm from recent literature
-2. **Survey Paper:** Comprehensive review of a quantum computing subfield
-3. **Research Proposal:** Original idea for quantum-AI research with feasibility analysis
-4. **Tool Development:** Create educational tools or visualizations for quantum concepts
-
-**Project Timeline:**
-- Week 8: Project proposal due
-- Week 10: Literature review/design document due
-- Week 13: Progress report
-- Week 15: Final presentation and paper submission
-
-### **Getting Help**
-1. **Office Hours:** [Schedule]
-2. **Course Forum:**  classroom.google.com
-4. **Programming Help:** TA-led Qiskit/PennyLane troubleshooting sessions
 
 
 ## Academic Integrity
