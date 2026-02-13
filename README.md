@@ -26,7 +26,7 @@ No required textbook. But, lecture notes are mostly based on
 - "Quantum Computation and Quantum Information" by Nielsen & Chuang (primary theoretical reference)
 - "An Introduction to Quantum Computing" by Kaye, Laflamme, Mosca (CS-focused theory)
 - "Quantum Computing for Computer Scientists" by Yanofsky & Mannucci (CS-focused and more basics)  
-
+- "Quantum Computing: A Gentle Introduction" by Eleanor G. Rieffel and Wolfgang H. Polak. 
 **Online available** notes-books:
 - [A Course on the Theory of Quantum Computing](https://arxiv.org/pdf/2507.11536) by John Watrous, see also his IBM-Qiskit Textbook (free online: [qiskit.org/textbook](https://quantum.cloud.ibm.com/learning/en/courses))
 - [Quantum country](https://quantum.country/) by Andy Matuschak and [Michael Nielsen](https://michaelnielsen.org/)  see also his great [introduction to neural networks](http://neuralnetworksanddeeplearning.com/)
