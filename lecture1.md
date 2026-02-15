@@ -1,15 +1,18 @@
 # **Lecture 1: From Classical Bits to Quantum Qubits**
 
-<div style="page-break-after: always;"></div>
+ **Welcome to Quantum Computing!**
 
-## **Welcome to Quantum Computing!**
+---
 
-### **What is Quantum Computing?**
+
+## **What is Quantum Computing?**
 - A new way of processing information
 - Based on the laws of quantum mechanics
 - Not just "faster computers" but **different kind** of computation
 
-### **Classical vs Quantum: The Big Picture**
+---
+## How quantum computing works?
+
 ```
 Classical Computing:                     Quantum Computing:
 • Uses bits (0 or 1)                     • Uses qubits (can be 0, 1, or both)
@@ -18,44 +21,105 @@ Classical Computing:                     Quantum Computing:
 • Like reading a book                    • Like experiencing VR
 ```
 
-<div style="page-break-after: always;"></div>
+---
 
-## **Classical Bits**
+## Why do we need Quantum Computing?
 
-### **What is a bit?**
+
+---
+
+## Are there real quantum computers?
+
+
+---
+
+## Who is doing quantum computation?
+
+---
+
+## What is this course about?
+- Quantum computing
+- Quantum information, quantum logic, gates, circuits
+- Quantum algorithms, design principals, complexities
+- Applications of quantum algorithms to data analysis, optimization, ai
+- Comparison to non-quantum (classical) algorithms
+
+---
+
+## Weekly topics
+- Mathematical foundations
+- Core quantum algorithms
+- More advanced algorithms
+- Applications
+- Quantum error correction
+  
+---
+
+## Grading
+- 40% 3-5 assignments including python implementations (you can work as groups of 1-3 people)
+- 20% Midterm
+- 40% Final
+
+---
+
+### **Textbooks & Resources**
+
+No required textbook. But, lecture notes are mostly based on
+- "Quantum Computation and Quantum Information" by Nielsen & Chuang (primary theoretical reference)
+- "An Introduction to Quantum Computing" by Kaye, Laflamme, Mosca (CS-focused theory)
+- "Quantum Computing for Computer Scientists" by Yanofsky & Mannucci (CS-focused and more basics)  
+- "Quantum Computing: A Gentle Introduction" by Eleanor G. Rieffel and Wolfgang H. Polak. 
+
+---
+
+**Online available** notes-books:
+- [A Course on the Theory of Quantum Computing](https://arxiv.org/pdf/2507.11536) by John Watrous, see also his IBM-Qiskit Textbook (free online: [qiskit.org/textbook](https://quantum.cloud.ibm.com/learning/en/courses))
+- [Quantum country](https://quantum.country/) by Andy Matuschak and [Michael Nielsen](https://michaelnielsen.org/)  see also his great [introduction to neural networks](http://neuralnetworksanddeeplearning.com/)
+- [Pennylane tutorials and documentation](https://pennylane.ai/qml)
+- [Quantum Algorithm Zoo](https://quantumalgorithmzoo.org/)
+
+---
+---
+
+
+ ## From Classical Bits to Quantum Qubits
+
+ **What is a bit?**
 - Smallest unit of classical information
 - Can be either **0** or **1**
 - Like a light switch: ON or OFF
 
-### **Examples of Bits:**
+ **Examples of Bits:**
 ```
 Computer memory: 0 or 1
 Light bulb: ON or OFF
 Coin: Heads or Tails
 ```
+---
 
-### **Mathematical Representation:**
+ **Mathematical Representation:**
 We can represent a bit as a vector:
 \[
 0 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad
 1 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}
 \]
 
-<div style="page-break-after: always;"></div>
+---
 
-## **Introducing Quantum Bits (Qubits)**
 
-### **The Quantum Surprise:**
+### **Introducing Quantum Bits (Qubits)**
+
+ **The Quantum Surprise:**
 A qubit can be **0, 1, or BOTH at the same time!**
 
-### **Analogy: Spinning Coin**
+ **Analogy: Spinning Coin**
 ```
 Classical coin:          Heads OR Tails
 Quantum coin (spinning): Heads AND Tails simultaneously
 Only when you stop it (measure) does it become one or the other
 ```
 
-### **Mathematical Representation:**
+ **Mathematical Representation:**
 A qubit state is:
 \[
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle
@@ -69,20 +133,20 @@ where:
 
 ## **Understanding Probability Amplitudes**
 
-### **Classical Probability:**
+ **Classical Probability:**
 If a coin has 50% chance heads, 50% tails:
 - Probability of heads = 0.5
 - Probability of tails = 0.5
 - Total = 1
 
-### **Quantum Probability Amplitudes:**
+ **Quantum Probability Amplitudes:**
 For a qubit: \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)
 - **Amplitude** for \(|0\rangle\) is \(\alpha\) (a complex number)
 - **Probability** of measuring \(|0\rangle\) is \(|\alpha|^2\)
 - **Probability** of measuring \(|1\rangle\) is \(|\beta|^2\)
 - \(|\alpha|^2 + |\beta|^2 = 1\)
 
-### **Example:**
+ **Example:**
 If \(\alpha = \frac{1}{\sqrt{2}}\) and \(\beta = \frac{1}{\sqrt{2}}\):
 - Probability of 0 = \(\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}\)
 - Probability of 1 = \(\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}\)
@@ -91,12 +155,12 @@ If \(\alpha = \frac{1}{\sqrt{2}}\) and \(\beta = \frac{1}{\sqrt{2}}\):
 
 ## **Polarization - A Physical Qubit**
 
-### **Polarized Sunglasses Experience:**
+ **Polarized Sunglasses Experience:**
 - When you tilt your head while wearing polarized sunglasses...
 - Some light gets through, some doesn't
 - The sunglasses act as a **filter** for light direction
 
-### **What is Light Polarization?**
+ **What is Light Polarization?**
 Light is an electromagnetic wave that vibrates in different directions:
 
 <div style="text-align: center;">
@@ -120,12 +184,12 @@ Light is an electromagnetic wave that vibrates in different directions:
 
 ## **Understanding Polarizers**
 
-### **Polarizer as a Filter:**
+ **Polarizer as a Filter:**
 ```
 Unpolarized light → Polarizer → Polarized light in one direction
 ```
 
-### **Example: Horizontal Polarizer**
+ **Example: Horizontal Polarizer**
 Only lets through light vibrating horizontally:
 
 <div style="text-align: center;">
@@ -148,7 +212,7 @@ Only lets through light vibrating horizontally:
 </svg>
 </div>
 
-### **Mathematical Representation:**
+ **Mathematical Representation:**
 Horizontal polarization = \(|H\rangle\)
 Vertical polarization = \(|V\rangle\)
 
@@ -186,7 +250,7 @@ Vertical polarization = \(|V\rangle\)
 </svg>
 </div>
 
-### **Angle θ determines polarization direction:**
+ **Angle θ determines polarization direction:**
 - θ = 0°: Horizontal polarization \(|H\rangle\)
 - θ = 90°: Vertical polarization \(|V\rangle\)
 - θ = 45°: Diagonal polarization \(|D\rangle\)
@@ -223,7 +287,7 @@ Sunlight (unpolarized) → Polarizer H → Only H polarized light
 </svg>
 </div>
 
-### **What happens to individual photons?**
+ **What happens to individual photons?**
 - Photon is smallest unit of light
 - Each photon either PASSES or is ABSORBED
 - Probability depends on its initial polarization
@@ -265,12 +329,12 @@ Light → Polarizer H → Polarizer V → Darkness!
 </svg>
 </div>
 
-### **Why no light?**
+ **Why no light?**
 1. First polarizer: Only H photons pass
 2. Second polarizer (V): Blocks all H photons
 3. Result: No light gets through
 
-### **Mathematically:**
+ **Mathematically:**
 After first polarizer: \(|H\rangle\)
 Probability through V polarizer = \(|\langle V|H\rangle|^2 = 0\)
 
@@ -307,10 +371,10 @@ Light → H → 45° → V → SOME LIGHT!
 </svg>
 </div>
 
-### **Counterintuitive Result:**
+ **Counterintuitive Result:**
 Adding a third polarizer at 45° **allows light through**!
 
-### **Explanation with Qubits:**
+ **Explanation with Qubits:**
 1. After H polarizer: \(|H\rangle\)
 2. 45° polarizer creates **superposition**: \(|D\rangle = \frac{1}{\sqrt{2}}(|H\rangle + |V\rangle)\)
 3. Now has both H and V components!
@@ -322,7 +386,7 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 
 ## **Superposition in Polarization**
 
-### **Diagonal Polarization as Superposition:**
+ **Diagonal Polarization as Superposition:**
 \[
 |D\rangle = \frac{1}{\sqrt{2}}|H\rangle + \frac{1}{\sqrt{2}}|V\rangle
 \]
@@ -350,7 +414,7 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 </svg>
 </div>
 
-### **What does this mean?**
+ **What does this mean?**
 - Photon is in BOTH H AND V states simultaneously
 - When measured by H polarizer: 50% chance H, 50% chance V
 - When measured by V polarizer: 50% chance H, 50% chance V
@@ -359,12 +423,12 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 
 ## **Introducing Quantum Spin**
 
-### **Electrons Have "Spin"**
+ **Electrons Have "Spin"**
 - Not actually spinning like a top
 - Intrinsic property like mass or charge
 - Always has same magnitude but can point in different directions
 
-### **Spin Directions:**
+ **Spin Directions:**
 - Up along z-axis: \(|\uparrow_z\rangle\) or \(|0\rangle\)
 - Down along z-axis: \(|\downarrow_z\rangle\) or \(|1\rangle\)
 
@@ -392,7 +456,7 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 
 ## **Stern-Gerlach Experiment (1922)**
 
-### **The Setup:**
+ **The Setup:**
 ```
 Silver atoms (with one unpaired electron)
         ↓
@@ -427,7 +491,7 @@ Detector screen
 </svg>
 </div>
 
-### **Actual Result:**
+ **Actual Result:**
 Only **TWO** discrete spots appear!
 - One spot for spin UP
 - One spot for spin DOWN
@@ -436,12 +500,12 @@ Only **TWO** discrete spots appear!
 
 ## **What Stern-Gerlach Shows Us**
 
-### **Key Discovery:**
+ **Key Discovery:**
 1. **Quantization:** Spin only takes discrete values (not continuous)
 2. **Measurement:** Apparatus "measures" spin along vertical axis
 3. **Collapse:** Measurement forces atom into UP or DOWN state
 
-### **First SG Apparatus:**
+ **First SG Apparatus:**
 - Measures spin along z-axis
 - Splits beam into \(|\uparrow_z\rangle\) and \(|\downarrow_z\rangle\)
 - Select one path (e.g., \(|\uparrow_z\rangle\) only) for next experiment
@@ -450,13 +514,13 @@ Only **TWO** discrete spots appear!
 
 ## **Sequential Stern-Gerlach Experiments**
 
-### **Experiment 1: SG-z → SG-z**
+ **Experiment 1: SG-z → SG-z**
 ```
 Atoms → SG-z (select ↑_z) → SG-z → All ↑_z
 ```
 **Result:** 100% up. Once measured up, stays up if measured same way.
 
-### **Experiment 2: SG-z → SG-x → SG-z**
+ **Experiment 2: SG-z → SG-x → SG-z**
 ```
 Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 ```
@@ -494,11 +558,11 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 
 ## **Understanding the SG-x Apparatus**
 
-### **What is SG-x?**
+ **What is SG-x?**
 - Measures spin along x-axis
 - Splits into \(|\uparrow_x\rangle\) and \(|\downarrow_x\rangle\)
 
-### **Mathematical Relationship:**
+ **Mathematical Relationship:**
 \[
 |\uparrow_z\rangle = \frac{1}{\sqrt{2}}|\uparrow_x\rangle + \frac{1}{\sqrt{2}}|\downarrow_x\rangle
 \]
@@ -506,7 +570,7 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 |\downarrow_z\rangle = \frac{1}{\sqrt{2}}|\uparrow_x\rangle - \frac{1}{\sqrt{2}}|\downarrow_x\rangle
 \]
 
-### **Interpretation:**
+ **Interpretation:**
 \(|\uparrow_z\rangle\) is a **superposition** of x-spin states!
 
 <div style="text-align: center;">
@@ -548,14 +612,14 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 
 ## **Analysis of SG-z → SG-x → SG-z**
 
-### **Step by Step:**
+ **Step by Step:**
 1. Start with \(|\uparrow_z\rangle\)
 2. SG-x measurement: Forces into either \(|\uparrow_x\rangle\) or \(|\downarrow_x\rangle\) (50% each)
 3. Let's say we get \(|\uparrow_x\rangle\)
 4. Now: \(|\uparrow_x\rangle = \frac{1}{\sqrt{2}}|\uparrow_z\rangle + \frac{1}{\sqrt{2}}|\downarrow_z\rangle\)
 5. Final SG-z: 50% chance ↑_z, 50% chance ↓_z
 
-### **Key Insight:**
+ **Key Insight:**
 The middle measurement **destroys** original information
 - Like the middle polarizer creates new possibilities
 
@@ -563,7 +627,7 @@ The middle measurement **destroys** original information
 
 ## **Quantum vs Classical Measurement**
 
-### **Classical Measurement:**
+ **Classical Measurement:**
 <div style="text-align: center;">
 <svg width="400" height="150">
   <!-- Light bulb -->
@@ -581,7 +645,7 @@ The middle measurement **destroys** original information
 </svg>
 </div>
 
-### **Quantum Measurement:**
+ **Quantum Measurement:**
 <div style="text-align: center;">
 <svg width="400" height="150">
   <!-- Spinning coin -->
@@ -605,17 +669,17 @@ The middle measurement **destroys** original information
 
 ## **Connection to Computation**
 
-### **Stern-Gerlach as Quantum Gates:**
+ **Stern-Gerlach as Quantum Gates:**
 - SG-z: Measures in computational basis {|0⟩, |1⟩}
 - SG-x: Measures in Hadamard basis {|+⟩, |-⟩}
 - Where: \(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)
 
-### **Sequence SG-z → SG-x → SG-z is like:**
+ **Sequence SG-z → SG-x → SG-z is like:**
 1. Prepare |0⟩
 2. Apply Hadamard gate (creates superposition)
 3. Measure in computational basis
 
-### **The Hadamard Gate:**
+ **The Hadamard Gate:**
 \[
 H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}
 \]
@@ -653,19 +717,19 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 
 ## **Summary - Key Quantum Concepts**
 
-### **1. Superposition:**
+ **1. Superposition:**
 - Quantum systems can be in multiple states at once
 - \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)
 
-### **2. Measurement Collapse:**
+ **2. Measurement Collapse:**
 - Measurement forces system into definite state
 - Probability given by \(|\alpha|^2\) and \(|\beta|^2\)
 
-### **3. Basis Change:**
+ **3. Basis Change:**
 - Same state looks different in different bases
 - \(|0\rangle = \frac{1}{\sqrt{2}}(|+\rangle + |-\rangle)\)
 
-### **4. Quantum Information:**
+ **4. Quantum Information:**
 - More powerful than classical information
 - Enables new algorithms (we'll learn these next!)
 
@@ -692,17 +756,17 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 
 ## **Exercises**
 
-### **Problem 1: Polarizer Math**
+ **Problem 1: Polarizer Math**
 Light passes through polarizers at 0°, 30°, and 90°. What fraction emerges?
 Hint: Use Malus's Law: \(I = I_0 \cos^2(\theta)\)
 
-### **Problem 2: Quantum State**
+ **Problem 2: Quantum State**
 A qubit is in state: \(|\psi\rangle = \frac{3}{5}|0\rangle + \frac{4i}{5}|1\rangle\)
 a) Verify this is a valid quantum state
 b) What is probability of measuring |0⟩?
 c) What is probability of measuring |1⟩?
 
-### **Problem 3: Stern-Gerlach**
+ **Problem 3: Stern-Gerlach**
 If we start with \(|\uparrow_z\rangle\) and measure:
 SG-z → SG-x → SG-y → SG-z
 What is the probability of getting ↑_z at the end?
@@ -711,13 +775,13 @@ What is the probability of getting ↑_z at the end?
 
 ## **Next Lecture Preview**
 
-### **Coming Up:**
+ **Coming Up:**
 1. **Dirac Notation:** The language of quantum mechanics
 2. **Quantum Gates:** How to manipulate qubits
 3. **Entanglement:** The "spooky" quantum correlation
 4. **Quantum Circuits:** Building quantum algorithms
 
-### **Reading:**
+ **Reading:**
 - Textbook Chapter 1: Introduction to Quantum Computing
 - Qiskit Documentation: Basic quantum concepts
 
