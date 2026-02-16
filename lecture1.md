@@ -151,7 +151,7 @@ If \(\alpha = \frac{1}{\sqrt{2}}\) and \(\beta = \frac{1}{\sqrt{2}}\):
 - Probability of 0 = \(\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}\)
 - Probability of 1 = \(\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}\)
 
-<div style="page-break-after: always;"></div>
+---
 
 ## **Polarization - A Physical Qubit**
 
@@ -160,29 +160,10 @@ If \(\alpha = \frac{1}{\sqrt{2}}\) and \(\beta = \frac{1}{\sqrt{2}}\):
 - Some light gets through, some doesn't
 - The sunglasses act as a **filter** for light direction
 
+---
+
  **What is Light Polarization?**
 Light is an electromagnetic wave that vibrates in different directions:
-
-<div style="text-align: center;">
-<svg width="300" height="100">
-  <!-- Light direction arrow -->
-  <line x1="50" y1="50" x2="250" y2="50" stroke="black" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="150" y="70">Light direction</text>
-  
-  <!-- Wave oscillation -->
-  <path d="M100,30 C120,20 140,20 160,30 C180,40 200,40 220,30" stroke="blue" stroke-width="2" fill="none"/>
-  <path d="M100,70 C120,80 140,80 160,70 C180,60 200,60 220,70" stroke="blue" stroke-width="2" fill="none"/>
-  
-  <!-- Up/down arrows -->
-  <line x1="160" y1="30" x2="160" y2="10" stroke="red" stroke-width="2"/>
-  <line x1="160" y1="70" x2="160" y2="90" stroke="red" stroke-width="2"/>
-  <text x="170" y="20" fill="red">Electric field</text>
-</svg>
-</div>
-
-<div style="page-break-after: always;"></div>
-
-## **Understanding Polarizers**
 
  **Polarizer as a Filter:**
 ```
@@ -190,45 +171,37 @@ Unpolarized light → Polarizer → Polarized light in one direction
 ```
 
  **Example: Horizontal Polarizer**
-Only lets through light vibrating horizontally:
+Only lets through light vibrating horizontally(50% light pass through):
+![Single polaroid attenuates unpolarized light by 50 percent.](image.png)
 
-<div style="text-align: center;">
-<svg width="400" height="150">
-  <!-- Light rays -->
-  <line x1="50" y1="50" x2="180" y2="50" stroke="gray" stroke-width="2"/>
-  <line x1="50" y1="70" x2="180" y2="70" stroke="gray" stroke-width="2"/>
-  
-  <!-- Polarizer -->
-  <rect x="180" y="20" width="40" height="100" fill="#e0e0ff" stroke="blue" stroke-width="2"/>
-  <text x="200" y="90">H</text>
-  <text x="200" y="110">Polarizer</text>
-  
-  <!-- After polarizer -->
-  <line x1="220" y1="50" x2="350" y2="50" stroke="red" stroke-width="3"/>
-  
-  <!-- Labels -->
-  <text x="100" y="40" fill="gray">Unpolarized light</text>
-  <text x="280" y="40" fill="red">Horizontal light only</text>
-</svg>
-</div>
+---
+
+
+ **Example: two orthogonal polarizer**
+No light passes through (all photons are blocked).
+![Two orthogonal polaroids block all photons.](image-1.png)
+
+---
+
+**Example: inserting polarizer-B**
+some light passes through.
+![alt text](image-2.png)
+
+---
+
+## **Coordinate System for Polarization**
 
  **Mathematical Representation:**
 Horizontal polarization = \(|H\rangle\)
 Vertical polarization = \(|V\rangle\)
 
-<div style="page-break-after: always;"></div>
-
-## **Coordinate System for Polarization**
-
 <div style="text-align: center;">
+<table>
+<td>
 <svg width="300" height="300" style="border: 1px solid #ccc; background: white;">
   <!-- Coordinate axes -->
   <line x1="150" y1="50" x2="150" y2="250" stroke="black" stroke-width="1"/>
   <line x1="50" y1="150" x2="250" y2="150" stroke="black" stroke-width="1"/>
-  
-  <!-- Labels -->
-  <text x="155" y="40">y</text>
-  <text x="260" y="155">x</text>
   
   <!-- Origin -->
   <circle cx="150" cy="150" r="3" fill="black"/>
@@ -236,28 +209,36 @@ Vertical polarization = \(|V\rangle\)
   
   <!-- Angle markers -->
   <line x1="150" y1="150" x2="250" y2="150" stroke="green" stroke-width="2"/>
-  <text x="200" y="140" fill="green">θ = 0° (Horizontal)</text>
+  <text x="170" y="180" fill="green">θ = 0° (Horizontal)</text>
   
   <line x1="150" y1="150" x2="150" y2="50" stroke="red" stroke-width="2"/>
-  <text x="160" y="100" fill="red">θ = 90° (Vertical)</text>
+  <text x="80" y="100" fill="red">θ = 90° (Vertical)</text>
   
   <line x1="150" y1="150" x2="250" y2="50" stroke="blue" stroke-width="2"/>
-  <text x="220" y="70" fill="blue">θ = 45° (Diagonal)</text>
+  <text x="170" y="70" fill="blue">θ = 45° (Diagonal)</text>
   
   <!-- Angle arc -->
   <path d="M170,150 A20,20 0 0,0 162,135" fill="none" stroke="black" stroke-width="1"/>
   <text x="180" y="145">θ</text>
 </svg>
-</div>
+</td>
+<td>
+Angle θ determines polarization direction:  
 
- **Angle θ determines polarization direction:**
 - θ = 0°: Horizontal polarization \(|H\rangle\)
 - θ = 90°: Vertical polarization \(|V\rangle\)
 - θ = 45°: Diagonal polarization \(|D\rangle\)
+</td>
+</table>
+
+</div>
+
+---
+
 
 <div style="page-break-after: always;"></div>
 
-## **Experiment 1 - Single Polarizer**
+**Single Polarizer**
 
 ```
 Sunlight (unpolarized) → Polarizer H → Only H polarized light
@@ -296,9 +277,11 @@ For unpolarized light:
 - Probability to pass H polarizer = 50%
 - Probability to be absorbed = 50%
 
+---
+
 <div style="page-break-after: always;"></div>
 
-## **Experiment 2 - Crossed Polarizers**
+## **Crossed Polarizers**
 
 ```
 Light → Polarizer H → Polarizer V → Darkness!
@@ -315,17 +298,17 @@ Light → Polarizer H → Polarizer V → Darkness!
   <text x="110" y="100">H</text>
   
   <!-- Arrow between -->
-  <line x1="140" y1="100" x2="180" y2="100" stroke="red" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="160" y="90">H light only</text>
+  <line x1="140" y1="100" x2="230" y2="100" stroke="red" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="150" y="90">H light only</text>
   
   <!-- Second polarizer -->
-  <rect x="180" y="50" width="40" height="100" fill="#ffe0e0" stroke="red" stroke-width="2"/>
-  <text x="190" y="100">V</text>
+  <rect x="230" y="50" width="40" height="100" fill="#ffe0e0" stroke="red" stroke-width="2"/>
+  <text x="240" y="100">V</text>
   
   <!-- Result -->
-  <line x1="220" y1="100" x2="280" y2="100" stroke="gray" stroke-dasharray="5,5" stroke-width="1"/>
-  <text x="250" y="100">NO LIGHT!</text>
-  <text x="250" y="120">0% transmission</text>
+  <line x1="270" y1="100" x2="290" y2="100" stroke="gray" stroke-dasharray="5,5" stroke-width="1"/>
+  <text x="280" y="100">NO LIGHT!</text>
+  <text x="280" y="120">0% transmission</text>
 </svg>
 </div>
 
@@ -337,6 +320,8 @@ Light → Polarizer H → Polarizer V → Darkness!
  **Mathematically:**
 After first polarizer: \(|H\rangle\)
 Probability through V polarizer = \(|\langle V|H\rangle|^2 = 0\)
+
+---
 
 <div style="page-break-after: always;"></div>
 
@@ -374,6 +359,8 @@ Light → H → 45° → V → SOME LIGHT!
  **Counterintuitive Result:**
 Adding a third polarizer at 45° **allows light through**!
 
+---
+
  **Explanation with Qubits:**
 1. After H polarizer: \(|H\rangle\)
 2. 45° polarizer creates **superposition**: \(|D\rangle = \frac{1}{\sqrt{2}}(|H\rangle + |V\rangle)\)
@@ -382,6 +369,7 @@ Adding a third polarizer at 45° **allows light through**!
 
 Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 
+---
 <div style="page-break-after: always;"></div>
 
 ## **Superposition in Polarization**
@@ -391,35 +379,14 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 |D\rangle = \frac{1}{\sqrt{2}}|H\rangle + \frac{1}{\sqrt{2}}|V\rangle
 \]
 
-<div style="text-align: center;">
-<svg width="400" height="200">
-  <!-- Horizontal component -->
-  <line x1="50" y1="100" x2="150" y2="100" stroke="blue" stroke-width="3"/>
-  <text x="100" y="90" fill="blue">H component</text>
-  
-  <!-- Vertical component -->
-  <line x1="200" y1="50" x2="200" y2="150" stroke="red" stroke-width="3"/>
-  <text x="210" y="100" fill="red">V component</text>
-  
-  <!-- Plus sign -->
-  <text x="175" y="105" font-size="24">+</text>
-  
-  <!-- Equal sign -->
-  <text x="230" y="105" font-size="24">=</text>
-  
-  <!-- Result -->
-  <line x1="260" y1="50" x2="340" y2="150" stroke="purple" stroke-width="4"/>
-  <text x="300" y="160" fill="purple">Diagonal |D⟩</text>
-  <text x="300" y="180">(Superposition!)</text>
-</svg>
-</div>
+
 
  **What does this mean?**
 - Photon is in BOTH H AND V states simultaneously
 - When measured by H polarizer: 50% chance H, 50% chance V
 - When measured by V polarizer: 50% chance H, 50% chance V
 
-<div style="page-break-after: always;"></div>
+---
 
 ## **Introducing Quantum Spin**
 
@@ -454,6 +421,8 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 
 <div style="page-break-after: always;"></div>
 
+---
+
 ## **Stern-Gerlach Experiment (1922)**
 
  **The Setup:**
@@ -485,9 +454,9 @@ Detector screen
   
   <!-- Spots -->
   <circle cx="240" cy="190" r="8" fill="red"/>
-  <circle cx="260" cy="190" r="8" fill="blue"/>
+  <circle cx="280" cy="190" r="8" fill="blue"/>
   <text x="240" y="210">Up</text>
-  <text x="260" y="210">Down</text>
+  <text x="280" y="210">Down</text>
 </svg>
 </div>
 
@@ -510,6 +479,8 @@ Only **TWO** discrete spots appear!
 - Splits beam into \(|\uparrow_z\rangle\) and \(|\downarrow_z\rangle\)
 - Select one path (e.g., \(|\uparrow_z\rangle\) only) for next experiment
 
+---
+
 <div style="page-break-after: always;"></div>
 
 ## **Sequential Stern-Gerlach Experiments**
@@ -519,6 +490,8 @@ Only **TWO** discrete spots appear!
 Atoms → SG-z (select ↑_z) → SG-z → All ↑_z
 ```
 **Result:** 100% up. Once measured up, stays up if measured same way.
+
+---
 
  **Experiment 2: SG-z → SG-x → SG-z**
 ```
@@ -556,6 +529,8 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 
 <div style="page-break-after: always;"></div>
 
+---
+
 ## **Understanding the SG-x Apparatus**
 
  **What is SG-x?**
@@ -573,42 +548,7 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
  **Interpretation:**
 \(|\uparrow_z\rangle\) is a **superposition** of x-spin states!
 
-<div style="text-align: center;">
-<svg width="500" height="200">
-  <!-- z-up state -->
-  <rect x="50" y="30" width="120" height="40" fill="#e0e0ff" stroke="blue" stroke-width="2"/>
-  <text x="110" y="55">|↑_z⟩</text>
-  
-  <!-- Equals -->
-  <text x="185" y="55" font-size="24">=</text>
-  
-  <!-- Superposition -->
-  <rect x="210" y="30" width="280" height="40" fill="#f0f0f0" stroke="black" stroke-width="1"/>
-  
-  <!-- Components -->
-  <line x1="220" y1="40" x2="280" y2="40" stroke="red" stroke-width="2"/>
-  <text x="250" y="35" fill="red">1/√2 |↑_x⟩</text>
-  
-  <text x="290" y="55">+</text>
-  
-  <line x1="310" y1="40" x2="370" y2="40" stroke="blue" stroke-width="2"/>
-  <text x="340" y="35" fill="blue">1/√2 |↓_x⟩</text>
-  
-  <!-- Arrow to measurement -->
-  <line x1="350" y1="70" x2="350" y2="100" stroke="black" stroke-width="2" marker-end="url(#arrow)"/>
-  
-  <!-- Measurement results -->
-  <circle cx="300" cy="130" r="20" fill="#ffcccc"/>
-  <text x="300" y="130">↑_x</text>
-  <text x="300" y="160">50% chance</text>
-  
-  <circle cx="400" cy="130" r="20" fill="#ccccff"/>
-  <text x="400" y="130">↓_x</text>
-  <text x="400" y="160">50% chance</text>
-</svg>
-</div>
-
-<div style="page-break-after: always;"></div>
+---
 
 ## **Analysis of SG-z → SG-x → SG-z**
 
@@ -623,6 +563,7 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 The middle measurement **destroys** original information
 - Like the middle polarizer creates new possibilities
 
+---
 <div style="page-break-after: always;"></div>
 
 ## **Quantum vs Classical Measurement**
@@ -639,7 +580,7 @@ The middle measurement **destroys** original information
   <text x="200" y="145">👁️</text>
   
   <!-- Result -->
-  <rect x="250" y="60" width="100" height="40" fill="#f0f0f0" stroke="black" stroke-width="1"/>
+  <rect x="250" y="60" width="150" height="40" fill="#f0f0f0" stroke="black" stroke-width="1"/>
   <text x="300" y="80">Still ON!</text>
   <text x="300" y="100">No change</text>
 </svg>
@@ -667,6 +608,8 @@ The middle measurement **destroys** original information
 
 <div style="page-break-after: always;"></div>
 
+---
+
 ## **Connection to Computation**
 
  **Stern-Gerlach as Quantum Gates:**
@@ -690,30 +633,32 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 <div style="text-align: center;">
 <svg width="500" height="200">
   <!-- Quantum circuit -->
-  <rect x="50" y="50" width="400" height="100" fill="white" stroke="black" stroke-width="1"/>
+  <rect x="50" y="30" width="500" height="100" fill="white" stroke="black" stroke-width="1"/>
   
   <!-- Qubit line -->
   <line x1="70" y1="70" x2="430" y2="70" stroke="black" stroke-width="2"/>
   
   <!-- Gates -->
   <rect x="100" y="50" width="40" height="40" fill="#ccccff" stroke="blue" stroke-width="2"/>
-  <text x="120" y="75">|0⟩</text>
+  <text x="110" y="75">|0⟩</text>
   
   <rect x="200" y="50" width="40" height="40" fill="#ffcccc" stroke="red" stroke-width="2"/>
-  <text x="220" y="75">H</text>
+  <text x="210" y="75">H</text>
   
   <!-- Measurement -->
-  <rect x="300" y="50" width="60" height="40" fill="#ccffcc" stroke="green" stroke-width="2"/>
-  <text x="330" y="75">Measure</text>
+  <rect x="300" y="50" width="80" height="40" fill="#ccffcc" stroke="green" stroke-width="2"/>
+  <text x="305" y="75">Measure</text>
   
   <!-- Results -->
-  <rect x="370" y="60" width="60" height="20" fill="#f0f0f0" stroke="black" stroke-width="1"/>
-  <text x="400" y="75">0 or 1</text>
-  <text x="400" y="95">50% each</text>
+  <rect x="400" y="60" width="80" height="20" fill="#f0f0f0" stroke="black" stroke-width="1"/>
+  <text x="410" y="75">0 or 1</text>
+  <text x="410" y="95">50% each</text>
 </svg>
 </div>
 
 <div style="page-break-after: always;"></div>
+
+---
 
 ## **Summary - Key Quantum Concepts**
 
@@ -754,6 +699,8 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 
 <div style="page-break-after: always;"></div>
 
+---
+
 ## **Exercises**
 
  **Problem 1: Polarizer Math**
@@ -770,6 +717,8 @@ c) What is probability of measuring |1⟩?
 If we start with \(|\uparrow_z\rangle\) and measure:
 SG-z → SG-x → SG-y → SG-z
 What is the probability of getting ↑_z at the end?
+
+---
 
 <div style="page-break-after: always;"></div>
 
