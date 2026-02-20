@@ -3,7 +3,7 @@
  **Welcome to Quantum Computing!**
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 ## **What is Quantum Computing?**
 - A new way of processing information
@@ -11,6 +11,8 @@
 - Not just "faster computers" but **different kind** of computation
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## How quantum computing works?
 
 ```
@@ -22,20 +24,24 @@ Classical Computing:                     Quantum Computing:
 ```
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Why do we need Quantum Computing?
 
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Are there real quantum computers?
 
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Who is doing quantum computation?
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## What is this course about?
 - Quantum computing
@@ -45,6 +51,7 @@ Classical Computing:                     Quantum Computing:
 - Comparison to non-quantum (classical) algorithms
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Weekly topics
 - Mathematical foundations
@@ -54,6 +61,7 @@ Classical Computing:                     Quantum Computing:
 - Quantum error correction
   
 ---
+<div style="page-break-after: always;"></div>
 
 ## Grading
 - 40% 3-5 assignments including python implementations (you can work as groups of 1-3 people)
@@ -61,6 +69,7 @@ Classical Computing:                     Quantum Computing:
 - 40% Final
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Textbooks & Resources**
 
@@ -71,6 +80,7 @@ No required textbook. But, lecture notes are mostly based on
 - "Quantum Computing: A Gentle Introduction" by Eleanor G. Rieffel and Wolfgang H. Polak. 
 
 ---
+<div style="page-break-after: always;"></div>
 
 **Online available** notes-books:
 - [A Course on the Theory of Quantum Computing](https://arxiv.org/pdf/2507.11536) by John Watrous, see also his IBM-Qiskit Textbook (free online: [qiskit.org/textbook](https://quantum.cloud.ibm.com/learning/en/courses))
@@ -79,8 +89,7 @@ No required textbook. But, lecture notes are mostly based on
 - [Quantum Algorithm Zoo](https://quantumalgorithmzoo.org/)
 
 ---
----
-
+<div style="page-break-after: always;"></div>
 
  ## From Classical Bits to Quantum Qubits
 
@@ -96,6 +105,7 @@ Light bulb: ON or OFF
 Coin: Heads or Tails
 ```
 ---
+<div style="page-break-after: always;"></div>
 
  **Mathematical Representation:**
 We can represent a bit as a vector:
@@ -106,6 +116,7 @@ We can represent a bit as a vector:
 
 ---
 
+<div style="page-break-after: always;"></div>
 
 ### **Introducing Quantum Bits (Qubits)**
 
@@ -118,6 +129,8 @@ Classical coin:          Heads OR Tails
 Quantum coin (spinning): Heads AND Tails simultaneously
 Only when you stop it (measure) does it become one or the other
 ```
+---
+<div style="page-break-after: always;"></div>
 
  **Mathematical Representation:**
 A qubit state is:
@@ -129,6 +142,8 @@ where:
 - \(\alpha\) and \(\beta\) are **complex numbers**
 - \(|\alpha|^2 + |\beta|^2 = 1\) (total probability = 1)
 
+---
+
 <div style="page-break-after: always;"></div>
 
 ## **Understanding Probability Amplitudes**
@@ -138,6 +153,9 @@ If a coin has 50% chance heads, 50% tails:
 - Probability of heads = 0.5
 - Probability of tails = 0.5
 - Total = 1
+
+---
+<div style="page-break-after: always;"></div>
 
  **Quantum Probability Amplitudes:**
 For a qubit: \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)
@@ -152,6 +170,7 @@ If \(\alpha = \frac{1}{\sqrt{2}}\) and \(\beta = \frac{1}{\sqrt{2}}\):
 - Probability of 1 = \(\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}\)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Polarization - A Physical Qubit**
 
@@ -161,6 +180,7 @@ If \(\alpha = \frac{1}{\sqrt{2}}\) and \(\beta = \frac{1}{\sqrt{2}}\):
 - The sunglasses act as a **filter** for light direction
 
 ---
+<div style="page-break-after: always;"></div>
 
  **What is Light Polarization?**
 Light is an electromagnetic wave that vibrates in different directions:
@@ -169,25 +189,29 @@ Light is an electromagnetic wave that vibrates in different directions:
 ```
 Unpolarized light → Polarizer → Polarized light in one direction
 ```
+---
+<div style="page-break-after: always;"></div>
 
  **Example: Horizontal Polarizer**
 Only lets through light vibrating horizontally(50% light pass through):
 ![Single polaroid attenuates unpolarized light by 50 percent.](image.png)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
  **Example: two orthogonal polarizer**
 No light passes through (all photons are blocked).
 ![Two orthogonal polaroids block all photons.](image-1.png)
 
 ---
+<div style="page-break-after: always;"></div>
 
 **Example: inserting polarizer-B**
 some light passes through.
 ![alt text](image-2.png)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Coordinate System for Polarization**
 
@@ -243,12 +267,14 @@ Angle θ determines polarization direction:
 ```
 Sunlight (unpolarized) → Polarizer H → Only H polarized light
 ```
+---
+<div style="page-break-after: always;"></div>
 
 <div style="text-align: center;">
 <svg width="500" height="200">
   <!-- Sun -->
   <circle cx="50" cy="100" r="30" fill="#ffcc00"/>
-  <text x="50" y="140">Sunlight</text>
+  <text x="50" y="150">Sunlight</text>
   
   <!-- Arrow to polarizer -->
   <line x1="80" y1="100" x2="140" y2="100" stroke="black" stroke-width="2" marker-end="url(#arrow)"/>
@@ -256,13 +282,13 @@ Sunlight (unpolarized) → Polarizer H → Only H polarized light
   <!-- Polarizer -->
   <rect x="140" y="50" width="40" height="100" fill="#e0e0ff" stroke="blue" stroke-width="2"/>
   <text x="150" y="100">H</text>
-  <text x="140" y="160">Polarizer</text>
+  <text x="140" y="170">Polarizer</text>
   
   <!-- Arrow after polarizer -->
   <line x1="180" y1="100" x2="240" y2="100" stroke="red" stroke-width="3" marker-end="url(#arrow)"/>
   
   <!-- Result -->
-  <rect x="240" y="80" width="100" height="40" fill="#f0f0ff" stroke="black" stroke-width="1"/>
+  <rect x="240" y="80" width="200" height="60" fill="#f0f0ff" stroke="black" stroke-width="1"/>
   <text x="290" y="100">Only H light</text>
   <text x="290" y="120">(50% of photons)</text>
 </svg>
@@ -312,6 +338,9 @@ Light → Polarizer H → Polarizer V → Darkness!
 </svg>
 </div>
 
+---
+<div style="page-break-after: always;"></div>
+
  **Why no light?**
 1. First polarizer: Only H photons pass
 2. Second polarizer (V): Blocks all H photons
@@ -360,6 +389,7 @@ Light → H → 45° → V → SOME LIGHT!
 Adding a third polarizer at 45° **allows light through**!
 
 ---
+<div style="page-break-after: always;"></div>
 
  **Explanation with Qubits:**
 1. After H polarizer: \(|H\rangle\)
@@ -387,6 +417,8 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 - When measured by V polarizer: 50% chance H, 50% chance V
 
 ---
+<div style="page-break-after: always;"></div>
+
 
 ## **Introducing Quantum Spin**
 
@@ -394,6 +426,10 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 - Not actually spinning like a top
 - Intrinsic property like mass or charge
 - Always has same magnitude but can point in different directions
+
+---
+<div style="page-break-after: always;"></div>
+
 
  **Spin Directions:**
 - Up along z-axis: \(|\uparrow_z\rangle\) or \(|0\rangle\)
@@ -419,9 +455,9 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 </svg>
 </div>
 
+---
 <div style="page-break-after: always;"></div>
 
----
 
 ## **Stern-Gerlach Experiment (1922)**
 
@@ -433,6 +469,8 @@ Strong magnet with non-uniform field
         ↓
 Detector screen
 ```
+---
+<div style="page-break-after: always;"></div>
 
 <div style="text-align: center;">
 <svg width="500" height="300">
@@ -460,11 +498,16 @@ Detector screen
 </svg>
 </div>
 
+---
+
+<div style="page-break-after: always;">
+
  **Actual Result:**
 Only **TWO** discrete spots appear!
 - One spot for spin UP
 - One spot for spin DOWN
 
+---
 <div style="page-break-after: always;"></div>
 
 ## **What Stern-Gerlach Shows Us**
@@ -492,6 +535,8 @@ Atoms → SG-z (select ↑_z) → SG-z → All ↑_z
 **Result:** 100% up. Once measured up, stays up if measured same way.
 
 ---
+
+<div style="page-break-after: always;">
 
  **Experiment 2: SG-z → SG-x → SG-z**
 ```
@@ -527,9 +572,10 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 </svg>
 </div>
 
+---
+
 <div style="page-break-after: always;"></div>
 
----
 
 ## **Understanding the SG-x Apparatus**
 
@@ -549,6 +595,8 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 \(|\uparrow_z\rangle\) is a **superposition** of x-spin states!
 
 ---
+
+<div style="page-break-after: always;">
 
 ## **Analysis of SG-z → SG-x → SG-z**
 
@@ -580,11 +628,15 @@ The middle measurement **destroys** original information
   <text x="200" y="145">👁️</text>
   
   <!-- Result -->
-  <rect x="250" y="60" width="150" height="40" fill="#f0f0f0" stroke="black" stroke-width="1"/>
+  <rect x="250" y="60" width="150" height="60" fill="#f0f0f0" stroke="black" stroke-width="1"/>
   <text x="300" y="80">Still ON!</text>
   <text x="300" y="100">No change</text>
 </svg>
 </div>
+
+---
+
+<div style="page-break-after: always;">
 
  **Quantum Measurement:**
 <div style="text-align: center;">
@@ -630,6 +682,10 @@ H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}
 H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 \]
 
+---
+
+<div style="page-break-after: always;">
+
 <div style="text-align: center;">
 <svg width="500" height="200">
   <!-- Quantum circuit -->
@@ -656,9 +712,9 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 </svg>
 </div>
 
+---
 <div style="page-break-after: always;"></div>
 
----
 
 ## **Summary - Key Quantum Concepts**
 
@@ -670,6 +726,10 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 - Measurement forces system into definite state
 - Probability given by \(|\alpha|^2\) and \(|\beta|^2\)
 
+---
+
+<div style="page-break-after: always;">
+
  **3. Basis Change:**
 - Same state looks different in different bases
 - \(|0\rangle = \frac{1}{\sqrt{2}}(|+\rangle + |-\rangle)\)
@@ -678,22 +738,26 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 - More powerful than classical information
 - Enables new algorithms (we'll learn these next!)
 
+---
+
+<div style="page-break-after: always;">
+
 <div style="text-align: center;">
-<svg width="500" height="200">
+<svg width="600" height="200">
   <!-- Classical vs Quantum -->
-  <rect x="50" y="50" width="200" height="100" fill="#f0f0ff" stroke="blue" stroke-width="2"/>
+  <rect x="50" y="50" width="250" height="130" fill="#f0f0ff" stroke="blue" stroke-width="2"/>
   <text x="150" y="80">Classical Bit</text>
   <circle cx="100" cy="120" r="20" fill="silver"/>
   <text x="100" y="120">0</text>
   <circle cx="200" cy="120" r="20" fill="silver"/>
   <text x="200" y="120">1</text>
-  <text x="150" y="150">Either 0 OR 1</text>
+  <text x="130" y="160">Either 0 OR 1</text>
   
-  <rect x="300" y="50" width="200" height="100" fill="#fff0f0" stroke="red" stroke-width="2"/>
-  <text x="400" y="80">Quantum Bit</text>
+  <rect x="320" y="50" width="400" height="130" fill="#fff0f0" stroke="red" stroke-width="2"/>
+  <text x="350" y="80">Quantum Bit</text>
   <circle cx="400" cy="120" r="40" fill="url(#spinning)"/>
-  <text x="400" y="120">?</text>
-  <text x="400" y="150">0 AND 1 simultaneously</text>
+  <text x="350" y="120">?</text>
+  <text x="350" y="150">0 AND 1 simultaneously</text>
 </svg>
 </div>
 
@@ -735,8 +799,13 @@ What is the probability of getting ↑_z at the end?
 - Qiskit Documentation: Basic quantum concepts
 
 ---
+<div style="page-break-after: always;"></div>
 
-**Key Takeaway:** Quantum mechanics gives us new computational resources - superposition and entanglement - that don't exist in classical computing. Understanding these through simple examples (polarization, Stern-Gerlach) is the first step toward quantum algorithms!
+**Key Takeaway:** Quantum mechanics gives us new computational resources 
+- superposition and entanglement 
+- that don't exist in classical computing. 
+
+Understanding these through simple examples (polarization, Stern-Gerlach) is the first step toward quantum algorithms!
 
 <style>
 #spinning {
