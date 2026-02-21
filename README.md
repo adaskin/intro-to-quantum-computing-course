@@ -58,7 +58,7 @@ lecture note: [lecture1](lecture1.md)
 - **AI Tool Demo:** Using ChatGPT to generate Stern-Gerlach analogies
 
 
-**Week 2: qubit representation, rotaiton gates, variational quantum circuits**
+**Week 2: qubit representation, rotation gates, variational quantum circuits**
 lecture note: [lecture2](lecture2.md)
 - Vector basics
 - Postulate of quantum mechanics,
