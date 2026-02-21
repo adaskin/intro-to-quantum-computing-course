@@ -194,21 +194,21 @@ Unpolarized light → Polarizer → Polarized light in one direction
 
  **Example: Horizontal Polarizer**
 Only lets through light vibrating horizontally(50% light pass through):
-![Single polaroid attenuates unpolarized light by 50 percent.](image.png)
+![Single polaroid attenuates unpolarized light by 50 percent.](images/image.png)
 
 ---
 <div style="page-break-after: always;"></div>
 
  **Example: two orthogonal polarizer**
 No light passes through (all photons are blocked).
-![Two orthogonal polaroids block all photons.](image-1.png)
+![Two orthogonal polaroids block all photons.](images/image-1.png)
 
 ---
 <div style="page-break-after: always;"></div>
 
 **Example: inserting polarizer-B**
 some light passes through.
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 ---
 <div style="page-break-after: always;"></div>
