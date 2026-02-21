@@ -58,12 +58,15 @@ lecture note: [lecture1](lecture1.md)
 - **AI Tool Demo:** Using ChatGPT to generate Stern-Gerlach analogies
 
 
-**Week 2: Linear Algebra for Quantum Computing**
-- Dirac notation: kets, bras, and inner products
-- State vectors in ℂ² and ℂⁿ
-- Born rule and probability interpretation
-- Projective measurements
-- **AI Tool Demo:** Using DeepSeek for linear algebra calculations
+**Week 2: qubit representation, rotaiton gates, variational quantum circuits**
+lecture note: [lecture2](lecture2.md)
+- Vector basics
+- Postulate of quantum mechanics,
+- Bloch sphere, rotation gates
+- Simulating rotation gates in python
+- Single quit predictor for y = sin(x) with pennylane-torch
+- Multiple qubits, entanglement
+- **AI Tool Demo:** Using DeepSeek for writing code to suggest PennyLane syntax for parameterized circuits, implement the train/test split with scikit‑learn, debug the training loop, generate explanatory comments and exercises.
 - **Math Supplement:** Complex vector spaces, Hermitian operators
 
 **Week 3: Quantum Operations & Circuit Model**
