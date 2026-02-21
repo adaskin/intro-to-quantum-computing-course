@@ -45,7 +45,7 @@ No required textbook. But, lecture notes are mostly based on
 - 40% Final
 
 
-### **Tentative: Course Schedule (15 Weeks)**
+### **Course Schedule and Lecture Notes**
 
 #### **Unit 1: Mathematical Foundations (Weeks 1-3)**
 **Week 1: Classical vs. Quantum Information**
@@ -64,9 +64,9 @@ lecture note: [lecture2](lecture2.md)
 - Postulate of quantum mechanics,
 - Bloch sphere, rotation gates
 - Simulating rotation gates in python
-- Single quit predictor for y = sin(x) with pennylane-torch
+- Single qubit predictor for y = sin(x) with pennylane-torch
 - Multiple qubits, entanglement
-- **AI Tool Demo:** Using DeepSeek for writing code to suggest PennyLane syntax for parameterized circuits, implement the train/test split with scikit‑learn, debug the training loop, generate explanatory comments and exercises.
+- **AI Tool Demo:** Using DeepSeek for writing code to suggest PennyLane syntax for parameterized circuits, implement the train/test split with scikit‑learn and PyTorch, debug the training loop, generate explanatory comments and exercises.
 - **Math Supplement:** Complex vector spaces, Hermitian operators
 
 **Week 3: Quantum Operations & Circuit Model**
