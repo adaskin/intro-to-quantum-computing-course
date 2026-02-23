@@ -56,30 +56,30 @@ For a single qubit, the space is **ℂ²** (two‑dimensional complex space).
 Any vector can be written as a combination of basis vectors.  
 The **computational basis** is:
 
-\[
+```math
 |0\rangle = \begin{bmatrix}1\\0\end{bmatrix},\qquad 
 |1\rangle = \begin{bmatrix}0\\1\end{bmatrix}
-\]
+```
 
 A general qubit state is:
 
-\[
+```math
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle = \begin{bmatrix}\alpha\\\beta\end{bmatrix},\quad \alpha,\beta\in\mathbb{C}.
-\]
+```
 
 ### **Inner product and norm**
 The inner product \(\langle\phi|\psi\rangle\) is the dot product with complex conjugation:
 
-\[
+```math
 \langle\phi|\psi\rangle = \phi_0^*\psi_0 + \phi_1^*\psi_1.
-\]
+```
 
 The **norm** of a vector is \(\||\psi\rangle\| = \sqrt{\langle\psi|\psi\rangle}\).  
 For a valid quantum state we require **normalization**: \(\||\psi\rangle\| = 1\), i.e.
 
-\[
+```math
 |\alpha|^2 + |\beta|^2 = 1.
-\]
+```
 
 ---
 
@@ -111,21 +111,21 @@ If the state at time \(t_1\) is \(|\psi\rangle\), then at time \(t_2\) it is \(|
 Quantum measurements are described by a set of **measurement operators** \(\{M_m\}\) acting on the state space. The index \(m\) refers to the measurement outcome.  
 If the state is \(|\psi\rangle\) before measurement, the probability that result \(m\) occurs is  
 
-\[
+```math
 p(m) = \langle\psi| M_m^\dagger M_m |\psi\rangle,
-\]
+```
 
 and the state after measurement collapses to  
 
-\[
+```math
 \frac{M_m|\psi\rangle}{\sqrt{p(m)}}.
-\]
+```
 
 For a **projective measurement** in the computational basis \(\{|0\rangle,|1\rangle\}\), the operators are \(M_0=|0\rangle\langle0|\), \(M_1=|1\rangle\langle1|\). Then  
 
-\[
+```math
 p(0)=|\langle0|\psi\rangle|^2=|\alpha|^2,\quad p(1)=|\langle1|\psi\rangle|^2=|\beta|^2,
-\]
+```
 
 and after measuring 0 the state becomes \(|0\rangle\) (similarly for 1).
 
@@ -146,9 +146,9 @@ These postulates are the foundation for everything that follows.
 
 Because \(|\alpha|^2+|\beta|^2=1\), we can write
 
-\[
+```math
 |\psi\rangle = \cos\frac{\theta}{2}\,|0\rangle + e^{i\phi}\sin\frac{\theta}{2}\,|1\rangle,
-\]
+```
 
 with **θ ∈ [0,π]** and **φ ∈ [0,2π)**.  
 (We omit an overall global phase, which is physically unobservable.)
@@ -180,38 +180,38 @@ These two angles describe a point on the surface of a sphere – the **Bloch sph
 Quantum gates are **unitary matrices**: \(U^\dagger U = I\).  
 For a single qubit, rotations around the x, y, and z axes are especially important.
 
-\[
+```math
 R_x(\theta) = e^{-i\frac{\theta}{2}X} = 
 \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}X =
 \begin{bmatrix}
 \cos\frac{\theta}{2} & -i\sin\frac{\theta}{2}\\
 -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2}
 \end{bmatrix}
-\]
+```
 
-\[
+```math
 R_y(\theta) = e^{-i\frac{\theta}{2}Y} =
 \begin{bmatrix}
 \cos\frac{\theta}{2} & -\sin\frac{\theta}{2}\\
 \sin\frac{\theta}{2} & \cos\frac{\theta}{2}
 \end{bmatrix}
-\]
+```
 
-\[
+```math
 R_z(\theta) = e^{-i\frac{\theta}{2}Z} =
 \begin{bmatrix}
 e^{-i\theta/2} & 0\\
 0 & e^{i\theta/2}
 \end{bmatrix}
-\]
+```
 
 Here \(X,Y,Z\) are the Pauli matrices:
 
-\[
+```math
 X=\begin{bmatrix}0&1\\1&0\end{bmatrix},\;
 Y=\begin{bmatrix}0&-i\\i&0\end{bmatrix},\;
 Z=\begin{bmatrix}1&0\\0&-1\end{bmatrix}.
-\]
+```
 
 ### **Effect on the Bloch sphere**
 - \(R_x(\theta)\) rotates the state by angle θ **around the x‑axis**.  
@@ -427,16 +427,16 @@ The circuit applies the following operations:
 ---
 
 The overall unitary is \( U = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) \), and the output is  
-\[
+```math
 f(x) = \langle 0 | R_Y(x)^\dagger \, R_Z(\theta_z)^\dagger R_Y(\theta_y)^\dagger R_X(\theta_x)^\dagger \, Z \, R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) | 0 \rangle.
-\]
+```
 
 ---
 
 Define the trainable part as \( V = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) \). Then  
-\[
+```math
 f(x) = \langle 0 | R_Y(x)^\dagger \, (V^\dagger Z V) \, R_Y(x) | 0 \rangle.
-\]
+```
 
 ---
 
@@ -460,27 +460,27 @@ The Pauli matrices are a set of three \(2 \times 2\) complex matrices that are f
 ---
 
 ### 1. Pauli-X (\(\sigma_x\)) – The "bit-flip" matrix
-\[
+```math
 \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
-\]
+```
 - It swaps the \(|0\rangle\) and \(|1\rangle\) states.
 - Eigenvalues: \(+1\) (eigenvector \(\frac{|0\rangle+|1\rangle}{\sqrt{2}}\)) and \(-1\) (eigenvector \(\frac{|0\rangle-|1\rangle}{\sqrt{2}}\)).
 
 ---
 
 ### 2. Pauli-Y (\(\sigma_y\)) – The "bit-flip + phase-flip" matrix
-\[
+```math
 \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}
-\]
+```
 - It applies a combination of a bit-flip and a phase-flip.
 - Eigenvalues: \(+1\) (eigenvector \(\frac{|0\rangle - i|1\rangle}{\sqrt{2}}\)) and \(-1\) (eigenvector \(\frac{|0\rangle + i|1\rangle}{\sqrt{2}}\)).
 
 ---
 
 ### 3. Pauli-Z (\(\sigma_z\)) – The "phase-flip" matrix
-\[
+```math
 \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
-\]
+```
 - It leaves \(|0\rangle\) unchanged and flips the sign of \(|1\rangle\).
 - Eigenvalues: \(+1\) (eigenvector \(|0\rangle\)) and \(-1\) (eigenvector \(|1\rangle\)).
 
@@ -503,9 +503,9 @@ The Pauli matrices are a set of three \(2 \times 2\) complex matrices that are f
 
 ---
 5. **Basis for Hermitian matrices**: Any \(2\times2\) Hermitian matrix \(H\) can be written uniquely as
-   \[
+   ```math
    H = \alpha_0 I + \alpha_x \sigma_x + \alpha_y \sigma_y + \alpha_z \sigma_z
-   \]
+   ```
    with real coefficients \(\alpha_0,\alpha_x,\alpha_y,\alpha_z\).
 
 ---
@@ -521,45 +521,45 @@ so it can be expanded as a linear combination of \(\sigma_x,\sigma_y,\sigma_z\) 
 
 
 Any \(2\times2\) Hermitian traceless matrix can be expanded uniquely in the basis of the three Pauli matrices \(\{\sigma_x,\sigma_y,\sigma_z\}\) with **real coefficients**. 
-\[
+```math
 O = a\,\sigma_x + b\,\sigma_y + c\,\sigma_z, \qquad a,b,c \in \mathbb{R}.
-\]
+```
 
 ---
 
 because \(Z\) has eigenvalues \(+1\) and \(-1\), its unitary conjugate \(O\) also has eigenvalues \(+1\) and \(-1\). For a matrix of the form \(a\sigma_x+b\sigma_y+c\sigma_z\), the eigenvalues are \(\pm\sqrt{a^2+b^2+c^2}\). 
 
 For these to be \(\pm1\), we must have
-\[
+```math
 \sqrt{a^2+b^2+c^2} = 1 \quad\Longrightarrow\quad a^2+b^2+c^2 = 1.
-\]
+```
 - \(O\) is a genuine Pauli operator (a point on the Bloch sphere).
 
 ---
 
 The operator \( O = V^\dagger Z V \) is a Pauli operator rotated by \( V \), so it can be written as  
-\[
+```math
 O = a \sigma_x + b \sigma_y + c \sigma_z, \quad \text{with } a^2+b^2+c^2 = 1.
-\]
+```
 
 ---
 
 Now, \( R_Y(x)^\dagger O R_Y(x) \) rotates \( O \) about the Y‑axis by \( -x \). Using standard rotation formulas, we get  
-\[
+```math
 R_Y(-x) O R_Y(x) = (a \cos x + c \sin x) \sigma_x + b \sigma_y + (-a \sin x + c \cos x) \sigma_z.
-\]
+```
 
 ---
 
 Since \( \langle 0 | \sigma_x | 0 \rangle = \langle 0 | \sigma_y | 0 \rangle = 0 \) and \( \langle 0 | \sigma_z | 0 \rangle = 1 \), the final output simplifies to  
-\[
+```math
 f(x) = -a \sin x + c \cos x.
-\]
+```
 
 Thus the model can only represent functions of the form  
-\[
+```math
 f(x) = A \cos x + B \sin x, \quad \text{with } A = c,\; B = -a,
-\]  
+```  
 and the constraint \( A^2 + B^2 = a^2 + c^2 \leq 1 \) (because \( b^2 = 1 - a^2 - c^2 \geq 0 \)).
 
 ---
@@ -569,21 +569,21 @@ and the constraint \( A^2 + B^2 = a^2 + c^2 \leq 1 \) (because \( b^2 = 1 - a^2 
 
 Real quantum computers use many qubits. The state of **n qubits** lives in the tensor product space:
 
-\[
+```math
 \mathcal{H} = \mathbb{C}^2 \otimes \mathbb{C}^2 \otimes \cdots \otimes \mathbb{C}^2 \quad (\text{n times})
-\]
+```
 
 Dimension = \(2^n\). A basis is given by all n‑bit strings, e.g. for two qubits:
 
-\[
+```math
 |00\rangle,\ |01\rangle,\ |10\rangle,\ |11\rangle.
-\]
+```
 
 A general two‑qubit state is
 
-\[
+```math
 |\psi\rangle = \alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle,
-\]
+```
 
 with \(\sum |\alpha_{ij}|^2 = 1\).
 
@@ -592,9 +592,9 @@ with \(\sum |\alpha_{ij}|^2 = 1\).
 ### **Entanglement**
 Some states cannot be written as a product of single‑qubit states. Example:
 
-\[
+```math
 |\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
-\]
+```
 
 This is an **entangled** state – measuring one qubit instantly affects the other.
 
@@ -986,14 +986,14 @@ When you encounter tensor networks in later courses, you'll recognize the pictur
 - **CNOT** (controlled‑NOT): flips the target qubit if the control is \(|1\rangle\).  
   Matrix (control = qubit 0, target = qubit 1):
 
-\[
+```math
 \text{CNOT} = \begin{bmatrix}
 1 & 0 & 0 & 0\\
 0 & 1 & 0 & 0\\
 0 & 0 & 0 & 1\\
 0 & 0 & 1 & 0
 \end{bmatrix}
-\]
+```
 
 ---
 
@@ -1021,15 +1021,15 @@ All quantum gates must be **unitary** (\(U^\dagger U = I\)). Why?
 
 The time evolution of a closed quantum system is governed by the **Schrödinger equation**:
 
-\[
+```math
 i\hbar\frac{d}{dt}|\psi(t)\rangle = H|\psi(t)\rangle,
-\]
+```
 
 where \(H\) is the Hamiltonian (Hermitian). The solution is
 
-\[
+```math
 |\psi(t)\rangle = e^{-iHt/\hbar}|\psi(0)\rangle.
-\]
+```
 
 The operator \(U = e^{-iHt/\hbar}\) is **unitary** because \(H\) is Hermitian.  
 Gates are discrete applications of such evolution operators.

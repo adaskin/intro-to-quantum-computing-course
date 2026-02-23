@@ -109,10 +109,10 @@ Coin: Heads or Tails
 
  **Mathematical Representation:**
 We can represent a bit as a vector:
-\[
+```math
 0 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad
 1 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}
-\]
+```
 
 ---
 
@@ -134,9 +134,9 @@ Only when you stop it (measure) does it become one or the other
 
  **Mathematical Representation:**
 A qubit state is:
-\[
+```math
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle
-\]
+```
 where:
 - \(|0\rangle\) and \(|1\rangle\) are basis states
 - \(\alpha\) and \(\beta\) are **complex numbers**
@@ -405,9 +405,9 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 ## **Superposition in Polarization**
 
  **Diagonal Polarization as Superposition:**
-\[
+```math
 |D\rangle = \frac{1}{\sqrt{2}}|H\rangle + \frac{1}{\sqrt{2}}|V\rangle
-\]
+```
 
 
 
@@ -584,12 +584,12 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 - Splits into \(|\uparrow_x\rangle\) and \(|\downarrow_x\rangle\)
 
  **Mathematical Relationship:**
-\[
+```math
 |\uparrow_z\rangle = \frac{1}{\sqrt{2}}|\uparrow_x\rangle + \frac{1}{\sqrt{2}}|\downarrow_x\rangle
-\]
-\[
+```
+```math
 |\downarrow_z\rangle = \frac{1}{\sqrt{2}}|\uparrow_x\rangle - \frac{1}{\sqrt{2}}|\downarrow_x\rangle
-\]
+```
 
  **Interpretation:**
 \(|\uparrow_z\rangle\) is a **superposition** of x-spin states!
@@ -675,12 +675,12 @@ The middle measurement **destroys** original information
 3. Measure in computational basis
 
  **The Hadamard Gate:**
-\[
+```math
 H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}
-\]
-\[
+```
+```math
 H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
-\]
+```
 
 ---
 
