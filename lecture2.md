@@ -25,7 +25,7 @@
   - [**Moving to Multiple Qubits**](#moving-to-multiple-qubits)
     - [**Entanglement**](#entanglement)
     - [Analogy:  The Quantum State as a Bubble](#analogy--the-quantum-state-as-a-bubble)
-    - [**Multi‑qubit gates**](#multiqubit-gates)
+  - [**Multi‑qubit gates**](#multiqubit-gates)
   - [**Why Unitary? Schrödinger Equation**](#why-unitary-schrödinger-equation)
   - [**Summary and Next Lecture**](#summary-and-next-lecture)
   - [**Exercises**](#exercises)
@@ -982,7 +982,7 @@ When you encounter tensor networks in later courses, you'll recognize the pictur
 ---
 
 
-### **Multi‑qubit gates**
+## **Multi‑qubit gates**
 - **CNOT** (controlled‑NOT): flips the target qubit if the control is \(|1\rangle\).  
   Matrix (control = qubit 0, target = qubit 1):
 
@@ -1033,6 +1033,8 @@ where \(H\) is the Hamiltonian (Hermitian). The solution is
 
 The operator \(U = e^{-iHt/\hbar}\) is **unitary** because \(H\) is Hermitian.  
 Gates are discrete applications of such evolution operators.
+
+---
 
 **Properties of unitary operators:**
 - They preserve the norm: \(\langle\psi|\psi\rangle = \langle\psi|U^\dagger U|\psi\rangle = 1\).
