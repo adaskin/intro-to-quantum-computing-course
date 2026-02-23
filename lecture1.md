@@ -3,7 +3,7 @@
  **Welcome to Quantum Computing!**
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## **What is Quantum Computing?**
 - A new way of processing information
@@ -11,7 +11,7 @@
 - Not just "faster computers" but **different kind** of computation
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## How quantum computing works?
 
@@ -24,24 +24,24 @@ Classical Computing:                     Quantum Computing:
 ```
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## Why do we need Quantum Computing?
 
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## Are there real quantum computers?
 
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## Who is doing quantum computation?
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## What is this course about?
 - Quantum computing
@@ -51,7 +51,7 @@ Classical Computing:                     Quantum Computing:
 - Comparison to non-quantum (classical) algorithms
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## Weekly topics
 - Mathematical foundations
@@ -61,7 +61,7 @@ Classical Computing:                     Quantum Computing:
 - Quantum error correction
   
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## Grading
 - 40% 3-5 assignments including python implementations (you can work as groups of 1-3 people)
@@ -69,7 +69,7 @@ Classical Computing:                     Quantum Computing:
 - 40% Final
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ### **Textbooks & Resources**
 
@@ -80,7 +80,7 @@ No required textbook. But, lecture notes are mostly based on
 - "Quantum Computing: A Gentle Introduction" by Eleanor G. Rieffel and Wolfgang H. Polak. 
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 **Online available** notes-books:
 - [A Course on the Theory of Quantum Computing](https://arxiv.org/pdf/2507.11536) by John Watrous, see also his IBM-Qiskit Textbook (free online: [qiskit.org/textbook](https://quantum.cloud.ibm.com/learning/en/courses))
@@ -89,7 +89,7 @@ No required textbook. But, lecture notes are mostly based on
 - [Quantum Algorithm Zoo](https://quantumalgorithmzoo.org/)
 
 ---
-<div style="page-break-after: always;"></div>
+
 
  ## From Classical Bits to Quantum Qubits
 
@@ -105,7 +105,7 @@ Light bulb: ON or OFF
 Coin: Heads or Tails
 ```
 ---
-<div style="page-break-after: always;"></div>
+
 
  **Mathematical Representation:**
 We can represent a bit as a vector:
@@ -116,7 +116,7 @@ We can represent a bit as a vector:
 
 ---
 
-<div style="page-break-after: always;"></div>
+
 
 ### **Introducing Quantum Bits (Qubits)**
 
@@ -130,7 +130,7 @@ Quantum coin (spinning): Heads AND Tails simultaneously
 Only when you stop it (measure) does it become one or the other
 ```
 ---
-<div style="page-break-after: always;"></div>
+
 
  **Mathematical Representation:**
 A qubit state is:
@@ -144,7 +144,7 @@ where:
 
 ---
 
-<div style="page-break-after: always;"></div>
+
 
 ## **Understanding Probability Amplitudes**
 
@@ -155,7 +155,7 @@ If a coin has 50% chance heads, 50% tails:
 - Total = 1
 
 ---
-<div style="page-break-after: always;"></div>
+
 
  **Quantum Probability Amplitudes:**
 For a qubit: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
@@ -170,7 +170,7 @@ If $\alpha = \frac{1}{\sqrt{2}}$ and $\beta = \frac{1}{\sqrt{2}}$:
 - Probability of 1 = $\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}$
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## **Polarization - A Physical Qubit**
 
@@ -180,7 +180,7 @@ If $\alpha = \frac{1}{\sqrt{2}}$ and $\beta = \frac{1}{\sqrt{2}}$:
 - The sunglasses act as a **filter** for light direction
 
 ---
-<div style="page-break-after: always;"></div>
+
 
  **What is Light Polarization?**
 Light is an electromagnetic wave that vibrates in different directions:
@@ -190,28 +190,28 @@ Light is an electromagnetic wave that vibrates in different directions:
 Unpolarized light → Polarizer → Polarized light in one direction
 ```
 ---
-<div style="page-break-after: always;"></div>
+
 
  **Example: Horizontal Polarizer**
 Only lets through light vibrating horizontally(50% light pass through):
 ![Single polaroid attenuates unpolarized light by 50 percent.](images/image.png)
 
 ---
-<div style="page-break-after: always;"></div>
+
 
  **Example: two orthogonal polarizer**
 No light passes through (all photons are blocked).
 ![Two orthogonal polaroids block all photons.](images/image-1.png)
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 **Example: inserting polarizer-B**
 some light passes through.
 ![alt text](images/image-2.png)
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## **Coordinate System for Polarization**
 
@@ -260,7 +260,7 @@ Angle θ determines polarization direction:
 ---
 
 
-<div style="page-break-after: always;"></div>
+
 
 **Single Polarizer**
 
@@ -268,7 +268,7 @@ Angle θ determines polarization direction:
 Sunlight (unpolarized) → Polarizer H → Only H polarized light
 ```
 ---
-<div style="page-break-after: always;"></div>
+
 
 <div style="text-align: center;">
 <svg width="500" height="200">
@@ -305,7 +305,7 @@ For unpolarized light:
 
 ---
 
-<div style="page-break-after: always;"></div>
+
 
 ## **Crossed Polarizers**
 
@@ -339,7 +339,7 @@ Light → Polarizer H → Polarizer V → Darkness!
 </div>
 
 ---
-<div style="page-break-after: always;"></div>
+
 
  **Why no light?**
 1. First polarizer: Only H photons pass
@@ -352,7 +352,7 @@ Probability through V polarizer = $|\langle V|H\rangle|^2 = 0$
 
 ---
 
-<div style="page-break-after: always;"></div>
+
 
 ## **The Magic Middle Polarizer!**
 
@@ -389,7 +389,7 @@ Light → H → 45° → V → SOME LIGHT!
 Adding a third polarizer at 45° **allows light through**!
 
 ---
-<div style="page-break-after: always;"></div>
+
 
  **Explanation with Qubits:**
 1. After H polarizer: $|H\rangle$
@@ -400,7 +400,7 @@ Adding a third polarizer at 45° **allows light through**!
 Probability = $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$ of original
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## **Superposition in Polarization**
 
@@ -417,7 +417,7 @@ Probability = $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$ of original
 - When measured by V polarizer: 50% chance H, 50% chance V
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 
 ## **Introducing Quantum Spin**
@@ -428,7 +428,7 @@ Probability = $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$ of original
 - Always has same magnitude but can point in different directions
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 
  **Spin Directions:**
@@ -456,7 +456,7 @@ Probability = $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$ of original
 </div>
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 
 ## **Stern-Gerlach Experiment (1922)**
@@ -470,7 +470,7 @@ Strong magnet with non-uniform field
 Detector screen
 ```
 ---
-<div style="page-break-after: always;"></div>
+
 
 <div style="text-align: center;">
 <svg width="500" height="300">
@@ -508,7 +508,7 @@ Only **TWO** discrete spots appear!
 - One spot for spin DOWN
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## **What Stern-Gerlach Shows Us**
 
@@ -524,7 +524,7 @@ Only **TWO** discrete spots appear!
 
 ---
 
-<div style="page-break-after: always;"></div>
+
 
 ## **Sequential Stern-Gerlach Experiments**
 
@@ -574,7 +574,7 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 
 ---
 
-<div style="page-break-after: always;"></div>
+
 
 
 ## **Understanding the SG-x Apparatus**
@@ -612,7 +612,7 @@ The middle measurement **destroys** original information
 - Like the middle polarizer creates new possibilities
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## **Quantum vs Classical Measurement**
 
@@ -658,7 +658,7 @@ The middle measurement **destroys** original information
 </svg>
 </div>
 
-<div style="page-break-after: always;"></div>
+
 
 ---
 
@@ -713,7 +713,7 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 </div>
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 
 ## **Summary - Key Quantum Concepts**
@@ -761,7 +761,7 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 </svg>
 </div>
 
-<div style="page-break-after: always;"></div>
+
 
 ---
 
@@ -784,7 +784,7 @@ What is the probability of getting ↑_z at the end?
 
 ---
 
-<div style="page-break-after: always;"></div>
+
 
 ## **Next Lecture Preview**
 
@@ -799,7 +799,7 @@ What is the probability of getting ↑_z at the end?
 - Qiskit Documentation: Basic quantum concepts
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 **Key Takeaway:** Quantum mechanics gives us new computational resources 
 - superposition and entanglement 
