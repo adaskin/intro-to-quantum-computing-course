@@ -18,9 +18,9 @@
   - [**Application: Single‑Qubit Predictor for sin(x) with Train/Test Split**](#application-singlequbit-predictor-for-sinx-with-traintest-split)
     - [**Circuit design**](#circuit-design)
   - [Pauli Matrices](#pauli-matrices)
-    - [1. Pauli-X ((\\sigma\_x)) – The "bit-flip" matrix](#1-pauli-x-sigma_x--the-bit-flip-matrix)
-    - [2. Pauli-Y ((\\sigma\_y)) – The "bit-flip + phase-flip" matrix](#2-pauli-y-sigma_y--the-bit-flip--phase-flip-matrix)
-    - [3. Pauli-Z ((\\sigma\_z)) – The "phase-flip" matrix](#3-pauli-z-sigma_z--the-phase-flip-matrix)
+    - [1. Pauli-X ($\\sigma\_x$) – The "bit-flip" matrix](#1-pauli-x-sigma_x--the-bit-flip-matrix)
+    - [2. Pauli-Y ($\\sigma\_y$) – The "bit-flip + phase-flip" matrix](#2-pauli-y-sigma_y--the-bit-flip--phase-flip-matrix)
+    - [3. Pauli-Z ($\\sigma\_z$) – The "phase-flip" matrix](#3-pauli-z-sigma_z--the-phase-flip-matrix)
   - [Key Properties (relevant to our previous example)](#key-properties-relevant-to-our-previous-example)
   - [**Moving to Multiple Qubits**](#moving-to-multiple-qubits)
     - [**Entanglement**](#entanglement)
@@ -68,14 +68,14 @@ A general qubit state is:
 ```
 
 ### **Inner product and norm**
-The inner product \(\langle\phi|\psi\rangle\) is the dot product with complex conjugation:
+The inner product $\langle\phi|\psi\rangle$ is the dot product with complex conjugation:
 
 ```math
 \langle\phi|\psi\rangle = \phi_0^*\psi_0 + \phi_1^*\psi_1.
 ```
 
-The **norm** of a vector is \(\||\psi\rangle\| = \sqrt{\langle\psi|\psi\rangle}\).  
-For a valid quantum state we require **normalization**: \(\||\psi\rangle\| = 1\), i.e.
+The **norm** of a vector is $\||\psi\rangle\| = \sqrt{\langle\psi|\psi\rangle}$.  
+For a valid quantum state we require **normalization**: $\||\psi\rangle\| = 1$, i.e.
 
 ```math
 |\alpha|^2 + |\beta|^2 = 1.
@@ -96,20 +96,20 @@ They are stated here in the simplified form suitable for finite‑dimensional sy
 
 ### **Postulate 1: State Space**
 The state of an isolated physical system is represented by a **unit vector** in a complex Hilbert space (inner product space).  
-For a qubit, this space is \(\mathbb{C}^2\).
+For a qubit, this space is $\mathbb{C}^2$.
 
 ---
 
 ### **Postulate 2: Evolution**
 The evolution of a closed quantum system is described by a **unitary transformation**.  
-If the state at time \(t_1\) is \(|\psi\rangle\), then at time \(t_2\) it is \(|\psi'\rangle = U|\psi\rangle\), where \(U\) is unitary (\(U^\dagger U = I\)).  
+If the state at time $t_1$ is $|\psi\rangle$, then at time $t_2$ it is $|\psi'\rangle = U|\psi\rangle$, where $U$ is unitary ($U^\dagger U = I$).  
 (Continuous time evolution is given by the Schrödinger equation, but for circuits we work with discrete gates.)
 
 ---
 
 ### **Postulate 3: Measurement (Born Rule)**
-Quantum measurements are described by a set of **measurement operators** \(\{M_m\}\) acting on the state space. The index \(m\) refers to the measurement outcome.  
-If the state is \(|\psi\rangle\) before measurement, the probability that result \(m\) occurs is  
+Quantum measurements are described by a set of **measurement operators** $\{M_m\}$ acting on the state space. The index $m$ refers to the measurement outcome.  
+If the state is $|\psi\rangle$ before measurement, the probability that result $m$ occurs is  
 
 ```math
 p(m) = \langle\psi| M_m^\dagger M_m |\psi\rangle,
@@ -121,19 +121,19 @@ and the state after measurement collapses to
 \frac{M_m|\psi\rangle}{\sqrt{p(m)}}.
 ```
 
-For a **projective measurement** in the computational basis \(\{|0\rangle,|1\rangle\}\), the operators are \(M_0=|0\rangle\langle0|\), \(M_1=|1\rangle\langle1|\). Then  
+For a **projective measurement** in the computational basis $\{|0\rangle,|1\rangle\}$, the operators are $M_0=|0\rangle\langle0|$, $M_1=|1\rangle\langle1|$. Then  
 
 ```math
 p(0)=|\langle0|\psi\rangle|^2=|\alpha|^2,\quad p(1)=|\langle1|\psi\rangle|^2=|\beta|^2,
 ```
 
-and after measuring 0 the state becomes \(|0\rangle\) (similarly for 1).
+and after measuring 0 the state becomes $|0\rangle$ (similarly for 1).
 
 This is the **Born rule**: the probability of an outcome is the squared magnitude of the amplitude.
 
 ### **Postulate 4: Composite Systems**
 The state space of a composite physical system is the **tensor product** of the state spaces of the individual components.  
-For two qubits, the space is \(\mathbb{C}^2 \otimes \mathbb{C}^2 \cong \mathbb{C}^4\). If one qubit is in state \(|\psi_1\rangle\) and the other in \(|\psi_2\rangle\), the joint state is \(|\psi_1\rangle\otimes|\psi_2\rangle\) (often written \(|\psi_1\psi_2\rangle\)).  
+For two qubits, the space is $\mathbb{C}^2 \otimes \mathbb{C}^2 \cong \mathbb{C}^4$. If one qubit is in state $|\psi_1\rangle$ and the other in $|\psi_2\rangle$, the joint state is $|\psi_1\rangle\otimes|\psi_2\rangle$ (often written $|\psi_1\psi_2\rangle$).  
 Not all states are product states – those that aren’t are called **entangled**.
 
 These postulates are the foundation for everything that follows.
@@ -144,7 +144,7 @@ These postulates are the foundation for everything that follows.
 
 ## **3. The Bloch Sphere Representation**
 
-Because \(|\alpha|^2+|\beta|^2=1\), we can write
+Because $|\alpha|^2+|\beta|^2=1$, we can write
 
 ```math
 |\psi\rangle = \cos\frac{\theta}{2}\,|0\rangle + e^{i\phi}\sin\frac{\theta}{2}\,|1\rangle,
@@ -157,7 +157,7 @@ with **θ ∈ [0,π]** and **φ ∈ [0,2π)**.
 
 These two angles describe a point on the surface of a sphere – the **Bloch sphere**.
 
-- **θ** (polar angle) determines the probability of measuring \(|0\rangle\) vs \(|1\rangle\).  
+- **θ** (polar angle) determines the probability of measuring $|0\rangle$ vs $|1\rangle$.  
 - **φ** (azimuthal angle) is a relative phase.
 
 <div style="text-align: center;">
@@ -166,18 +166,18 @@ These two angles describe a point on the surface of a sphere – the **Bloch sph
 
 
 **Examples:**
-- \(|0\rangle\): θ=0 → north pole 
-- \(|1\rangle\): θ=π → south pole  
-  - **edit:** the image shows opposite, it should be \(|0\rangle\) on the up 
-- \(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\): θ=π/2, φ=0 → point on x‑axis  
-- \(|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)\): θ=π/2, φ=π → opposite x‑axis  
-- \(|+i\rangle = \frac{1}{\sqrt{2}}(|0\rangle+i|1\rangle)\): θ=π/2, φ=π/2 → y‑axis
+- $|0\rangle$: θ=0 → north pole 
+- $|1\rangle$: θ=π → south pole  
+  - **edit:** the image shows opposite, it should be $|0\rangle$ on the up 
+- $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$: θ=π/2, φ=0 → point on x‑axis  
+- $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)$: θ=π/2, φ=π → opposite x‑axis  
+- $|+i\rangle = \frac{1}{\sqrt{2}}(|0\rangle+i|1\rangle)$: θ=π/2, φ=π/2 → y‑axis
 
 ---
 
 ## **4. Rotation Gates**
 
-Quantum gates are **unitary matrices**: \(U^\dagger U = I\).  
+Quantum gates are **unitary matrices**: $U^\dagger U = I$.  
 For a single qubit, rotations around the x, y, and z axes are especially important.
 
 ```math
@@ -205,7 +205,7 @@ e^{-i\theta/2} & 0\\
 \end{bmatrix}
 ```
 
-Here \(X,Y,Z\) are the Pauli matrices:
+Here $X,Y,Z$ are the Pauli matrices:
 
 ```math
 X=\begin{bmatrix}0&1\\1&0\end{bmatrix},\;
@@ -214,11 +214,11 @@ Z=\begin{bmatrix}1&0\\0&-1\end{bmatrix}.
 ```
 
 ### **Effect on the Bloch sphere**
-- \(R_x(\theta)\) rotates the state by angle θ **around the x‑axis**.  
-- \(R_y(\theta)\) rotates around the y‑axis.  
-- \(R_z(\theta)\) rotates around the z‑axis (changes only the phase φ).
+- $R_x(\theta)$ rotates the state by angle θ **around the x‑axis**.  
+- $R_y(\theta)$ rotates around the y‑axis.  
+- $R_z(\theta)$ rotates around the z‑axis (changes only the phase φ).
 
-For example, \(R_y(\theta)\) takes \(|0\rangle\) to \(\cos\frac{\theta}{2}|0\rangle + \sin\frac{\theta}{2}|1\rangle\) – a superposition whose amplitudes are controlled by θ.
+For example, $R_y(\theta)$ takes $|0\rangle$ to $\cos\frac{\theta}{2}|0\rangle + \sin\frac{\theta}{2}|1\rangle$ – a superposition whose amplitudes are controlled by θ.
 
 ---
 
@@ -251,7 +251,7 @@ print(f"Expectation value ⟨Z⟩ = {z_exp.item():.4f}")
 
 **Explanation:**
 - `@qml.qnode` converts the quantum function into a PennyLane **QNode** that can be executed.
-- We measure the expectation value of PauliZ, which equals \(P(0)-P(1)\).
+- We measure the expectation value of PauliZ, which equals $P(0)-P(1)$.
 - The `interface='torch'` allows us to backpropagate through the circuit.
 
 ### **Visualizing the effect of rotation**
@@ -276,7 +276,7 @@ The plot shows ⟨Z⟩ = cos(θ), exactly as expected from theory.
 
 ## **Application: Single‑Qubit Predictor for sin(x) with Train/Test Split**
 
-Can we learn the function \(f(x)=\sin(x)\) using a single qubit circuit.
+Can we learn the function $f(x)=\sin(x)$ using a single qubit circuit.
 - Given some x, y values
 - Can we design a model that predicts y for a given x value.   
 
@@ -287,9 +287,9 @@ Can we learn the function \(f(x)=\sin(x)\) using a single qubit circuit.
 ---
 
 ### **Circuit design**
-1. Start in \(|0\rangle\).  
-2. Apply \(R_y(x)\) to encode the input x (this creates a state whose amplitudes depend on x).  
-3. Apply a trainable rotation \(R_y(\theta)\) (or a combination of rotations) – these are our **weights**.  
+1. Start in $|0\rangle$.  
+2. Apply $R_y(x)$ to encode the input x (this creates a state whose amplitudes depend on x).  
+3. Apply a trainable rotation $R_y(\theta)$ (or a combination of rotations) – these are our **weights**.  
 4. Measure ⟨Z⟩, which gives a value in [-1,1].  
 5. Compare with sin(x) (scaled to [-1,1]) and optimize θ.
 
@@ -413,27 +413,27 @@ print(f"Trained parameters: θ_z = {model.theta_z.item():.4f}, θ_y = {model.the
 ---
 
 **What happens?**  
-With three trainable parameters (\(\theta_z, \theta_y, \theta_x\)), the circuit can implement **any single‑qubit unitary**. 
+With three trainable parameters ($\theta_z, \theta_y, \theta_x$), the circuit can implement **any single‑qubit unitary**. 
 
 ---
 
 The circuit applies the following operations:
 
-0. the initial state \( |0\rangle \)
-1. **Data encoding**: \( R_Y(x) \) – rotates around the Y-axis by an angle equal to the input value \( x \).
-2. **Trainable rotations**: \( R_Z(\theta_z) \), \( R_Y(\theta_y) \), \( R_X(\theta_x) \) – in that order.
+0. the initial state $|0\rangle $
+1. **Data encoding**: $R_Y(x) $ – rotates around the Y-axis by an angle equal to the input value $x $.
+2. **Trainable rotations**: $R_Z(\theta_z) $, $R_Y(\theta_y) $, $R_X(\theta_x) $ – in that order.
 3. **Measurement**: expectation value of the PauliZ operator.
 
 ---
 
-The overall unitary is \( U = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) \), and the output is  
+The overall unitary is $U = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) $, and the output is  
 ```math
 f(x) = \langle 0 | R_Y(x)^\dagger \, R_Z(\theta_z)^\dagger R_Y(\theta_y)^\dagger R_X(\theta_x)^\dagger \, Z \, R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) | 0 \rangle.
 ```
 
 ---
 
-Define the trainable part as \( V = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) \). Then  
+Define the trainable part as $V = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) $. Then  
 ```math
 f(x) = \langle 0 | R_Y(x)^\dagger \, (V^\dagger Z V) \, R_Y(x) | 0 \rangle.
 ```
@@ -453,105 +453,105 @@ How to analyze the circuit further?
 
 ## Pauli Matrices
 
-The Pauli matrices are a set of three \(2 \times 2\) complex matrices that are fundamental in quantum mechanics and quantum computing. 
-- They are Hermitian, unitary, and traceless, and they form a basis for the space of \(2 \times 2\) Hermitian matrices. 
-- They are usually denoted by \(\sigma_x\), \(\sigma_y\), and \(\sigma_z\) (or sometimes \(X\), \(Y\), \(Z\)).
+The Pauli matrices are a set of three $2 \times 2$ complex matrices that are fundamental in quantum mechanics and quantum computing. 
+- They are Hermitian, unitary, and traceless, and they form a basis for the space of $2 \times 2$ Hermitian matrices. 
+- They are usually denoted by $\sigma_x$, $\sigma_y$, and $\sigma_z$ (or sometimes $X$, $Y$, $Z$).
 
 ---
 
-### 1. Pauli-X (\(\sigma_x\)) – The "bit-flip" matrix
+### 1. Pauli-X ($\sigma_x$) – The "bit-flip" matrix
 ```math
 \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
 ```
-- It swaps the \(|0\rangle\) and \(|1\rangle\) states.
-- Eigenvalues: \(+1\) (eigenvector \(\frac{|0\rangle+|1\rangle}{\sqrt{2}}\)) and \(-1\) (eigenvector \(\frac{|0\rangle-|1\rangle}{\sqrt{2}}\)).
+- It swaps the $|0\rangle$ and $|1\rangle$ states.
+- Eigenvalues: $+1$ (eigenvector $\frac{|0\rangle+|1\rangle}{\sqrt{2}}$) and $-1$ (eigenvector $\frac{|0\rangle-|1\rangle}{\sqrt{2}}$).
 
 ---
 
-### 2. Pauli-Y (\(\sigma_y\)) – The "bit-flip + phase-flip" matrix
+### 2. Pauli-Y ($\sigma_y$) – The "bit-flip + phase-flip" matrix
 ```math
 \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}
 ```
 - It applies a combination of a bit-flip and a phase-flip.
-- Eigenvalues: \(+1\) (eigenvector \(\frac{|0\rangle - i|1\rangle}{\sqrt{2}}\)) and \(-1\) (eigenvector \(\frac{|0\rangle + i|1\rangle}{\sqrt{2}}\)).
+- Eigenvalues: $+1$ (eigenvector $\frac{|0\rangle - i|1\rangle}{\sqrt{2}}$) and $-1$ (eigenvector $\frac{|0\rangle + i|1\rangle}{\sqrt{2}}$).
 
 ---
 
-### 3. Pauli-Z (\(\sigma_z\)) – The "phase-flip" matrix
+### 3. Pauli-Z ($\sigma_z$) – The "phase-flip" matrix
 ```math
 \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
 ```
-- It leaves \(|0\rangle\) unchanged and flips the sign of \(|1\rangle\).
-- Eigenvalues: \(+1\) (eigenvector \(|0\rangle\)) and \(-1\) (eigenvector \(|1\rangle\)).
+- It leaves $|0\rangle$ unchanged and flips the sign of $|1\rangle$.
+- Eigenvalues: $+1$ (eigenvector $|0\rangle$) and $-1$ (eigenvector $|1\rangle$).
 
 ---
 
 ## Key Properties (relevant to our previous example)
 
-1. **Hermitian**: \(\sigma_i^\dagger = \sigma_i\) (they are equal to their own conjugate transpose).
+1. **Hermitian**: $\sigma_i^\dagger = \sigma_i$ (they are equal to their own conjugate transpose).
 
 ---
 
-2. **Traceless**: \(\operatorname{tr}(\sigma_i) = 0\).
+2. **Traceless**: $\operatorname{tr}(\sigma_i) = 0$.
 
 ---
 
-3. **Square to Identity**: \(\sigma_i^2 = I\) (the \(2\times2\) identity matrix).
+3. **Square to Identity**: $\sigma_i^2 = I$ (the $2\times2$ identity matrix).
 
 ---
-4. **Orthogonality**: \(\operatorname{tr}(\sigma_i \sigma_j) = 2\delta_{ij}\) (they are orthogonal under the trace inner product).
+4. **Orthogonality**: $\operatorname{tr}(\sigma_i \sigma_j) = 2\delta_{ij}$ (they are orthogonal under the trace inner product).
 
 ---
-5. **Basis for Hermitian matrices**: Any \(2\times2\) Hermitian matrix \(H\) can be written uniquely as
+5. **Basis for Hermitian matrices**: Any $2\times2$ Hermitian matrix $H$ can be written uniquely as
    ```math
    H = \alpha_0 I + \alpha_x \sigma_x + \alpha_y \sigma_y + \alpha_z \sigma_z
    ```
-   with real coefficients \(\alpha_0,\alpha_x,\alpha_y,\alpha_z\).
+   with real coefficients $\alpha_0,\alpha_x,\alpha_y,\alpha_z$.
 
 ---
 
-In our circuit analysis, The operator \( O = V^\dagger Z V \) is obtained by conjugating the Pauli‑\(Z\) matrix with a unitary \(V\). 
+In our circuit analysis, The operator $O = V^\dagger Z V $ is obtained by conjugating the Pauli‑$Z$ matrix with a unitary $V$. 
 
-This operation preserves two key properties of \(Z\):
+This operation preserves two key properties of $Z$:
 - Hermitian (property 1) 
 - and traceless (property 2), 
-so it can be expanded as a linear combination of \(\sigma_x,\sigma_y,\sigma_z\) with real coefficients. 
+so it can be expanded as a linear combination of $\sigma_x,\sigma_y,\sigma_z$ with real coefficients. 
 
 ---
 
 
-Any \(2\times2\) Hermitian traceless matrix can be expanded uniquely in the basis of the three Pauli matrices \(\{\sigma_x,\sigma_y,\sigma_z\}\) with **real coefficients**. 
+Any $2\times2$ Hermitian traceless matrix can be expanded uniquely in the basis of the three Pauli matrices $\{\sigma_x,\sigma_y,\sigma_z\}$ with **real coefficients**. 
 ```math
 O = a\,\sigma_x + b\,\sigma_y + c\,\sigma_z, \qquad a,b,c \in \mathbb{R}.
 ```
 
 ---
 
-because \(Z\) has eigenvalues \(+1\) and \(-1\), its unitary conjugate \(O\) also has eigenvalues \(+1\) and \(-1\). For a matrix of the form \(a\sigma_x+b\sigma_y+c\sigma_z\), the eigenvalues are \(\pm\sqrt{a^2+b^2+c^2}\). 
+because $Z$ has eigenvalues $+1$ and $-1$, its unitary conjugate $O$ also has eigenvalues $+1$ and $-1$. For a matrix of the form $a\sigma_x+b\sigma_y+c\sigma_z$, the eigenvalues are $\pm\sqrt{a^2+b^2+c^2}$. 
 
-For these to be \(\pm1\), we must have
+For these to be $\pm1$, we must have
 ```math
 \sqrt{a^2+b^2+c^2} = 1 \quad\Longrightarrow\quad a^2+b^2+c^2 = 1.
 ```
-- \(O\) is a genuine Pauli operator (a point on the Bloch sphere).
+- $O$ is a genuine Pauli operator (a point on the Bloch sphere).
 
 ---
 
-The operator \( O = V^\dagger Z V \) is a Pauli operator rotated by \( V \), so it can be written as  
+The operator $O = V^\dagger Z V $ is a Pauli operator rotated by $V $, so it can be written as  
 ```math
 O = a \sigma_x + b \sigma_y + c \sigma_z, \quad \text{with } a^2+b^2+c^2 = 1.
 ```
 
 ---
 
-Now, \( R_Y(x)^\dagger O R_Y(x) \) rotates \( O \) about the Y‑axis by \( -x \). Using standard rotation formulas, we get  
+Now, $R_Y(x)^\dagger O R_Y(x) $ rotates $O $ about the Y‑axis by $-x $. Using standard rotation formulas, we get  
 ```math
 R_Y(-x) O R_Y(x) = (a \cos x + c \sin x) \sigma_x + b \sigma_y + (-a \sin x + c \cos x) \sigma_z.
 ```
 
 ---
 
-Since \( \langle 0 | \sigma_x | 0 \rangle = \langle 0 | \sigma_y | 0 \rangle = 0 \) and \( \langle 0 | \sigma_z | 0 \rangle = 1 \), the final output simplifies to  
+Since $\langle 0 | \sigma_x | 0 \rangle = \langle 0 | \sigma_y | 0 \rangle = 0 $ and $\langle 0 | \sigma_z | 0 \rangle = 1 $, the final output simplifies to  
 ```math
 f(x) = -a \sin x + c \cos x.
 ```
@@ -560,7 +560,7 @@ Thus the model can only represent functions of the form
 ```math
 f(x) = A \cos x + B \sin x, \quad \text{with } A = c,\; B = -a,
 ```  
-and the constraint \( A^2 + B^2 = a^2 + c^2 \leq 1 \) (because \( b^2 = 1 - a^2 - c^2 \geq 0 \)).
+and the constraint $A^2 + B^2 = a^2 + c^2 \leq 1 $ (because $b^2 = 1 - a^2 - c^2 \geq 0 $).
 
 ---
 
@@ -573,7 +573,7 @@ Real quantum computers use many qubits. The state of **n qubits** lives in the t
 \mathcal{H} = \mathbb{C}^2 \otimes \mathbb{C}^2 \otimes \cdots \otimes \mathbb{C}^2 \quad (\text{n times})
 ```
 
-Dimension = \(2^n\). A basis is given by all n‑bit strings, e.g. for two qubits:
+Dimension = $2^n$. A basis is given by all n‑bit strings, e.g. for two qubits:
 
 ```math
 |00\rangle,\ |01\rangle,\ |10\rangle,\ |11\rangle.
@@ -585,7 +585,7 @@ A general two‑qubit state is
 |\psi\rangle = \alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle,
 ```
 
-with \(\sum |\alpha_{ij}|^2 = 1\).
+with $\sum |\alpha_{ij}|^2 = 1$.
 
 ---
 
@@ -752,7 +752,7 @@ Two Unentangled Qubits = Two Separate Bubbles
 - The joint state is just "bubble A AND bubble B" – a product state
 - Popping bubble A affects only qubit A; bubble B remains unchanged
 
-**Mathematically:** \(|\psi_A\rangle \otimes |\psi_B\rangle\)  
+**Mathematically:** $|\psi_A\rangle \otimes |\psi_B\rangle$  
 
 ---
 
@@ -983,7 +983,7 @@ When you encounter tensor networks in later courses, you'll recognize the pictur
 
 
 ## **Multi‑qubit gates**
-- **CNOT** (controlled‑NOT): flips the target qubit if the control is \(|1\rangle\).  
+- **CNOT** (controlled‑NOT): flips the target qubit if the control is $|1\rangle$.  
   Matrix (control = qubit 0, target = qubit 1):
 
 ```math
@@ -1009,15 +1009,15 @@ q1: ─────X─
 
 ---
 
-Starting from \(|00\rangle\):
-1. H on q0: \(\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\otimes|0\rangle = \frac{1}{\sqrt{2}}(|00\rangle+|10\rangle)\)  
-2. CNOT: \(\frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)\) – a Bell state.
+Starting from $|00\rangle$:
+1. H on q0: $\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\otimes|0\rangle = \frac{1}{\sqrt{2}}(|00\rangle+|10\rangle)$  
+2. CNOT: $\frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$ – a Bell state.
 
 ---
 
 ## **Why Unitary? Schrödinger Equation**
 
-All quantum gates must be **unitary** (\(U^\dagger U = I\)). Why?
+All quantum gates must be **unitary** ($U^\dagger U = I$). Why?
 
 The time evolution of a closed quantum system is governed by the **Schrödinger equation**:
 
@@ -1025,20 +1025,20 @@ The time evolution of a closed quantum system is governed by the **Schrödinger 
 i\hbar\frac{d}{dt}|\psi(t)\rangle = H|\psi(t)\rangle,
 ```
 
-where \(H\) is the Hamiltonian (Hermitian). The solution is
+where $H$ is the Hamiltonian (Hermitian). The solution is
 
 ```math
 |\psi(t)\rangle = e^{-iHt/\hbar}|\psi(0)\rangle.
 ```
 
-The operator \(U = e^{-iHt/\hbar}\) is **unitary** because \(H\) is Hermitian.  
+The operator $U = e^{-iHt/\hbar}$ is **unitary** because $H$ is Hermitian.  
 Gates are discrete applications of such evolution operators.
 
 ---
 
 **Properties of unitary operators:**
-- They preserve the norm: \(\langle\psi|\psi\rangle = \langle\psi|U^\dagger U|\psi\rangle = 1\).
-- They are reversible: \(U^{-1} = U^\dagger\).
+- They preserve the norm: $\langle\psi|\psi\rangle = \langle\psi|U^\dagger U|\psi\rangle = 1$.
+- They are reversible: $U^{-1} = U^\dagger$.
 - They map orthonormal bases to orthonormal bases.
 
 This is why quantum computation is reversible (except measurement).
@@ -1065,24 +1065,24 @@ This is why quantum computation is reversible (except measurement).
 ## **Exercises**
 
 1. **Bloch sphere coordinates**  
-   Write the states \(|+\rangle\), \(|-\rangle\), \(|+i\rangle\), and \(|-i\rangle\) in the form \(\cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle\). Verify their Bloch angles.
+   Write the states $|+\rangle$, $|-\rangle$, $|+i\rangle$, and $|-i\rangle$ in the form $\cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle$. Verify their Bloch angles.
 
 2. **Rotation composition**  
-   Show that \(R_y(\theta_1) R_y(\theta_2) = R_y(\theta_1+\theta_2)\). What about \(R_x\) and \(R_z\)?
+   Show that $R_y(\theta_1) R_y(\theta_2) = R_y(\theta_1+\theta_2)$. What about $R_x$ and $R_z$?
 
 3. **Measurement probabilities**  
-   A qubit is in state \(|\psi\rangle = \frac{1}{\sqrt{3}}|0\rangle + \sqrt{\frac{2}{3}}|1\rangle\).  
+   A qubit is in state $|\psi\rangle = \frac{1}{\sqrt{3}}|0\rangle + \sqrt{\frac{2}{3}}|1\rangle$.  
    - What are the probabilities of measuring 0 and 1?  
    - After measuring 1, what is the new state?
 
 4. **Parameterized circuit**  
-   Modify the single‑qubit predictor to use two trainable rotations (\(R_y(\theta_1)\) and \(R_z(\theta_2)\)). Does it fit sin(x) better? Why or why not? (Hint: what functions can it represent now?)
+   Modify the single‑qubit predictor to use two trainable rotations ($R_y(\theta_1)$ and $R_z(\theta_2)$). Does it fit sin(x) better? Why or why not? (Hint: what functions can it represent now?)
 
 5. **Two‑qubit state**  
-   Compute the state after applying H on qubit 0 and then CNOT (control=0, target=1) starting from \(|01\rangle\). Is the resulting state entangled?
+   Compute the state after applying H on qubit 0 and then CNOT (control=0, target=1) starting from $|01\rangle$. Is the resulting state entangled?
 
 6. **Unitarity check**  
-   Verify that the Pauli matrices are Hermitian and that \(e^{-i\theta X/2}\) is unitary.
+   Verify that the Pauli matrices are Hermitian and that $e^{-i\theta X/2}$ is unitary.
 
 ---
 

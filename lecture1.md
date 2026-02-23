@@ -138,9 +138,9 @@ A qubit state is:
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle
 ```
 where:
-- \(|0\rangle\) and \(|1\rangle\) are basis states
-- \(\alpha\) and \(\beta\) are **complex numbers**
-- \(|\alpha|^2 + |\beta|^2 = 1\) (total probability = 1)
+- $|0\rangle$ and $|1\rangle$ are basis states
+- $\alpha$ and $\beta$ are **complex numbers**
+- $|\alpha|^2 + |\beta|^2 = 1$ (total probability = 1)
 
 ---
 
@@ -158,16 +158,16 @@ If a coin has 50% chance heads, 50% tails:
 <div style="page-break-after: always;"></div>
 
  **Quantum Probability Amplitudes:**
-For a qubit: \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)
-- **Amplitude** for \(|0\rangle\) is \(\alpha\) (a complex number)
-- **Probability** of measuring \(|0\rangle\) is \(|\alpha|^2\)
-- **Probability** of measuring \(|1\rangle\) is \(|\beta|^2\)
-- \(|\alpha|^2 + |\beta|^2 = 1\)
+For a qubit: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+- **Amplitude** for $|0\rangle$ is $\alpha$ (a complex number)
+- **Probability** of measuring $|0\rangle$ is $|\alpha|^2$
+- **Probability** of measuring $|1\rangle$ is $|\beta|^2$
+- $|\alpha|^2 + |\beta|^2 = 1$
 
  **Example:**
-If \(\alpha = \frac{1}{\sqrt{2}}\) and \(\beta = \frac{1}{\sqrt{2}}\):
-- Probability of 0 = \(\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}\)
-- Probability of 1 = \(\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}\)
+If $\alpha = \frac{1}{\sqrt{2}}$ and $\beta = \frac{1}{\sqrt{2}}$:
+- Probability of 0 = $\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}$
+- Probability of 1 = $\left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}$
 
 ---
 <div style="page-break-after: always;"></div>
@@ -216,8 +216,8 @@ some light passes through.
 ## **Coordinate System for Polarization**
 
  **Mathematical Representation:**
-Horizontal polarization = \(|H\rangle\)
-Vertical polarization = \(|V\rangle\)
+Horizontal polarization = $|H\rangle$
+Vertical polarization = $|V\rangle$
 
 <div style="text-align: center;">
 <table>
@@ -249,9 +249,9 @@ Vertical polarization = \(|V\rangle\)
 <td>
 Angle θ determines polarization direction:  
 
-- θ = 0°: Horizontal polarization \(|H\rangle\)
-- θ = 90°: Vertical polarization \(|V\rangle\)
-- θ = 45°: Diagonal polarization \(|D\rangle\)
+- θ = 0°: Horizontal polarization $|H\rangle$
+- θ = 90°: Vertical polarization $|V\rangle$
+- θ = 45°: Diagonal polarization $|D\rangle$
 </td>
 </table>
 
@@ -347,8 +347,8 @@ Light → Polarizer H → Polarizer V → Darkness!
 3. Result: No light gets through
 
  **Mathematically:**
-After first polarizer: \(|H\rangle\)
-Probability through V polarizer = \(|\langle V|H\rangle|^2 = 0\)
+After first polarizer: $|H\rangle$
+Probability through V polarizer = $|\langle V|H\rangle|^2 = 0$
 
 ---
 
@@ -392,12 +392,12 @@ Adding a third polarizer at 45° **allows light through**!
 <div style="page-break-after: always;"></div>
 
  **Explanation with Qubits:**
-1. After H polarizer: \(|H\rangle\)
-2. 45° polarizer creates **superposition**: \(|D\rangle = \frac{1}{\sqrt{2}}(|H\rangle + |V\rangle)\)
+1. After H polarizer: $|H\rangle$
+2. 45° polarizer creates **superposition**: $|D\rangle = \frac{1}{\sqrt{2}}(|H\rangle + |V\rangle)$
 3. Now has both H and V components!
 4. Some can pass final V polarizer
 
-Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
+Probability = $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$ of original
 
 ---
 <div style="page-break-after: always;"></div>
@@ -432,8 +432,8 @@ Probability = \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\) of original
 
 
  **Spin Directions:**
-- Up along z-axis: \(|\uparrow_z\rangle\) or \(|0\rangle\)
-- Down along z-axis: \(|\downarrow_z\rangle\) or \(|1\rangle\)
+- Up along z-axis: $|\uparrow_z\rangle$ or $|0\rangle$
+- Down along z-axis: $|\downarrow_z\rangle$ or $|1\rangle$
 
 <div style="text-align: center;">
 <svg width="400" height="200">
@@ -519,8 +519,8 @@ Only **TWO** discrete spots appear!
 
  **First SG Apparatus:**
 - Measures spin along z-axis
-- Splits beam into \(|\uparrow_z\rangle\) and \(|\downarrow_z\rangle\)
-- Select one path (e.g., \(|\uparrow_z\rangle\) only) for next experiment
+- Splits beam into $|\uparrow_z\rangle$ and $|\downarrow_z\rangle$
+- Select one path (e.g., $|\uparrow_z\rangle$ only) for next experiment
 
 ---
 
@@ -581,7 +581,7 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 
  **What is SG-x?**
 - Measures spin along x-axis
-- Splits into \(|\uparrow_x\rangle\) and \(|\downarrow_x\rangle\)
+- Splits into $|\uparrow_x\rangle$ and $|\downarrow_x\rangle$
 
  **Mathematical Relationship:**
 ```math
@@ -592,7 +592,7 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 ```
 
  **Interpretation:**
-\(|\uparrow_z\rangle\) is a **superposition** of x-spin states!
+$|\uparrow_z\rangle$ is a **superposition** of x-spin states!
 
 ---
 
@@ -601,10 +601,10 @@ Atoms → SG-z (↑_z) → SG-x → SG-z → 50% ↑_z, 50% ↓_z
 ## **Analysis of SG-z → SG-x → SG-z**
 
  **Step by Step:**
-1. Start with \(|\uparrow_z\rangle\)
-2. SG-x measurement: Forces into either \(|\uparrow_x\rangle\) or \(|\downarrow_x\rangle\) (50% each)
-3. Let's say we get \(|\uparrow_x\rangle\)
-4. Now: \(|\uparrow_x\rangle = \frac{1}{\sqrt{2}}|\uparrow_z\rangle + \frac{1}{\sqrt{2}}|\downarrow_z\rangle\)
+1. Start with $|\uparrow_z\rangle$
+2. SG-x measurement: Forces into either $|\uparrow_x\rangle$ or $|\downarrow_x\rangle$ (50% each)
+3. Let's say we get $|\uparrow_x\rangle$
+4. Now: $|\uparrow_x\rangle = \frac{1}{\sqrt{2}}|\uparrow_z\rangle + \frac{1}{\sqrt{2}}|\downarrow_z\rangle$
 5. Final SG-z: 50% chance ↑_z, 50% chance ↓_z
 
  **Key Insight:**
@@ -667,7 +667,7 @@ The middle measurement **destroys** original information
  **Stern-Gerlach as Quantum Gates:**
 - SG-z: Measures in computational basis {|0⟩, |1⟩}
 - SG-x: Measures in Hadamard basis {|+⟩, |-⟩}
-- Where: \(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)
+- Where: $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
 
  **Sequence SG-z → SG-x → SG-z is like:**
 1. Prepare |0⟩
@@ -720,11 +720,11 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 
  **1. Superposition:**
 - Quantum systems can be in multiple states at once
-- \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)
+- $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
 
  **2. Measurement Collapse:**
 - Measurement forces system into definite state
-- Probability given by \(|\alpha|^2\) and \(|\beta|^2\)
+- Probability given by $|\alpha|^2$ and $|\beta|^2$
 
 ---
 
@@ -732,7 +732,7 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 
  **3. Basis Change:**
 - Same state looks different in different bases
-- \(|0\rangle = \frac{1}{\sqrt{2}}(|+\rangle + |-\rangle)\)
+- $|0\rangle = \frac{1}{\sqrt{2}}(|+\rangle + |-\rangle)$
 
  **4. Quantum Information:**
 - More powerful than classical information
@@ -769,16 +769,16 @@ H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
 
  **Problem 1: Polarizer Math**
 Light passes through polarizers at 0°, 30°, and 90°. What fraction emerges?
-Hint: Use Malus's Law: \(I = I_0 \cos^2(\theta)\)
+Hint: Use Malus's Law: $I = I_0 \cos^2(\theta)$
 
  **Problem 2: Quantum State**
-A qubit is in state: \(|\psi\rangle = \frac{3}{5}|0\rangle + \frac{4i}{5}|1\rangle\)
+A qubit is in state: $|\psi\rangle = \frac{3}{5}|0\rangle + \frac{4i}{5}|1\rangle$
 a) Verify this is a valid quantum state
 b) What is probability of measuring |0⟩?
 c) What is probability of measuring |1⟩?
 
  **Problem 3: Stern-Gerlach**
-If we start with \(|\uparrow_z\rangle\) and measure:
+If we start with $|\uparrow_z\rangle$ and measure:
 SG-z → SG-x → SG-y → SG-z
 What is the probability of getting ↑_z at the end?
 
