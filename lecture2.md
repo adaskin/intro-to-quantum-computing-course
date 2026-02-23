@@ -17,8 +17,14 @@
     - [**Visualizing the effect of rotation**](#visualizing-the-effect-of-rotation)
   - [**Application: Single‑Qubit Predictor for sin(x) with Train/Test Split**](#application-singlequbit-predictor-for-sinx-with-traintest-split)
     - [**Circuit design**](#circuit-design)
+  - [Pauli Matrices](#pauli-matrices)
+    - [1. Pauli-X ((\\sigma\_x)) – The "bit-flip" matrix](#1-pauli-x-sigma_x--the-bit-flip-matrix)
+    - [2. Pauli-Y ((\\sigma\_y)) – The "bit-flip + phase-flip" matrix](#2-pauli-y-sigma_y--the-bit-flip--phase-flip-matrix)
+    - [3. Pauli-Z ((\\sigma\_z)) – The "phase-flip" matrix](#3-pauli-z-sigma_z--the-phase-flip-matrix)
+  - [Key Properties (relevant to our previous example)](#key-properties-relevant-to-our-previous-example)
   - [**Moving to Multiple Qubits**](#moving-to-multiple-qubits)
     - [**Entanglement**](#entanglement)
+    - [Analogy:  The Quantum State as a Bubble](#analogy--the-quantum-state-as-a-bubble)
     - [**Multi‑qubit gates**](#multiqubit-gates)
   - [**Why Unitary? Schrödinger Equation**](#why-unitary-schrödinger-equation)
   - [**Summary and Next Lecture**](#summary-and-next-lecture)
@@ -400,20 +406,37 @@ plt.show()
 print(f"Final test loss: {test_losses[-1]:.6f}")
 print(f"Trained parameters: θ_z = {model.theta_z.item():.4f}, θ_y = {model.theta_y.item():.4f}, θ_x = {model.theta_x.item():.4f}")
 ```
+---
+
 ![predicting sin(x)](images/sinx.png)
+
+---
 
 **What happens?**  
 With three trainable parameters (\(\theta_z, \theta_y, \theta_x\)), the circuit can implement **any single‑qubit unitary**. 
 
-After data encoding via \(R_y(x)\), the trainable rotations \(R_z(\theta_z) R_y(\theta_y) R_x(\theta_x)\) together form a general rotation that can map the initial state \(|0\rangle\) to any point on the Bloch sphere.
+---
+
+The circuit applies the following operations:
+
+0. the initial state \( |0\rangle \)
+1. **Data encoding**: \( R_Y(x) \) – rotates around the Y-axis by an angle equal to the input value \( x \).
+2. **Trainable rotations**: \( R_Z(\theta_z) \), \( R_Y(\theta_y) \), \( R_X(\theta_x) \) – in that order.
+3. **Measurement**: expectation value of the PauliZ operator.
 
 ---
 
-The expectation value \(\langle Z \rangle\) then becomes a linear combination of \(\sin(x)\) and \(\cos(x)\) with coefficients determined by the parameters. 
+The overall unitary is \( U = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) \), and the output is  
+\[
+f(x) = \langle 0 | R_Y(x)^\dagger \, R_Z(\theta_z)^\dagger R_Y(\theta_y)^\dagger R_X(\theta_x)^\dagger \, Z \, R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) | 0 \rangle.
+\]
 
-**Training:** By tuning the three angles, the model can learn to output exactly \(\sin(x)\). 
-- The specific numerical values of \(\theta_z, \theta_y, \theta_x\) are not unique
-  - different Euler‑angle combinations can produce the same overall rotation. 
+---
+
+Define the trainable part as \( V = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) \). Then  
+\[
+f(x) = \langle 0 | R_Y(x)^\dagger \, (V^\dagger Z V) \, R_Y(x) | 0 \rangle.
+\]
 
 ---
 
@@ -422,9 +445,125 @@ This example illustrates:
 - **Data encoding** into quantum states.
 - **Parameterized quantum circuits** (the basis of variational quantum algorithms).
 - **Training** using automatic differentiation.
-- **Proper evaluation** with train/test split.
+- **Proper evaluation** with train/test split. 
+
+How to analyze the circuit further?
 
 ---
+
+## Pauli Matrices
+
+The Pauli matrices are a set of three \(2 \times 2\) complex matrices that are fundamental in quantum mechanics and quantum computing. 
+- They are Hermitian, unitary, and traceless, and they form a basis for the space of \(2 \times 2\) Hermitian matrices. 
+- They are usually denoted by \(\sigma_x\), \(\sigma_y\), and \(\sigma_z\) (or sometimes \(X\), \(Y\), \(Z\)).
+
+---
+
+### 1. Pauli-X (\(\sigma_x\)) – The "bit-flip" matrix
+\[
+\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+\]
+- It swaps the \(|0\rangle\) and \(|1\rangle\) states.
+- Eigenvalues: \(+1\) (eigenvector \(\frac{|0\rangle+|1\rangle}{\sqrt{2}}\)) and \(-1\) (eigenvector \(\frac{|0\rangle-|1\rangle}{\sqrt{2}}\)).
+
+---
+
+### 2. Pauli-Y (\(\sigma_y\)) – The "bit-flip + phase-flip" matrix
+\[
+\sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}
+\]
+- It applies a combination of a bit-flip and a phase-flip.
+- Eigenvalues: \(+1\) (eigenvector \(\frac{|0\rangle - i|1\rangle}{\sqrt{2}}\)) and \(-1\) (eigenvector \(\frac{|0\rangle + i|1\rangle}{\sqrt{2}}\)).
+
+---
+
+### 3. Pauli-Z (\(\sigma_z\)) – The "phase-flip" matrix
+\[
+\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+\]
+- It leaves \(|0\rangle\) unchanged and flips the sign of \(|1\rangle\).
+- Eigenvalues: \(+1\) (eigenvector \(|0\rangle\)) and \(-1\) (eigenvector \(|1\rangle\)).
+
+---
+
+## Key Properties (relevant to our previous example)
+
+1. **Hermitian**: \(\sigma_i^\dagger = \sigma_i\) (they are equal to their own conjugate transpose).
+
+---
+
+2. **Traceless**: \(\operatorname{tr}(\sigma_i) = 0\).
+
+---
+
+3. **Square to Identity**: \(\sigma_i^2 = I\) (the \(2\times2\) identity matrix).
+
+---
+4. **Orthogonality**: \(\operatorname{tr}(\sigma_i \sigma_j) = 2\delta_{ij}\) (they are orthogonal under the trace inner product).
+
+---
+5. **Basis for Hermitian matrices**: Any \(2\times2\) Hermitian matrix \(H\) can be written uniquely as
+   \[
+   H = \alpha_0 I + \alpha_x \sigma_x + \alpha_y \sigma_y + \alpha_z \sigma_z
+   \]
+   with real coefficients \(\alpha_0,\alpha_x,\alpha_y,\alpha_z\).
+
+---
+
+In our circuit analysis, The operator \( O = V^\dagger Z V \) is obtained by conjugating the Pauli‑\(Z\) matrix with a unitary \(V\). 
+
+This operation preserves two key properties of \(Z\):
+- Hermitian (property 1) 
+- and traceless (property 2), 
+so it can be expanded as a linear combination of \(\sigma_x,\sigma_y,\sigma_z\) with real coefficients. 
+
+---
+
+
+Any \(2\times2\) Hermitian traceless matrix can be expanded uniquely in the basis of the three Pauli matrices \(\{\sigma_x,\sigma_y,\sigma_z\}\) with **real coefficients**. 
+\[
+O = a\,\sigma_x + b\,\sigma_y + c\,\sigma_z, \qquad a,b,c \in \mathbb{R}.
+\]
+
+---
+
+because \(Z\) has eigenvalues \(+1\) and \(-1\), its unitary conjugate \(O\) also has eigenvalues \(+1\) and \(-1\). For a matrix of the form \(a\sigma_x+b\sigma_y+c\sigma_z\), the eigenvalues are \(\pm\sqrt{a^2+b^2+c^2}\). 
+
+For these to be \(\pm1\), we must have
+\[
+\sqrt{a^2+b^2+c^2} = 1 \quad\Longrightarrow\quad a^2+b^2+c^2 = 1.
+\]
+- \(O\) is a genuine Pauli operator (a point on the Bloch sphere).
+
+---
+
+The operator \( O = V^\dagger Z V \) is a Pauli operator rotated by \( V \), so it can be written as  
+\[
+O = a \sigma_x + b \sigma_y + c \sigma_z, \quad \text{with } a^2+b^2+c^2 = 1.
+\]
+
+---
+
+Now, \( R_Y(x)^\dagger O R_Y(x) \) rotates \( O \) about the Y‑axis by \( -x \). Using standard rotation formulas, we get  
+\[
+R_Y(-x) O R_Y(x) = (a \cos x + c \sin x) \sigma_x + b \sigma_y + (-a \sin x + c \cos x) \sigma_z.
+\]
+
+---
+
+Since \( \langle 0 | \sigma_x | 0 \rangle = \langle 0 | \sigma_y | 0 \rangle = 0 \) and \( \langle 0 | \sigma_z | 0 \rangle = 1 \), the final output simplifies to  
+\[
+f(x) = -a \sin x + c \cos x.
+\]
+
+Thus the model can only represent functions of the form  
+\[
+f(x) = A \cos x + B \sin x, \quad \text{with } A = c,\; B = -a,
+\]  
+and the constraint \( A^2 + B^2 = a^2 + c^2 \leq 1 \) (because \( b^2 = 1 - a^2 - c^2 \geq 0 \)).
+
+---
+
 
 ## **Moving to Multiple Qubits**
 
@@ -448,6 +587,8 @@ A general two‑qubit state is
 
 with \(\sum |\alpha_{ij}|^2 = 1\).
 
+---
+
 ### **Entanglement**
 Some states cannot be written as a product of single‑qubit states. Example:
 
@@ -456,6 +597,390 @@ Some states cannot be written as a product of single‑qubit states. Example:
 \]
 
 This is an **entangled** state – measuring one qubit instantly affects the other.
+
+---
+
+### Analogy:  The Quantum State as a Bubble
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+  <div style="position: relative; width: 100px; height: 100px;">
+    <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #aaddff, #3b8fc2); box-shadow: 0 4px 8px rgba(0,0,0,0.2);"></div>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px;">📌</div>
+  </div>
+  <span style="font-size: 24px;">= qubit state |ψ⟩</span>
+</div>
+
+**Think of a qubit's quantum state as a soap bubble floating in air**
+
+- The **bubble itself** = the entire quantum state (the wave function)
+- The **air inside** = the probability amplitudes (α, β)
+- The **bubble's surface** = the connection between all possible outcomes
+
+---
+```
+    ◯
+   (📌)
+```
+**Key Insight:**
+Just as a bubble is a single, coherent object that fills a region of space, a quantum state is a single mathematical object that encodes all possibilities for the qubit.
+
+---
+
+**Superposition – The Bubble Is Everywhere at Once**
+
+ Before Measurement: The Bubble Spreads Out
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+  <!-- Main bubble -->
+  <div style="position: relative; width: 100px; height: 100px;">
+    <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #aaddff, #3b8fc2);"></div>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px;">📌</div>
+  </div>
+  <!-- Faint echoes to indicate spread -->
+  <div style="position: relative; width: 120px; height: 120px; margin-left: -30px;">
+    <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(170,221,255,0.3), rgba(59,143,194,0.1));"></div>
+  </div>
+  <div style="position: relative; width: 140px; height: 140px; margin-left: -50px;">
+    <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(170,221,255,0.2), rgba(59,143,194,0.05));"></div>
+  </div>
+  <span style="font-size: 24px;">Superposition: amplitudes spread</span>
+</div>
+
+**A bubble isn't "mostly here" or "mostly there" – it's a continuous film**
+
+---
+```
+      ╭───╮
+    ╭─│   │─╮
+   ╭│  │   │ │╮
+   ││  │   │ ││
+   ╰│  │   │ │╯
+    ╰─│   │─╯
+      ╰───╯
+```
+
+- The bubble's shape represents how the amplitudes are distributed
+- You cannot point to one spot and say "the bubble is here"
+- Similarly, a qubit in superposition isn't "partly |0⟩ and partly |1⟩" – it's a single state with amplitude spread across basis states
+
+**Question:** Where exactly is the bubble?  
+**Answer:** It's everywhere its film exists – just like a superposition state exists in all basis states simultaneously.
+
+---
+
+**Measurement – Popping the Bubble**
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+  <!-- Before: bubble with pin -->
+  <div style="text-align: center;">
+    <div style="position: relative; width: 100px; height: 100px; margin: 0 auto;">
+      <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #aaddff, #3b8fc2);"></div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px;">📌</div>
+    </div>
+    <div>Before measurement</div>
+  </div>
+  
+  <!-- Arrow -->
+  <div style="font-size: 40px;">→</div>
+  
+  <!-- After: droplet -->
+  <div style="text-align: center;">
+    <div style="position: relative; width: 100px; height: 100px; margin: 0 auto;">
+      <div style="width: 20px; height: 20px; border-radius: 50%; background: #0077be; position: absolute; top: 40px; left: 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>
+      <div style="position: absolute; top: 60px; left: 30px; font-size: 12px;">droplet</div>
+    </div>
+    <div>After measurement (collapsed)</div>
+  </div>
+</div>
+
+**When you pop a bubble with a pin:**
+
+- The bubble *collapses* instantly
+- The air rushes out, the film disappears
+- All that remains is a single tiny droplet at one random point
+
+---
+
+After Measurement: Collapse to a Single Outcome
+
+```
+    ◯         →      💧
+   (📌)               ●
+```
+**This is quantum measurement:**
+
+- The bubble (quantum state) collapses
+- One outcome (droplet) appears randomly
+- The probability of where the droplet lands follows the Born rule:  
+  *More "bubble film" in a region = higher chance the droplet appears there*
+
+**Born rule visualized:** The droplet is most likely to land where the bubble was "thickest" (largest amplitude).
+
+---
+ **Multiple Qubits – Bubbles Multiply**
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <div style="position: relative; width: 80px; height: 80px; margin: 0 auto;">
+      <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f9a8d4, #d53f8c);"></div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px;">📌</div>
+    </div>
+    <div>Qubit A</div>
+  </div>
+  
+  <div style="text-align: center;">
+    <div style="position: relative; width: 80px; height: 80px; margin: 0 auto;">
+      <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #b9fbc0, #2e8b57);"></div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px;">📌</div>
+    </div>
+    <div>Qubit B</div>
+  </div>
+</div>
+<p style="text-align: center; font-style: italic;">Product state: |ψ<sub>A</sub>⟩ ⊗ |ψ<sub>B</sub>⟩</p>
+
+---
+
+Two Unentangled Qubits = Two Separate Bubbles
+
+```
+    ◯         ◯
+   (📌)       (📌)
+   Qubit A    Qubit B
+```
+
+- Each bubble floats independently
+- Each has its own shape, its own amplitudes
+- The joint state is just "bubble A AND bubble B" – a product state
+- Popping bubble A affects only qubit A; bubble B remains unchanged
+
+**Mathematically:** \(|\psi_A\rangle \otimes |\psi_B\rangle\)  
+
+---
+
+**Two Entangled Qubits = One Bubble with Two Lobes**
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <!-- The merged bubble -->
+  <div style="position: relative; width: 200px; height: 120px;">
+    <!-- Left lobe -->
+    <div style="position: absolute; left: 0; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f5e56b, #d4af37);"></div>
+    <!-- Right lobe (overlapping) -->
+    <div style="position: absolute; left: 60px; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f5e56b, #d4af37);"></div>
+    <!-- Pins in each lobe -->
+    <div style="position: absolute; top: 30px; left: 30px; font-size: 20px;">📌</div>
+    <div style="position: absolute; top: 30px; left: 110px; font-size: 20px;">📌</div>
+    <!-- Labels -->
+    <div style="position: absolute; bottom: -10px; left: 25px;">A</div>
+    <div style="position: absolute; bottom: -10px; left: 125px;">B</div>
+  </div>
+  <div style="max-width: 200px;">
+    <p><strong>One bubble, two lobes</strong><br>Entangled state |Φ⁺⟩</p>
+  </div>
+</div>
+
+---
+
+```
+      ╱╲      ╱╲
+     ╱  ╲    ╱  ╲
+    ╱    ╲  ╱    ╲
+   ╱      ╲╱      ╲
+  ╱       ╭──╮      ╲
+ ╱       (📌📌)       ╲
+  ╲       ╰──╯      ╱
+   ╲      ╱╲      ╱
+    ╲    ╱  ╲    ╱
+     ╲  ╱    ╲  ╱
+      ╲╱      ╲╱
+     Lobe A   Lobe B
+```
+
+**This is a single bubble with two connected lobes**
+
+- The two lobes are still distinguishable (we can label them A and B)
+- But they share the same film – they are part of **one unified structure**
+- You cannot describe one lobe independently without reference to the other
+
+---
+
+**What happens when you pop one lobe?**
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <!-- Before pop -->
+  <div style="text-align: center;">
+    <div style="position: relative; width: 180px; height: 100px;">
+      <div style="position: absolute; left: 0; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f5e56b, #d4af37);"></div>
+      <div style="position: absolute; left: 50px; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f5e56b, #d4af37);"></div>
+      <div style="position: absolute; top: 25px; left: 25px; font-size: 18px;">📌</div>
+      <div style="position: absolute; top: 25px; left: 100px; font-size: 18px;">📌</div>
+      <div style="position: absolute; bottom: -5px; left: 25px;">A</div>
+      <div style="position: absolute; bottom: -5px; left: 100px;">B</div>
+    </div>
+    <div>Before</div>
+  </div>
+  
+  <div style="font-size: 30px;">→</div>
+  
+  <!-- After pop: both lobes gone, two droplets -->
+  <div style="text-align: center;">
+    <div style="position: relative; width: 180px; height: 100px;">
+      <!-- Droplet at A -->
+      <div style="position: absolute; top: 40px; left: 30px; width: 15px; height: 15px; border-radius: 50%; background: #0077be;"></div>
+      <!-- Droplet at B -->
+      <div style="position: absolute; top: 40px; left: 105px; width: 15px; height: 15px; border-radius: 50%; background: #0077be;"></div>
+      <div style="position: absolute; bottom: 10px; left: 25px;">A droplet</div>
+      <div style="position: absolute; bottom: 10px; left: 100px;">B droplet</div>
+    </div>
+    <div>After pop – correlated droplets</div>
+  </div>
+</div>
+
+---
+
+
+```
+      Popping lobe A →
+      
+      The ENTIRE bubble collapses!
+      
+      Two droplets appear:
+      💧 at A     💧 at B
+      
+      Their positions are PERFECTLY CORRELATED
+```
+
+**This is entanglement:**
+- The qubits remain separate physical systems (two lobes)
+- But their joint state is a single entity (one connected bubble)
+- Measurement affects both instantly, with correlated outcomes
+
+---
+
+<table style="width:100%; border-collapse: collapse; text-align: center;">
+  <tr>
+    <th>Concept</th>
+    <th>Bubble Picture</th>
+    <th>Key Idea</th>
+  </tr>
+  <tr>
+    <td>Single qubit state</td>
+    <td>
+      <div style="position: relative; width: 60px; height: 60px; margin: 0 auto;">
+        <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #aaddff, #3b8fc2);"></div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px;">📌</div>
+      </div>
+    </td>
+    <td>One coherent object</td>
+  </tr>
+  <tr>
+    <td>Superposition</td>
+    <td>
+      <div style="position: relative; width: 60px; height: 60px; margin: 0 auto;">
+        <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #aaddff, #3b8fc2); box-shadow: 0 0 0 4px rgba(59,143,194,0.3), 0 0 0 8px rgba(59,143,194,0.1);"></div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px;">📌</div>
+      </div>
+    </td>
+    <td>Amplitude spread</td>
+  </tr>
+  <tr>
+    <td>Measurement</td>
+    <td>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <div style="position: relative; width: 40px; height: 40px;">
+          <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #aaddff, #3b8fc2);"></div>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 12px;">📌</div>
+        </div>
+        <span style="margin:0 5px;">→</span>
+        <div style="width: 10px; height: 10px; border-radius: 50%; background: #0077be;"></div>
+      </div>
+    </td>
+    <td>Collapse to one outcome</td>
+  </tr>
+  <tr>
+    <td>Product state</td>
+    <td>
+      <div style="display: flex; gap: 5px; justify-content: center;">
+        <div style="position: relative; width: 35px; height: 35px;">
+          <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f9a8d4, #d53f8c);"></div>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10px;">📌</div>
+        </div>
+        <div style="position: relative; width: 35px; height: 35px;">
+          <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #b9fbc0, #2e8b57);"></div>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10px;">📌</div>
+        </div>
+      </div>
+    </td>
+    <td>Independent qubits</td>
+  </tr>
+  <tr>
+    <td>Entangled state</td>
+    <td>
+      <div style="position: relative; width: 100px; height: 50px; margin: 0 auto;">
+        <div style="position: absolute; left: 0; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f5e56b, #d4af37);"></div>
+        <div style="position: absolute; left: 30px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f5e56b, #d4af37);"></div>
+        <div style="position: absolute; top: 10px; left: 10px; font-size: 10px;">📌</div>
+        <div style="position: absolute; top: 10px; left: 45px; font-size: 10px;">📌</div>
+      </div>
+    </td>
+    <td>Connected qubits, correlated outcomes</td>
+  </tr>
+</table>
+
+---
+
+**Why This Analogy Works (and Its Limits)**
+
+What It Gets Right
+
+✅ **Coherence** – The bubble is one object, just like a quantum state  
+✅ **Superposition** – The bubble is spread out, not localized  
+✅ **Probability** – Droplet landing follows bubble's "thickness" (Born rule)  
+✅ **Collapse** – Popping = measurement, instant and irreversible  
+✅ **Product states** – Separate bubbles = no entanglement  
+✅ **Entanglement** – Connected lobes = one joint state, two subsystems
+
+What It Glosses Over (For Now)
+
+⚠️ Bubbles exist in 3D space – quantum states live in abstract Hilbert space  
+⚠️ Bubbles have fixed shape – quantum states evolve continuously  
+⚠️ Droplet analogy suggests particle-like outcome –**measurement gives a basis state, not a position**
+
+---
+
+**A Glimpse Beyond (For the Curious)**
+ This "Bubble Picture" Is Actually Real Mathematics
+
+What we've drawn intuitively is closely related to **tensor network diagrams** 
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px;">
+  <div style="text-align: center;">
+    <div style="font-family: monospace; font-size: 24px;">──[ψ]──</div>
+    <div>Tensor network notation</div>
+  </div>
+  <div style="font-size: 30px;">⇔</div>
+  <div style="text-align: center;">
+    <div style="position: relative; width: 60px; height: 60px; margin: 0 auto;">
+      <div style="width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #aaddff, #3b8fc2);"></div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px;">📌</div>
+    </div>
+    <div>Bubble analogy</div>
+  </div>
+</div>
+<p style="text-align: center;">Both represent the same mathematical object – a tensor (generalized matrix).</p>
+
+---
+Tensor netowrks are a powerful mathematical language used in:
+- Quantum information theory
+- Many-body physics
+- Machine learning
+
+In tensor networks:
+- Bubbles = tensors (generalized matrices)
+- Legs = indices (qubits)
+- Connected bubbles = tensor contractions (interactions)
+
+**For now, enjoy the bubbles!**  
+When you encounter tensor networks in later courses, you'll recognize the pictures immediately.
+
+---
+
 
 ### **Multi‑qubit gates**
 - **CNOT** (controlled‑NOT): flips the target qubit if the control is \(|1\rangle\).  
@@ -470,6 +995,8 @@ This is an **entangled** state – measuring one qubit instantly affects the oth
 \end{bmatrix}
 \]
 
+---
+
 - **Hadamard on two qubits**: creates superposition on both.
 
 **Example circuit** to create a Bell state:
@@ -479,6 +1006,8 @@ q0: ──H──@─
          │
 q1: ─────X─
 ```
+
+---
 
 Starting from \(|00\rangle\):
 1. H on q0: \(\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\otimes|0\rangle = \frac{1}{\sqrt{2}}(|00\rangle+|10\rangle)\)  
