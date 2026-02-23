@@ -503,10 +503,10 @@ The Pauli matrices are a set of three $2 \times 2$ complex matrices that are fun
 
 ---
 5. **Basis for Hermitian matrices**: Any $2\times2$ Hermitian matrix $H$ can be written uniquely as
-   ```math
-   H = \alpha_0 I + \alpha_x \sigma_x + \alpha_y \sigma_y + \alpha_z \sigma_z
-   ```
-   with real coefficients $\alpha_0,\alpha_x,\alpha_y,\alpha_z$.
+```math
+H = \alpha_0 I + \alpha_x \sigma_x + \alpha_y \sigma_y + \alpha_z \sigma_z
+```
+  with real coefficients $\alpha_0,\alpha_x,\alpha_y,\alpha_z$.
 
 ---
 
