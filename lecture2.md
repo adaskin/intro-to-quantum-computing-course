@@ -419,21 +419,21 @@ With three trainable parameters ($\theta_z, \theta_y, \theta_x$), the circuit ca
 
 The circuit applies the following operations:
 
-0. the initial state $|0\rangle $
-1. **Data encoding**: $R_Y(x) $ – rotates around the Y-axis by an angle equal to the input value $x $.
-2. **Trainable rotations**: $R_Z(\theta_z) $, $R_Y(\theta_y) $, $R_X(\theta_x) $ – in that order.
+0. the initial state $|0\rangle$
+1. **Data encoding**: $R_Y(x)$ – rotates around the Y-axis by an angle equal to the input value $x$.
+2. **Trainable rotations**: $R_Z(\theta_z)$, $R_Y(\theta_y)$, $R_X(\theta_x)$ – in that order.
 3. **Measurement**: expectation value of the PauliZ operator.
 
 ---
 
-The overall unitary is $U = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) $, and the output is  
+The overall unitary is $U = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x)$, and the output is  
 ```math
 f(x) = \langle 0 | R_Y(x)^\dagger \, R_Z(\theta_z)^\dagger R_Y(\theta_y)^\dagger R_X(\theta_x)^\dagger \, Z \, R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) R_Y(x) | 0 \rangle.
 ```
 
 ---
 
-Define the trainable part as $V = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z) $. Then  
+Define the trainable part as $V = R_X(\theta_x) R_Y(\theta_y) R_Z(\theta_z)$. Then  
 ```math
 f(x) = \langle 0 | R_Y(x)^\dagger \, (V^\dagger Z V) \, R_Y(x) | 0 \rangle.
 ```
@@ -492,14 +492,14 @@ The Pauli matrices are a set of three $2 \times 2$ complex matrices that are fun
 
 ---
 
-2. **Traceless**: $\operatorname{tr}(\sigma_i) = 0$.
+2. **Traceless**: $tr(\sigma_i) = 0$.
 
 ---
 
 3. **Square to Identity**: $\sigma_i^2 = I$ (the $2\times2$ identity matrix).
 
 ---
-4. **Orthogonality**: $\operatorname{tr}(\sigma_i \sigma_j) = 2\delta_{ij}$ (they are orthogonal under the trace inner product).
+1. **Orthogonality**: $tr(\sigma_i \sigma_j) = 2\delta_{ij}$ (they are orthogonal under the trace inner product).
 
 ---
 5. **Basis for Hermitian matrices**: Any $2\times2$ Hermitian matrix $H$ can be written uniquely as
@@ -510,7 +510,7 @@ The Pauli matrices are a set of three $2 \times 2$ complex matrices that are fun
 
 ---
 
-In our circuit analysis, The operator $O = V^\dagger Z V $ is obtained by conjugating the Pauli‑$Z$ matrix with a unitary $V$. 
+In our circuit analysis, The operator $O = V^\dagger Z V$ is obtained by conjugating the Pauli‑$Z$ matrix with a unitary $V$. 
 
 This operation preserves two key properties of $Z$:
 - Hermitian (property 1) 
@@ -537,21 +537,21 @@ For these to be $\pm1$, we must have
 
 ---
 
-The operator $O = V^\dagger Z V $ is a Pauli operator rotated by $V $, so it can be written as  
+The operator $O = V^\dagger Z V$ is a Pauli operator rotated by $V$, so it can be written as  
 ```math
 O = a \sigma_x + b \sigma_y + c \sigma_z, \quad \text{with } a^2+b^2+c^2 = 1.
 ```
 
 ---
 
-Now, $R_Y(x)^\dagger O R_Y(x) $ rotates $O $ about the Y‑axis by $-x $. Using standard rotation formulas, we get  
+Now, $R_Y(x)^\dagger O R_Y(x)$ rotates $O$ about the Y‑axis by $-x$. Using standard rotation formulas, we get  
 ```math
 R_Y(-x) O R_Y(x) = (a \cos x + c \sin x) \sigma_x + b \sigma_y + (-a \sin x + c \cos x) \sigma_z.
 ```
 
 ---
 
-Since $\langle 0 | \sigma_x | 0 \rangle = \langle 0 | \sigma_y | 0 \rangle = 0 $ and $\langle 0 | \sigma_z | 0 \rangle = 1 $, the final output simplifies to  
+Since $\langle 0 | \sigma_x | 0 \rangle = \langle 0 | \sigma_y | 0 \rangle = 0 $ and $\langle 0 | \sigma_z | 0 \rangle = 1$, the final output simplifies to  
 ```math
 f(x) = -a \sin x + c \cos x.
 ```
@@ -560,7 +560,7 @@ Thus the model can only represent functions of the form
 ```math
 f(x) = A \cos x + B \sin x, \quad \text{with } A = c,\; B = -a,
 ```  
-and the constraint $A^2 + B^2 = a^2 + c^2 \leq 1 $ (because $b^2 = 1 - a^2 - c^2 \geq 0 $).
+and the constraint $A^2 + B^2 = a^2 + c^2 \leq 1$ (because $b^2 = 1 - a^2 - c^2 \geq 0$).
 
 ---
 
