@@ -127,14 +127,28 @@ From A.6 you already know that:
 #### 2. Rotation gates (explicit matrices)
 Using the formulas from the lecture notes, define functions that return the $2\times2$ unitary matrices:
 
-$$R_x(\theta) = \begin{bmatrix} \cos\frac{\theta}{2} & -i\sin\frac{\theta}{2} \\ -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{bmatrix}$$
-$$R_y(\theta) = \begin{bmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{bmatrix}$$
-$$R_z(\theta) = \begin{bmatrix} e^{-i\theta/2} & 0 \\ 0 & e^{i\theta/2} \end{bmatrix}$$
+```math
+R_x(\theta) = \begin{bmatrix} \cos\frac{\theta}{2} & -i\sin\frac{\theta}{2} \\ -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{bmatrix}
+```
+
+```math
+R_y(\theta) = \begin{bmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{bmatrix}
+```
+
+```math
+R_z(\theta) = \begin{bmatrix} e^{-i\theta/2} & 0 \\ 0 & e^{i\theta/2} \end{bmatrix}
+```
 
 Implement these in NumPy. Verify that we can also write:
-   $$R_x(\theta) = \cos\frac{\theta}{2} I - i\sin\frac{\theta}{2} X$$
-   $$R_y(\theta) = \cos\frac{\theta}{2} I - i\sin\frac{\theta}{2} Y$$
-   $$R_z(\theta) = \cos\frac{\theta}{2} I - i\sin\frac{\theta}{2} Z$$
+```math
+R_x(\theta) = \cos\frac{\theta}{2} I - i\sin\frac{\theta}{2} X
+```
+```math
+R_y(\theta) = \cos\frac{\theta}{2} I - i\sin\frac{\theta}{2} Y
+```
+```math
+R_z(\theta) = \cos\frac{\theta}{2} I - i\sin\frac{\theta}{2} Z
+```
    (You can also use `scipy.linalg.expm` on X, Y, Z matrices with $i\theta$ angle. They give the same results)
 
 #### 3. Random sequence
@@ -150,7 +164,9 @@ For each Pauli operator $M \in \{X, Y, Z\}$:
 
 #### 5. Probabilities from expectation values
 Because the eigenvalues are $\pm 1$, the probabilities of measuring $+1$ and $-1$ for an observable $M$ are given by:
-$$p_{+1} = \frac{1 + \langle M \rangle}{2}, \qquad p_{-1} = \frac{1 - \langle M \rangle}{2}.$$
+```math
+p_{+1} = \frac{1 + \langle M \rangle}{2}, \qquad p_{-1} = \frac{1 - \langle M \rangle}{2}.
+```
 
 For each basis, compute these probabilities and verify that they match the direct inner‑product calculations (e.g., for $Z$: $p_0 = |\langle 0|\psi\rangle|^2$, $p_1 = |\langle 1|\psi\rangle|^2$; for $X$: $p_+ = |\langle +|\psi\rangle|^2$, etc.).
 
@@ -181,7 +197,9 @@ Answer the following questions in a markdown cell:
 
 #### Bonus challenge (optional)
 For one of your random sequences, compute the Bloch sphere angles $(\theta, \phi)$ of the final state using:
-$$\theta = \arccos(\langle Z \rangle), \quad \phi = \arg(\langle X \rangle + i\langle Y \rangle)$$
+```math
+\theta = \arccos(\langle Z \rangle), \quad \phi = \arg(\langle X \rangle + i\langle Y \rangle)
+```
 and verify that applying $U$ to $|0\rangle$ yields a state with those angles. (You can reconstruct $|\psi\rangle$ from $\theta$ and $\phi$ and compare with your computed state.)
 
 
@@ -218,12 +236,12 @@ Modify the circuit to use only two trainable rotations, e.g., $R_y(\theta_1)$ an
 
 Try to learn a step function:
 
-$$
+```math
 h(x) = \begin{cases}
 -1 & \text{if } x < 0 \\
 +1 & \text{if } x \ge 0
 \end{cases}
-$$
+```
 
 for $x \in [-\pi, \pi]$. Use the original three‑rotation circuit. Can it fit a sharp step? Why? Discuss the limitations.
 
