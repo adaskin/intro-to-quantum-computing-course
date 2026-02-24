@@ -68,6 +68,7 @@ lecture note: [lecture2](lecture2.md)
 - Multiple qubits, entanglement
 - **AI Tool Demo:** Using DeepSeek for writing code to suggest PennyLane syntax for parameterized circuits, implement the train/test split with scikit‑learn and PyTorch, debug the training loop, generate explanatory comments and exercises.
 - **Math Supplement:** Complex vector spaces, Hermitian operators
+- **Reading (optional physics for curious): [Geometric Quantum mechanics (physics-geometry)](https://arxiv.org/abs/quant-ph/9906086)**
 
 **Week 3: Quantum Operations & Circuit Model**
 - Unitary operators as quantum gates
