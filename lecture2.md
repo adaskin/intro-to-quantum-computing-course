@@ -47,6 +47,39 @@
 
 ---
 
+**Review (from lecture-1): Polarization of photon**
+- Linear polarization: consider light as a **wave** (electric field)
+  - horizontal |H>, electric field oscillates in horizontal plane
+  - vertical |V>, oscillates in vertical plane
+- Circular polarization: electric field rotates in a circle
+  - rotation to the right (clockwise) |R>
+  - rotation to the left (counter-clockwise) |L>
+
+---
+
+**Review (from lecture-1): Probabilistic machine vs quantum machine**
+
+![Double Slit Experiment](doubleslit-photons.png)
+1/2 probability, it passes through. Then 1/3 probability it hits one of the three target(measurement)
+
+*from the book Quantum-Computing-for-Computer-Scientists*
+
+---
+
+![Double Slit Probabilistic](doubleslit-probabilistic.png)
+*from the book Quantum-Computing-for-Computer-Scientists*
+
+
+---
+
+![Double Slit Experiment](doubleslit-quantum.png)
+
+probability from 0 to 3, $|P(0,3)|^2?$
+probability from 0 to 3, $|P(0,5)|^2?$   
+*from the book Quantum-Computing-for-Computer-Scientists*
+
+---
+
 ## **Vector Basics for Quantum States**
 
 A quantum state is a vector in a complex vector space.  
@@ -66,6 +99,8 @@ A general qubit state is:
 ```math
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle = \begin{bmatrix}\alpha\\\beta\end{bmatrix},\quad \alpha,\beta\in\mathbb{C}.
 ```
+
+---
 
 ### **Inner product and norm**
 The inner product $\langle\phi|\psi\rangle$ is the dot product with complex conjugation:
