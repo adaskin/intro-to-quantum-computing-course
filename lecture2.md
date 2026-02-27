@@ -1,3 +1,7 @@
+---
+marp: true
+---
+
 # **Lecture 2: Qubit Representations, Rotation Gates, and Variational Circuits**  
 *with Postulates of Quantum Mechanics and a Trainable Single‑Qubit Model*
 - [**Lecture 2: Qubit Representations, Rotation Gates, and Variational Circuits**](#lecture-2-qubit-representations-rotation-gates-and-variational-circuits)
@@ -59,20 +63,20 @@
 
 **Review (from lecture-1): Probabilistic machine vs quantum machine**
 
-![Double Slit Experiment](doubleslit-photons.png)
+![Double Slit Experiment](images/doubleslit-photons.png)
 1/2 probability, it passes through. Then 1/3 probability it hits one of the three target(measurement)
 
 *from the book Quantum-Computing-for-Computer-Scientists*
 
 ---
 
-![Double Slit Probabilistic](doubleslit-probabilistic.png)
+![Double Slit Probabilistic](images/doubleslit-probabilistic.png)
 *from the book Quantum-Computing-for-Computer-Scientists*
 
 
 ---
 
-![Double Slit Experiment](doubleslit-quantum.png)
+![Double Slit Experiment](images/doubleslit-quantum.png)
 
 probability from 0 to 3, $|P(0,3)|^2?$
 probability from 0 to 3, $|P(0,5)|^2?$   
