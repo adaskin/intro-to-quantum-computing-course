@@ -1,6 +1,3 @@
----
-marp: true
----
 
 # **Lecture 2: Qubit Representations, Rotation Gates, and Variational Circuits**  
 *with Postulates of Quantum Mechanics and a Trainable Single‑Qubit Model*
