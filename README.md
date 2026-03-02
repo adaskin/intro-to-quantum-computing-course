@@ -50,7 +50,7 @@ No required textbook. But, lecture notes are mostly based on
 #### **Unit 1: Mathematical Foundations (Weeks 1-3)**
 **Week 1: Classical vs. Quantum Information**
 reading: [Thirty years of quantum computing](https://doi.org/10.1088/2058-9565/ade0e4),David P DiVincenzo, Quantum Sci. Technol. 10 (2025) 030501. 
-lecture note: [lecture1](lecture1.md)
+lecture note: [lecture1](lecture1.md)  
 - Bits vs. qubits: the need for new computational models
 - Stern-Gerlach experiment: sequential measurements as computation
 - Polarization: a complete qubit analogy
@@ -59,7 +59,7 @@ lecture note: [lecture1](lecture1.md)
 
 
 **Week 2: qubit representation, rotation gates, variational quantum circuits**
-lecture note: [lecture2](lecture2.md)
+lecture note: [lecture2](lecture2.md)  
 - Vector basics
 - Postulate of quantum mechanics,
 - Bloch sphere, rotation gates
@@ -70,12 +70,19 @@ lecture note: [lecture2](lecture2.md)
 - **Math Supplement:** Complex vector spaces, Hermitian operators
 - **Reading (optional physics for curious): [Geometric Quantum mechanics (physics-geometry)](https://arxiv.org/abs/quant-ph/9906086)**
 
-**Week 3: Quantum Operations & Circuit Model**
-- Unitary operators as quantum gates
-- Pauli matrices and their algebraic properties
-- Hadamard and phase gates
-- Quantum circuit diagrams and composition rules
-- **AI Tool Demo:** Using GitHub Copilot for Qiskit boilerplate code
+**Week 3:  From Vectors to Entanglement – Math Foundations & Quantum Communication**
+*Bridging Linear Algebra Review with Quantum Protocols*
+lecture note: [lecture3][lecture3.md]  
+- **Math Review:** Vectors, inner products, eigenvalues, Hermitian matrices, tensor products
+- **Dirac Notation Deep Dive:** Bras, kets, and operators
+- **Composite Systems:** Building multi-qubit states
+- **Entanglement:** The "spooky" correlation explained mathematically
+- **Bell States:** Maximally entangled states
+- **Quantum Communication Protocols:**
+   - Superdense coding
+   - Quantum teleportation
+- **Quantum Key Distribution (BB84):** Real-world application
+- **AI Tool Demo:** Using Numpy and PennyLane Demos for creating and measuring Bell states and simulating BB84
 
 
 #### **Unit 2: Quantum Information Theory (Weeks 4-6)**
