@@ -44,6 +44,8 @@ where $α^*$ is the complex conjugate of $α$.
 |0⟩ = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad ⟨0| = \begin{bmatrix} 1 & 0 \end{bmatrix}
 ```
 
+---
+
 ```math
 |1⟩ = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \quad ⟨1| = \begin{bmatrix} 0 & 1 \end{bmatrix}
 ```
@@ -54,10 +56,14 @@ where $α^*$ is the complex conjugate of $α$.
 
 The **inner product** $\langle ϕ | ψ \rangle$ tells us how "similar" two states are.
 
+---
+
 **Definition:**
 ```math
 \langle ϕ | ψ \rangle = ϕ_0^* ψ_0 + ϕ_1^* ψ_1
 ```
+
+---
 
 **Properties:**
 - $\langle ψ | ψ \rangle = |α|^2 + |β|^2 = 1$ (normalization)
@@ -88,10 +94,13 @@ print(f"⟨+|-⟩ = {np.vdot(plus, minus)}")        # 0 (orthogonal)
 
 The **outer product** $|ψ⟩⟨ϕ|$ creates an operator (matrix).
 
+---
+
 **Example:** Projector onto $|0⟩$:
 ```math
 |0⟩⟨0| = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}
 ```
+---
 
 **Why this matters:** Measurement operators are projectors! (Postulate 3)
 
@@ -104,6 +113,8 @@ Quantum gates are **matrices** that act on state vectors:
 ```math
 U|ψ⟩ = \text{(matrix)} \times \text{(vector)}
 ```
+
+---
 
 **Pauli Matrices** (from HW1 A.5):
 ```math
@@ -122,6 +133,8 @@ The **Hermitian conjugate** (or adjoint) of a matrix is the **conjugate transpos
 - For vectors: $(|ψ⟩)^† = ⟨ψ|$
 - For matrices: $(U)^† = (U^T)^*$
 
+---
+
 **A matrix is Hermitian if $M^† = M$**
 
 From HW1 A.9: Pauli matrices are Hermitian:
@@ -129,6 +142,8 @@ From HW1 A.9: Pauli matrices are Hermitian:
 X = np.array([[0,1],[1,0]], dtype=complex)
 print(np.allclose(X, X.conj().T))  # True
 ```
+
+---
 
 **Why Hermitian matters:** All measurable observables (like energy, spin) are represented by Hermitian operators. Their eigenvalues are **real** numbers – the possible measurement outcomes!
 
@@ -140,11 +155,15 @@ For a matrix $M$, if $M|v⟩ = λ|v⟩$, then:
 - $λ$ is an **eigenvalue** (measurement outcome)
 - $|v⟩$ is an **eigenvector** (state after measurement)
 
+---
+
 **From HW1 A.6:** For Pauli Z:
 ```math
 Z|0⟩ = (+1)|0⟩, \quad Z|1⟩ = (-1)|1⟩
 ```
 So eigenvalues are $+1$ and $-1$, eigenvectors are $|0⟩$ and $|1⟩$.
+
+---
 
 **Key insight:** When you measure an observable, you always get one of its eigenvalues!
 
@@ -154,10 +173,14 @@ So eigenvalues are $+1$ and $-1$, eigenvectors are $|0⟩$ and $|1⟩$.
 
 A matrix $U$ is **unitary** if $U^† U = U U^† = I$.
 
+---
+
 **Properties:**
 - Preserves inner products: $\langle Uϕ | Uψ \rangle = \langle ϕ | ψ \rangle$
 - Preserves normalization: $||U|ψ⟩|| = 1$
 - All quantum gates are unitary! (Postulate 2)
+
+---
 
 **From HW1 A.9:** Check unitarity:
 ```python
@@ -170,14 +193,22 @@ print(np.allclose(X @ X.conj().T, np.eye(2)))  # True
 
 The **tensor product** $\otimes$ combines systems:
 
+---
+
 **For vectors:** If $|a⟩ ∈ ℂ^m$ and $|b⟩ ∈ ℂ^n$, then $|a⟩ ⊗ |b⟩ ∈ ℂ^{m×n}$
+
+---
 
 **Example:** Two qubits:
 ```math
 |0⟩ ⊗ |0⟩ = \begin{bmatrix} 1 \\ 0 \end{bmatrix} ⊗ \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = |00⟩
 ```
 
+---
+
 **For matrices:** $A ⊗ B$ means apply $A$ to first system, $B$ to second.
+
+---
 
 **Python demo:**
 ```python
@@ -201,8 +232,8 @@ X_I = np.kron(X, I)  # 4x4 matrix
 
 | Math Concept | Physical Meaning | Used In |
 |-------------|------------------|---------|
-| Vector $|ψ⟩$ | Quantum state | All protocols |
-| Inner product $\langle ϕ\|ψ⟩$ | Overlap/Probability amplitude | Measurement |
+| Vector $\midψ⟩$ | Quantum state | All protocols |
+| Inner product $\langle ϕ\midψ⟩$ | Overlap/Probability amplitude | Measurement |
 | Eigenvalues | Possible measurement outcomes | BB84 basis choice |
 | Hermitian $M^† = M$ | Observable quantities | All measurements |
 | Unitary $U^†U = I$ | Quantum gates (evolution) | Creating Bell states |
@@ -223,6 +254,8 @@ For two qubits, the computational basis consists of **four** states:
 |11⟩ = \begin{bmatrix}0\\0\\0\\1\end{bmatrix}
 ```
 
+---
+
 **General two-qubit state:**
 ```math
 |ψ⟩ = α_{00}|00⟩ + α_{01}|01⟩ + α_{10}|10⟩ + α_{11}|11⟩
@@ -235,16 +268,26 @@ with $\sum |α_{ij}|^2 = 1$.
 
 **Product state:** Can be written as $(a|0⟩+b|1⟩) ⊗ (c|0⟩+d|1⟩)$
 
+---
+
 Example: $|+0⟩ = |+⟩ ⊗ |0⟩ = \frac{1}{\sqrt{2}}(|00⟩ + |10⟩)$
+
+---
 
 **Entangled state:** Cannot be factored into separate single-qubit states
 
+---
+
 Example: $|Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩ + |11⟩)$
+
+---
 
 **Check if entangled:** Try to find $a,b,c,d$ such that:
 ```math
 \frac{1}{\sqrt{2}}(|00⟩ + |11⟩) = (a|0⟩+b|1⟩) ⊗ (c|0⟩+d|1⟩)
 ```
+
+---
 
 This would require $ac = 1/\sqrt{2}$, $bd = 1/\sqrt{2}$, and $ad = bc = 0$ – impossible! (If $a=0$, then $ac=0$; if $b=0$, then $bd=0$.)
 
@@ -260,6 +303,7 @@ q0: ────@────
 q1: ────X────
 ```
 
+---
 **Matrix form** (control = q0, target = q1):
 ```math
 \text{CNOT} = \begin{bmatrix}
@@ -272,12 +316,16 @@ q1: ────X────
 
 **Action:** If control is $|1⟩$, flip target; otherwise do nothing.
 
+---
+
 **Creating a Bell state:**
 ```
 |0⟩ ──H──@──
          │
 |0⟩ ─────X──
 ```
+
+---
 
 **Step-by-step:**
 1. Start: $|00⟩$
@@ -306,19 +354,23 @@ The Bell states are maximally entangled two-qubit states:
 |Ψ^-⟩ = \frac{1}{\sqrt{2}}(|01⟩ - |10⟩)
 ```
 
+---
+
 **Key properties:**
 - Maximally entangled (any measurement on one qubit gives random result)
 - Perfectly correlated (for $|Φ^+⟩$, measuring both qubits in Z basis gives same result)
 - Orthogonal: $\langle Φ^+ | Φ^- \rangle = 0$, etc.
 
+---
+
 **Circuit to create all Bell states:**
 
 | Start state | After H on q0 + CNOT | Bell state |
 |------------|----------------------|------------|
-| $|00⟩$ | $\frac{1}{\sqrt{2}}(|00⟩+|11⟩)$ | $|Φ^+⟩$ |
-| $|01⟩$ | $\frac{1}{\sqrt{2}}(|01⟩+|10⟩)$ | $|Ψ^+⟩$ |
-| $|10⟩$ | $\frac{1}{\sqrt{2}}(|00⟩-|11⟩)$ | $|Φ^-⟩$ |
-| $|11⟩$ | $\frac{1}{\sqrt{2}}(|01⟩-|10⟩)$ | $|Ψ^-⟩$ |
+| $\mid 00⟩$ | $\frac{1}{\sqrt{2}}(\mid00⟩+\mid11⟩)$ | $\midΦ^+⟩$ |
+| $\mid01⟩$ | $\frac{1}{\sqrt{2}}(\mid01⟩+\mid10⟩)$ | $\midΨ^+⟩$ |
+| $\mid10⟩$ | $\frac{1}{\sqrt{2}}(\mid00⟩-\mid11⟩)$ | $\midΦ^-⟩$ |
+| $\mid11⟩$ | $\frac{1}{\sqrt{2}}(\mid01⟩-\mid10⟩)$ | $\midΨ^-⟩$ |
 
 ---
 
@@ -328,20 +380,28 @@ The Bell states are maximally entangled two-qubit states:
 
 **The magic:** Alice can send Bob **two classical bits** by transmitting only **one qubit**, if they already share an entangled pair!
 
+---
+
 **Setup:**
 1. Create Bell pair $|Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩+|11⟩)$
 2. Give one qubit to Alice, one to Bob
+
+---
 
 **Protocol:**
 
 | Alice's message (2 bits) | Alice's operation on her qubit | Resulting Bell state |
 |-------------------------|-------------------------------|---------------------|
-| 00 | I (do nothing) | $|Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩+|11⟩)$ |
-| 01 | X (bit flip) | $|Ψ^+⟩ = \frac{1}{\sqrt{2}}(|01⟩+|10⟩)$ |
-| 10 | Z (phase flip) | $|Φ^-⟩ = \frac{1}{\sqrt{2}}(|00⟩-|11⟩)$ |
-| 11 | iY = XZ (both) | $|Ψ^-⟩ = \frac{1}{\sqrt{2}}(|01⟩-|10⟩)$ |
+| 00 | I (do nothing) | $\midΦ^+⟩ = \frac{1}{\sqrt{2}}(\mid00⟩+\mid11⟩)$ |
+| 01 | X (bit flip) | $\midΨ^+⟩ = \frac{1}{\sqrt{2}}(\mid01⟩+\mid10⟩)$ |
+| 10 | Z (phase flip) | $\midΦ^-⟩ = \frac{1}{\sqrt{2}}(\mid00⟩-\mid11⟩)$ |
+| 11 | iY = XZ (both) | $\midΨ^-⟩ = \frac{1}{\sqrt{2}}(\mid01⟩-\mid10⟩)$ |
+
+---
 
 Alice then sends her qubit to Bob. Bob now has **both qubits** and can perform a **Bell measurement** to determine which of the four states he has, recovering the 2 classical bits.
+
+---
 
 **Bell measurement circuit:**
 ```
@@ -350,11 +410,15 @@ q0 (Alice's) ────@──H── Measure
 q1 (Bob's) ──────X──── Measure
 ```
 
+---
+
 **Why it works:** The CNOT + H gate transforms Bell states back to computational basis:
 
 ```math
 |Φ^+⟩ → |00⟩,\quad |Φ^-⟩ → |10⟩,\quad |Ψ^+⟩ → |01⟩,\quad |Ψ^-⟩ → |11⟩
 ```
+
+---
 
 **Key insight:** The entangled pair acts as a "resource" that enables sending 2 bits with 1 qubit!
 
@@ -364,26 +428,46 @@ q1 (Bob's) ──────X──── Measure
 
 **The magic:** Alice can send an unknown quantum state $|ψ⟩ = α|0⟩+β|1⟩$ to Bob using only **classical communication** and a shared entangled pair!
 
+---
+
 **Setup:**
 1. Create Bell pair $|Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩+|11⟩)$
 2. Give one qubit to Alice (qubit B), one to Bob (qubit C)
 3. Alice has the unknown state $|ψ⟩$ on qubit A
 
+---
+
 **Initial state:** $|ψ⟩_A ⊗ |Φ^+⟩_{BC}$
+
+---
 
 **Step-by-step:**
 
 1. **Alice applies CNOT** (control = qubit A, target = qubit B)
+
+---
+
 2. **Alice applies H** to qubit A
+
+---
 3. **Alice measures** both qubits A and B (2 classical bits)
+
+---
 4. **Alice sends** these 2 bits to Bob
+
+---
 5. **Bob applies corrections** based on Alice's bits:
+
+---
    - If bits = 00: do nothing
    - If bits = 01: apply X
    - If bits = 10: apply Z
    - If bits = 11: apply X then Z
 
+---
 **Result:** Bob's qubit C becomes exactly $|ψ⟩$!
+
+---
 
 **Mathematical outline:**
 
@@ -438,14 +522,24 @@ Depending on Alice's measurement outcome, Bob's qubit is in one of four states, 
 
 For each qubit (say N=100 rounds):
 
+---
+
 1. **Alice randomly chooses:**
    - Basis: Z or X (with 50% probability each)
    - Bit: 0 or 1 (with 50% probability each)
+
+---  
 2. **Alice prepares** the corresponding state:
    - Z/0 → $|0⟩$, Z/1 → $|1⟩$
    - X/0 → $|+⟩$, X/1 → $|-⟩$
+
+---
 3. **Alice sends** the qubit to Bob
+
+---
 4. **Bob randomly chooses** basis: Z or X
+
+---
 5. **Bob measures** in his chosen basis
 
 ---
@@ -453,6 +547,8 @@ For each qubit (say N=100 rounds):
 **Step 2: Classical Communication (over public channel)**
 
 1. **Basis revelation:** Alice and Bob announce which bases they used (but NOT the bits!)
+
+---
 2. **Sifting:** They keep only rounds where they used the **same basis**
    - If bases match, Bob's measurement result should match Alice's bit (ideally)
    - If bases differ, they discard that round (results are random/unrelated)
@@ -465,12 +561,18 @@ After sifting, they have a raw key (about half the rounds, ~50 bits).
 
 Eve doesn't know which basis Alice used. If Eve intercepts and measures:
 
+---
+
 - If Eve guesses basis correctly → she resends correct state → no error
 - If Eve guesses wrong basis → she collapses the state → when Bob measures in Alice's basis, he gets random result with 50% error probability
 
-To detect Eve:
+---
+**To detect Eve:**
 
+---
 1. Alice and Bob publicly compare a **random subset** of their raw key bits (say 20 bits)
+
+---
 2. If more than a small threshold (e.g., 0%) differ, they know Eve was listening → abort
 
 ---
@@ -479,9 +581,13 @@ To detect Eve:
 
 **No-cloning theorem:** It's impossible to make a perfect copy of an unknown quantum state.
 
+---
+
 **Proof sketch:** If a cloning machine existed, it would have to map:
 - $|0⟩|e⟩ → |0⟩|0⟩$
 - $|1⟩|e⟩ → |1⟩|1⟩$
+
+---
 
 But then for $|+⟩ = \frac{1}{\sqrt{2}}(|0⟩+|1⟩)$:
 $|+⟩|e⟩ → \frac{1}{\sqrt{2}}(|0⟩|0⟩+|1⟩|1⟩) ≠ |+⟩|+⟩$ (which would be $\frac{1}{2}(|00⟩+|01⟩+|10⟩+|11⟩)$)
