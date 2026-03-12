@@ -1,74 +1,191 @@
-# Lecture 3: From Vectors to Entanglement – Math Foundations & Quantum Communication
+# Lecture 3: From Vectors to Entanglement – Math Foundations & Quantum Communication 🚀
 *Bridging Linear Algebra Review with Quantum Protocols*
 
 ---
 
-## Lecture Overview
+## Lecture Overview 📋
 
-1. **Math Review:** Vectors, inner products, eigenvalues, Hermitian matrices, tensor products
-2. **Dirac Notation Deep Dive:** Bras, kets, and operators
-3. **Composite Systems:** Building multi-qubit states
-4. **Entanglement:** The "spooky" correlation explained mathematically
-5. **Bell States:** Maximally entangled states
-6. **Quantum Communication Protocols:**
+1. **Math Review:** Vectors, inner products, eigenvalues, Hermitian matrices, tensor products 🧮
+2. **Dirac Notation Deep Dive:** Bras, kets, and operators 📐
+3. **Composite Systems:** Building multi-qubit states 🧱
+4. **Entanglement:** The "spooky" correlation explained mathematically 👻
+5. **Bell States:** Maximally entangled states 🔔
+6. **Quantum Communication Protocols:** 📡
    - Superdense coding
    - Quantum teleportation
-7. **Quantum Key Distribution (BB84):** Real-world application
-8. **PennyLane Demos:** Creating and measuring Bell states
+7. **Quantum Key Distribution (BB84):** Real-world application 🔐
+8. **PennyLane Demos:** Creating and measuring Bell states 💻
 
 ---
 
-## Part 1: Linear Algebra Refresher (with Quantum Flavor)
+## Part 1: Linear Algebra Refresher (with Quantum Flavor) 🧮
 
-### 1.1 Vectors in Quantum Mechanics
+### 1.1 Vectors in Quantum Mechanics 🔹
 
-A **vector** in quantum mechanics represents a state. For a single qubit, we work in **ℂ²** – the space of complex 2-dimensional vectors.
+A **vector** in quantum mechanics represents a state. For a single qubit, we work in **ℂ²** – the space of complex 2‑dimensional vectors.
 
 **Column vector notation (ket):**
-```math
+$$
 |ψ⟩ = \begin{bmatrix} α \\ β \end{bmatrix}, \quad α,β ∈ ℂ
-```
+$$
 
 ---
 
 **Row vector notation (bra):**
-```math
+$$
 ⟨ψ| = \begin{bmatrix} α^* & β^* \end{bmatrix}
-```
+$$
 where $α^*$ is the complex conjugate of $α$.
 
 ---
 
 **Example:** 
-```math
+$$
 |0⟩ = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad ⟨0| = \begin{bmatrix} 1 & 0 \end{bmatrix}
-```
+$$
 
 ---
 
-```math
+$$
 |1⟩ = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \quad ⟨1| = \begin{bmatrix} 0 & 1 \end{bmatrix}
+$$
+
+---
+
+#### 1.1.1 Complex Numbers: The Language of Quantum Mechanics 🔢
+
+Before diving deeper into vectors and inner products, we need to be comfortable with **complex numbers** – the alphabet of quantum theory.
+
+---
+
+### What is a Complex Number? 
+
+A complex number $z$ is written as:
+$$
+z = a + i b,\quad a,b \in \mathbb{R},\; i = \sqrt{-1}
+$$
+- $a$ = **real part** $\mathrm{Re}(z)$
+- $b$ = **imaginary part** $\mathrm{Im}(z)$
+
+---
+
+### The Complex Plane 🌌
+
+We can visualise $z$ as a point in a 2D plane:
+- Horizontal axis: real part
+- Vertical axis: imaginary part
+
+```
+      Im
+       ↑
+       |   • z = a + i b
+       |  /|
+       | / |
+       |/θ |
+───────┼───────→ Re
+       |   |
+       |   |
+       |   • z* = a - i b
+       ↓
 ```
 
 ---
 
-### 1.2 Inner Product (Dot Product for Complex Vectors)
+### Modulus (Amplitude) and Phase 📐
+
+Every complex number has a **modulus** (or **amplitude**) $r$ and a **phase** (or **argument**) $\theta$:
+
+$$
+r = |z| = \sqrt{a^2 + b^2}, \qquad \theta = \arg(z) = \tan^{-1}\!\left(\frac{b}{a}\right)
+$$
+
+**Polar form:**
+$$
+z = r e^{i\theta} = r(\cos\theta + i\sin\theta)
+$$
+
+- $r$ tells us the "size" (always non‑negative)
+- $\theta$ tells us the "angle" (usually in radians)
+
+---
+
+### Complex Conjugate – Mirror Across the Real Axis 🔄
+
+The **complex conjugate** of $z = a + i b$ is:
+$$ 
+z^* = a - i b
+$$
+
+In polar form:
+$$
+z = r e^{i\theta} \quad\Longrightarrow\quad z^* = r e^{-i\theta}
+$$
+
+Geometrically, it's the reflection of $z$ across the real axis.
+
+---
+
+### Why Do We Care? 💡
+
+1. **Probabilities come from squared magnitudes:**  
+   If a quantum amplitude is $z$, the probability is $|z|^2 = z^* z$.  
+   (E.g., $|\alpha|^2 + |\beta|^2 = 1$ for a qubit state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$.)
+
+2. **Inner products involve conjugates:**  
+   $\langle \phi | \psi \rangle = \phi_0^* \psi_0 + \phi_1^* \psi_1$ – the conjugate of the left vector's components appears.
+
+3. **Hermitian conjugates (†) are conjugate transposes:**  
+   $(|\psi\rangle)^\dagger = \langle \psi|$, and for matrices $(U)^\dagger = (U^T)^*$.
+
+---
+
+### Quick Check: Conjugate in Action ⚡
+
+```python
+import numpy as np
+
+z = 3 + 4j                # 3 + 4i
+print(f"z = {z}")
+print(f"Real part: {z.real}, Imag part: {z.imag}")
+print(f"Modulus: {abs(z):.2f}")
+print(f"Conjugate: {z.conj()}")
+print(f"z * z* = {z * z.conj()} = |z|^2 = {abs(z)**2}")
+```
+
+---
+
+Output:
+```
+z = (3+4j)
+Real part: 3.0, Imag part: 4.0
+Modulus: 5.00
+Conjugate: (3-4j)
+z * z* = (25+0j) = |z|^2 = 25.0
+```
+
+---
+
+**Key takeaway:** Complex numbers are not just a mathematical convenience – they are essential for the interference effects that make quantum mechanics so powerful. The conjugate is your best friend when computing probabilities and inner products! 🌟
+
+---
+
+### 1.2 Inner Product (Dot Product for Complex Vectors) 📏
 
 The **inner product** $\langle ϕ | ψ \rangle$ tells us how "similar" two states are.
 
 ---
 
 **Definition:**
-```math
+$$
 \langle ϕ | ψ \rangle = ϕ_0^* ψ_0 + ϕ_1^* ψ_1
-```
+$$
 
 ---
 
 **Properties:**
-- $\langle ψ | ψ \rangle = |α|^2 + |β|^2 = 1$ (normalization)
-- $\langle ϕ | ψ \rangle = \langle ψ | ϕ \rangle^*$ (conjugate symmetry)
-- If $\langle ϕ | ψ \rangle = 0$, states are **orthogonal**
+- $\langle ψ | ψ \rangle = |α|^2 + |β|^2 = 1$ (normalization) ✅
+- $\langle ϕ | ψ \rangle = \langle ψ | ϕ \rangle^*$ (conjugate symmetry) 🔄
+- If $\langle ϕ | ψ \rangle = 0$, states are **orthogonal** ⚪
 
 ---
 
@@ -90,43 +207,43 @@ print(f"⟨+|-⟩ = {np.vdot(plus, minus)}")        # 0 (orthogonal)
 
 ---
 
-### 1.3 Outer Product and Projectors
+### 1.3 Outer Product and Projectors 🎯
 
 The **outer product** $|ψ⟩⟨ϕ|$ creates an operator (matrix).
 
 ---
 
 **Example:** Projector onto $|0⟩$:
-```math
+$$
 |0⟩⟨0| = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}
-```
+$$
 ---
 
-**Why this matters:** Measurement operators are projectors! (Postulate 3)
+**Why this matters:** Measurement operators are projectors! (Postulate 3) 💡
 
 ---
 
-### 1.4 Matrices as Operators
+### 1.4 Matrices as Operators 🎛️
 
 Quantum gates are **matrices** that act on state vectors:
 
-```math
+$$
 U|ψ⟩ = \text{(matrix)} \times \text{(vector)}
-```
+$$
 
 ---
 
 **Pauli Matrices** (from HW1 A.5):
-```math
+$$
 X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix},\quad
 Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix},\quad
 Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix},\quad
 I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
-```
+$$
 
 ---
 
-### 1.5 Hermitian Conjugate (†)
+### 1.5 Hermitian Conjugate (†) 🔄
 
 The **Hermitian conjugate** (or adjoint) of a matrix is the **conjugate transpose**:
 
@@ -145,11 +262,11 @@ print(np.allclose(X, X.conj().T))  # True
 
 ---
 
-**Why Hermitian matters:** All measurable observables (like energy, spin) are represented by Hermitian operators. Their eigenvalues are **real** numbers – the possible measurement outcomes!
+**Why Hermitian matters:** All measurable observables (like energy, spin) are represented by Hermitian operators. Their eigenvalues are **real** numbers – the possible measurement outcomes! 📊
 
 ---
 
-### 1.6 Eigenvalues and Eigenvectors
+### 1.6 Eigenvalues and Eigenvectors 🔑
 
 For a matrix $M$, if $M|v⟩ = λ|v⟩$, then:
 - $λ$ is an **eigenvalue** (measurement outcome)
@@ -158,18 +275,18 @@ For a matrix $M$, if $M|v⟩ = λ|v⟩$, then:
 ---
 
 **From HW1 A.6:** For Pauli Z:
-```math
+$$
 Z|0⟩ = (+1)|0⟩, \quad Z|1⟩ = (-1)|1⟩
-```
+$$
 So eigenvalues are $+1$ and $-1$, eigenvectors are $|0⟩$ and $|1⟩$.
 
 ---
 
-**Key insight:** When you measure an observable, you always get one of its eigenvalues!
+**Key insight:** When you measure an observable, you always get one of its eigenvalues! 🎲
 
 ---
 
-### 1.7 Unitary Matrices
+### 1.7 Unitary Matrices 🔄
 
 A matrix $U$ is **unitary** if $U^† U = U U^† = I$.
 
@@ -178,7 +295,7 @@ A matrix $U$ is **unitary** if $U^† U = U U^† = I$.
 **Properties:**
 - Preserves inner products: $\langle Uϕ | Uψ \rangle = \langle ϕ | ψ \rangle$
 - Preserves normalization: $||U|ψ⟩|| = 1$
-- All quantum gates are unitary! (Postulate 2)
+- All quantum gates are unitary! (Postulate 2) ✅
 
 ---
 
@@ -189,7 +306,7 @@ print(np.allclose(X @ X.conj().T, np.eye(2)))  # True
 
 ---
 
-### 1.8 Tensor Product – The Most Important Operation for Multiple Qubits
+### 1.8 Tensor Product – The Most Important Operation for Multiple Qubits 🧩
 
 The **tensor product** $\otimes$ combines systems:
 
@@ -200,9 +317,9 @@ The **tensor product** $\otimes$ combines systems:
 ---
 
 **Example:** Two qubits:
-```math
+$$
 |0⟩ ⊗ |0⟩ = \begin{bmatrix} 1 \\ 0 \end{bmatrix} ⊗ \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = |00⟩
-```
+$$
 
 ---
 
@@ -228,7 +345,7 @@ X_I = np.kron(X, I)  # 4x4 matrix
 
 ---
 
-### 1.9 Why All This Math Matters for Quantum Communication
+### 1.9 Why All This Math Matters for Quantum Communication 💡
 
 | Math Concept | Physical Meaning | Used In |
 |-------------|------------------|---------|
@@ -241,30 +358,30 @@ X_I = np.kron(X, I)  # 4x4 matrix
 
 ---
 
-## Part 2: Composite Systems & Tensor Products
+## Part 2: Composite Systems & Tensor Products 🧩
 
-### 2.1 Two-Qubit Basis States
+### 2.1 Two-Qubit Basis States 🔢
 
 For two qubits, the computational basis consists of **four** states:
 
-```math
+$$
 |00⟩ = \begin{bmatrix}1\\0\\0\\0\end{bmatrix},\quad
 |01⟩ = \begin{bmatrix}0\\1\\0\\0\end{bmatrix},\quad
 |10⟩ = \begin{bmatrix}0\\0\\1\\0\end{bmatrix},\quad
 |11⟩ = \begin{bmatrix}0\\0\\0\\1\end{bmatrix}
-```
+$$
 
 ---
 
 **General two-qubit state:**
-```math
+$$
 |ψ⟩ = α_{00}|00⟩ + α_{01}|01⟩ + α_{10}|10⟩ + α_{11}|11⟩
-```
+$$
 with $\sum |α_{ij}|^2 = 1$.
 
 ---
 
-### 2.2 Product States vs. Entangled States
+### 2.2 Product States vs. Entangled States 🔗
 
 **Product state:** Can be written as $(a|0⟩+b|1⟩) ⊗ (c|0⟩+d|1⟩)$
 
@@ -283,19 +400,19 @@ Example: $|Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩ + |11⟩)$
 ---
 
 **Check if entangled:** Try to find $a,b,c,d$ such that:
-```math
+$$
 \frac{1}{\sqrt{2}}(|00⟩ + |11⟩) = (a|0⟩+b|1⟩) ⊗ (c|0⟩+d|1⟩)
-```
+$$
 
 ---
 
-This would require $ac = 1/\sqrt{2}$, $bd = 1/\sqrt{2}$, and $ad = bc = 0$ – impossible! (If $a=0$, then $ac=0$; if $b=0$, then $bd=0$.)
+This would require $ac = 1/\sqrt{2}$, $bd = 1/\sqrt{2}$, and $ad = bc = 0$ – impossible! (If $a=0$, then $ac=0$; if $b=0$, then $bd=0$.) ❌
 
 ---
 
-### 2.3 Creating Entanglement with CNOT
+### 2.3 Creating Entanglement with CNOT 🔧
 
-The **CNOT** (controlled-NOT) gate is the key to creating entanglement:
+The **CNOT** (controlled‑NOT) gate is the key to creating entanglement:
 
 ```
 q0: ────@────
@@ -305,14 +422,14 @@ q1: ────X────
 
 ---
 **Matrix form** (control = q0, target = q1):
-```math
+$$
 \text{CNOT} = \begin{bmatrix}
 1 & 0 & 0 & 0\\
 0 & 1 & 0 & 0\\
 0 & 0 & 0 & 1\\
 0 & 0 & 1 & 0
 \end{bmatrix}
-```
+$$
 
 **Action:** If control is $|1⟩$, flip target; otherwise do nothing.
 
@@ -333,32 +450,32 @@ q1: ────X────
 3. CNOT: 
    - $|00⟩ → |00⟩$ (control 0, no flip)
    - $|10⟩ → |11⟩$ (control 1, flip target)
-4. Result: $\frac{1}{\sqrt{2}}(|00⟩ + |11⟩)$ – the Bell state $|Φ^+⟩$!
+4. Result: $\frac{1}{\sqrt{2}}(|00⟩ + |11⟩)$ – the Bell state $|Φ^+⟩$! 🎉
 
 ---
 
-### 2.4 The Four Bell States
+### 2.4 The Four Bell States 🔔
 
 The Bell states are maximally entangled two-qubit states:
 
-```math
+$$
 |Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩ + |11⟩)
-```
-```math
+$$
+$$
 |Φ^-⟩ = \frac{1}{\sqrt{2}}(|00⟩ - |11⟩)
-```
-```math
+$$
+$$
 |Ψ^+⟩ = \frac{1}{\sqrt{2}}(|01⟩ + |10⟩)
-```
-```math
+$$
+$$
 |Ψ^-⟩ = \frac{1}{\sqrt{2}}(|01⟩ - |10⟩)
-```
+$$
 
 ---
 
 **Key properties:**
-- Maximally entangled (any measurement on one qubit gives random result)
-- Perfectly correlated (for $|Φ^+⟩$, measuring both qubits in Z basis gives same result)
+- Maximally entangled (any measurement on one qubit gives random result) 🎲
+- Perfectly correlated (for $|Φ^+⟩$, measuring both qubits in Z basis gives same result) 🤝
 - Orthogonal: $\langle Φ^+ | Φ^- \rangle = 0$, etc.
 
 ---
@@ -374,11 +491,11 @@ The Bell states are maximally entangled two-qubit states:
 
 ---
 
-## Part 3: Quantum Communication Protocols
+## Part 3: Quantum Communication Protocols 📡
 
-### 3.1 Superdense Coding – Send 2 Classical Bits Using 1 Qubit
+### 3.1 Superdense Coding – Send 2 Classical Bits Using 1 Qubit ✨
 
-**The magic:** Alice can send Bob **two classical bits** by transmitting only **one qubit**, if they already share an entangled pair!
+**The magic:** Alice can send Bob **two classical bits** by transmitting only **one qubit**, if they already share an entangled pair! 🪄
 
 ---
 
@@ -414,19 +531,19 @@ q1 (Bob's) ──────X──── Measure
 
 **Why it works:** The CNOT + H gate transforms Bell states back to computational basis:
 
-```math
+$$
 |Φ^+⟩ → |00⟩,\quad |Φ^-⟩ → |10⟩,\quad |Ψ^+⟩ → |01⟩,\quad |Ψ^-⟩ → |11⟩
-```
+$$
 
 ---
 
-**Key insight:** The entangled pair acts as a "resource" that enables sending 2 bits with 1 qubit!
+**Key insight:** The entangled pair acts as a "resource" that enables sending 2 bits with 1 qubit! 💎
 
 ---
 
-### 3.2 Quantum Teleportation – Send an Unknown Qubit State
+### 3.2 Quantum Teleportation – Send an Unknown Qubit State 📤
 
-**The magic:** Alice can send an unknown quantum state $|ψ⟩ = α|0⟩+β|1⟩$ to Bob using only **classical communication** and a shared entangled pair!
+**The magic:** Alice can send an unknown quantum state $|ψ⟩ = α|0⟩+β|1⟩$ to Bob using only **classical communication** and a shared entangled pair! 📦
 
 ---
 
@@ -443,17 +560,17 @@ q1 (Bob's) ──────X──── Measure
 
 **Step-by-step:**
 
-1. **Alice applies CNOT** (control = qubit A, target = qubit B)
+1. **Alice applies CNOT** (control = qubit A, target = qubit B) 🔀
 
 ---
 
-2. **Alice applies H** to qubit A
+2. **Alice applies H** to qubit A 🧲
 
 ---
-3. **Alice measures** both qubits A and B (2 classical bits)
+3. **Alice measures** both qubits A and B (2 classical bits) 📏
 
 ---
-4. **Alice sends** these 2 bits to Bob
+4. **Alice sends** these 2 bits to Bob 📨
 
 ---
 5. **Bob applies corrections** based on Alice's bits:
@@ -465,7 +582,7 @@ q1 (Bob's) ──────X──── Measure
    - If bits = 11: apply X then Z
 
 ---
-**Result:** Bob's qubit C becomes exactly $|ψ⟩$!
+**Result:** Bob's qubit C becomes exactly $|ψ⟩$! 🎯
 
 ---
 
@@ -475,40 +592,46 @@ Initial: $(α|0⟩_A+β|1⟩_A) ⊗ \frac{1}{\sqrt{2}}(|0_B0_C⟩+|1_B1_C⟩)$
 
 After CNOT and H on A, the state becomes:
 
-```math
+$$
 \frac{1}{2}[ |00⟩_{AB}(α|0⟩_C+β|1⟩_C) + |01⟩_{AB}(α|1⟩_C+β|0⟩_C) + |10⟩_{AB}(α|0⟩_C-β|1⟩_C) + |11⟩_{AB}(-α|1⟩_C+β|0⟩_C) ]
-```
+$$
 
 Depending on Alice's measurement outcome, Bob's qubit is in one of four states, each related to $|ψ⟩$ by a known Pauli operation.
 
 ---
 
-### 3.3 Comparison: Superdense Coding vs. Teleportation
+### 3.3 Comparison: Superdense Coding vs. Teleportation ⚖️
 
 | Protocol | What's sent | What's transmitted | Resource |
 |----------|------------|-------------------|----------|
 | Superdense coding | 2 classical bits | 1 qubit | Shared entanglement |
 | Teleportation | 1 qubit (unknown) | 2 classical bits | Shared entanglement |
 
-**Common theme:** Entanglement + classical communication = quantum information processing!
+**Common theme:** Entanglement + classical communication = quantum information processing! 🔄
 
 ---
 
-## Part 4: Quantum Key Distribution (BB84)
+## Part 4: Quantum Key Distribution (BB84) 🔐
 
-### 4.1 The Problem: Secure Communication
+### 4.1 The Problem: Secure Communication 🕵️
 
 **Classical problem:** How can Alice and Bob share a secret key without Eve eavesdropping?
 
-**Classical solution:** Public key cryptography (RSA) – based on mathematical difficulty (factoring)
+---
 
-**Quantum solution:** BB84 – based on laws of physics (no-cloning, measurement disturbance)
+**Classical solution:** Public key cryptography (RSA) – based on mathematical difficulty (factoring) 🔢
 
 ---
 
-### 4.2 The BB84 Protocol
+**Quantum solution:** BB84 – based on laws of physics (no‑cloning, measurement disturbance) ⚛️
+
+---
+
+### 4.2 The BB84 Protocol 📋
 
 **Goal:** Generate a shared secret key between Alice and Bob
+
+---
 
 **Setup:**
 - Alice can prepare qubits in one of **four states**:
@@ -518,66 +641,76 @@ Depending on Alice's measurement outcome, Bob's qubit is in one of four states, 
 
 ---
 
-**Step 1: Quantum Transmission**
+**Step 1: Quantum Transmission** 📤
 
 For each qubit (say N=100 rounds):
 
 ---
 
 1. **Alice randomly chooses:**
-   - Basis: Z or X (with 50% probability each)
+   - Basis: Z or X (with 50% probability each) 🎲
    - Bit: 0 or 1 (with 50% probability each)
 
 ---  
 2. **Alice prepares** the corresponding state:
-   - Z/0 → $|0⟩$, Z/1 → $|1⟩$
-   - X/0 → $|+⟩$, X/1 → $|-⟩$
+   - Z/0 → $|0⟩$,  Z/1 → $|1⟩$
+   - X/0 → $|+⟩$,  X/1 → $|-⟩$
 
 ---
 3. **Alice sends** the qubit to Bob
 
 ---
-4. **Bob randomly chooses** basis: Z or X
+4. **Bob randomly chooses** basis: Z or X 🎲
 
 ---
 5. **Bob measures** in his chosen basis
 
 ---
 
-**Step 2: Classical Communication (over public channel)**
+**Step 2: Classical Communication (over public channel)** 📢
 
-1. **Basis revelation:** Alice and Bob announce which bases they used (but NOT the bits!)
+1. **Basis revelation:** Alice and Bob announce which bases they used **(but NOT the bits!**)
 
 ---
 2. **Sifting:** They keep only rounds where they used the **same basis**
    - If bases match, Bob's measurement result should match Alice's bit (ideally)
    - If bases differ, they discard that round (results are random/unrelated)
 
-After sifting, they have a raw key (about half the rounds, ~50 bits).
+After sifting, they have a raw key (about half the rounds, ~50 bits). ✂️
 
 ---
 
-**Step 3: Detecting Eavesdropping**
+**Step 3: Detecting Eavesdropping** 🕵️‍♀️
 
 Eve doesn't know which basis Alice used. If Eve intercepts and measures:
 
 ---
 
-- If Eve guesses basis correctly → she resends correct state → no error
-- If Eve guesses wrong basis → she collapses the state → when Bob measures in Alice's basis, he gets random result with 50% error probability
-
----
-**To detect Eve:**
-
----
-1. Alice and Bob publicly compare a **random subset** of their raw key bits (say 20 bits)
-
----
-2. If more than a small threshold (e.g., 0%) differ, they know Eve was listening → abort
+- If Eve guesses basis correctly ✅
+  - → she resends correct state 
+  - → no error
 
 ---
 
-### 4.3 Why BB84 Works: The No-Cloning Theorem
+- If Eve guesses wrong basis ❌
+  - → she collapses the state 
+  - → when Bob measures in Alice's basis, he gets random result with 50% error probability
+
+---
+
+**How to detect Eve?**
+
+---
+
+1. Alice and Bob publicly compare a **random subset** of their raw key bits (say 20 bits) 🔍
+
+---
+2. If more than a small threshold (e.g., 0%) differ, they know Eve was listening 
+   - → abort 🚫
+
+---
+
+### 4.3 Why BB84 Works: The No-Cloning Theorem 🚫🧬
 
 **No-cloning theorem:** It's impossible to make a perfect copy of an unknown quantum state.
 
@@ -592,11 +725,13 @@ Eve doesn't know which basis Alice used. If Eve intercepts and measures:
 But then for $|+⟩ = \frac{1}{\sqrt{2}}(|0⟩+|1⟩)$:
 $|+⟩|e⟩ → \frac{1}{\sqrt{2}}(|0⟩|0⟩+|1⟩|1⟩) ≠ |+⟩|+⟩$ (which would be $\frac{1}{2}(|00⟩+|01⟩+|10⟩+|11⟩)$)
 
-**Implication for BB84:** Eve cannot simply copy the qubit and measure later – she must measure now, potentially disturbing it!
+---
+
+**Implication for BB84:** Eve cannot simply copy the qubit and measure later – she must measure now, potentially disturbing it! ⚠️
 
 ---
 
-### 4.4 Simple Python Simulation of BB84
+### 4.4 Simple Python Simulation of BB84 🐍
 
 ```python
 import numpy as np
@@ -712,20 +847,22 @@ print(f"With eavesdropping: {result_eve['n_sifted']} sifted bits, "
 
 ---
 
-### 4.5 Security of BB84
+### 4.5 Security of BB84 🛡️
 
 **Why Eve can't hide:**
 1. If Eve measures in wrong basis, she introduces **50% error** in Bob's results when Alice and Bob used same basis
 2. Alice and Bob detect this when they compare a subset
 3. If error rate > 0, they abort and try again
 
-**Information-theoretic security:** The security is based on physics, not computational assumptions. Even with infinite computational power, Eve cannot break BB84 without being detected!
+---
+
+**Information-theoretic security:** The security is based on physics, not computational assumptions. Even with infinite computational power, Eve cannot break BB84 without being detected! 🔒
 
 ---
 
-## Part 5: PennyLane Demos – Bell States and Measurements
+## Part 5: PennyLane Demos – Bell States and Measurements 💻
 
-### 5.1 Creating and Measuring Bell States
+### 5.1 Creating and Measuring Bell States 🧪
 
 ```python
 import pennylane as qml
@@ -804,7 +941,7 @@ plt.show()
 
 ---
 
-### 5.2 Simulating Superdense Coding
+### 5.2 Simulating Superdense Coding 📨
 
 ```python
 def superdense_coding(message_bits):
@@ -855,7 +992,7 @@ for msg in messages:
 
 ---
 
-### 5.3 Simulating Teleportation
+### 5.3 Simulating Teleportation 📦
 
 ```python
 def teleportation(alpha, beta):
@@ -904,9 +1041,9 @@ print(f"Fidelity: {abs(alpha*teleported[0].conj() + beta*teleported[1].conj())**
 
 ---
 
-## Part 6: Exercises for This Week
+## Part 6: Exercises for This Week 📝
 
-### Exercise 1: Tensor Product Practice
+### Exercise 1: Tensor Product Practice 🧩
 Compute the following tensor products by hand:
 1. $|0⟩ ⊗ |+⟩$
 2. $X ⊗ I$ applied to $|01⟩$
@@ -916,12 +1053,12 @@ Verify your answers using NumPy's `np.kron`.
 
 ---
 
-### Exercise 2: Bell State Identification
+### Exercise 2: Bell State Identification 🔍
 You are given one of the four Bell states but don't know which. Design a circuit that can identify it with certainty. Implement in PennyLane and test.
 
 ---
 
-### Exercise 3: BB84 with Noise
+### Exercise 3: BB84 with Noise 🌫️
 Modify the BB84 simulation to include:
 - Realistic noise (e.g., 1% error rate even without Eve)
 - Eve's optimal strategy (measure in random basis, resend)
@@ -931,21 +1068,21 @@ Run simulations for different noise levels and determine the maximum noise that 
 
 ---
 
-### Exercise 4: Teleportation with Arbitrary States
+### Exercise 4: Teleportation with Arbitrary States 🌀
 Extend the teleportation simulation to handle arbitrary single-qubit states (with both amplitude and phase). Test by teleporting $|+i⟩ = \frac{1}{\sqrt{2}}(|0⟩+i|1⟩)$.
 
 ---
 
-### Exercise 5: CHSH Inequality (Optional Challenge)
+### Exercise 5: CHSH Inequality (Optional Challenge) 🏆
 The CHSH inequality is a way to experimentally test that quantum mechanics cannot be explained by local hidden variables.
 
 For the state $|Φ^+⟩$, measure:
 - $⟨X⊗X⟩$, $⟨X⊗Z⟩$, $⟨Z⊗X⟩$, $⟨Z⊗Z⟩$
 
 Compute the CHSH value:
-```math
+$$
 S = ⟨X⊗X⟩ + ⟨X⊗Z⟩ + ⟨Z⊗X⟩ - ⟨Z⊗Z⟩
-```
+$$
 
 For quantum mechanics, $S = 2\sqrt{2} ≈ 2.828$. For classical theories, $|S| ≤ 2$.
 
@@ -953,49 +1090,49 @@ Implement this in PennyLane and verify the quantum value.
 
 ---
 
-## Summary: Key Takeaways
+## Summary: Key Takeaways 🎯
 
 ### Math Concepts
-- **Vectors** represent states, **operators** represent gates/measurements
-- **Inner products** give probabilities, **outer products** give projectors
-- **Tensor products** combine systems
-- **Eigenvalues** are possible measurement outcomes
-- **Unitary** matrices are reversible gates, **Hermitian** matrices are observables
+- **Vectors** represent states, **operators** represent gates/measurements ➡️
+- **Inner products** give probabilities, **outer products** give projectors 📐
+- **Tensor products** combine systems 🧩
+- **Eigenvalues** are possible measurement outcomes 🔢
+- **Unitary** matrices are reversible gates, **Hermitian** matrices are observables 🔄
 
 ### Quantum Communication
-- **Entanglement** is a non-classical correlation that enables new protocols
-- **Bell states** are the building blocks of quantum communication
-- **Superdense coding** sends 2 bits with 1 qubit
-- **Teleportation** sends a qubit with 2 bits
-- **BB84** uses quantum mechanics for secure key distribution
+- **Entanglement** is a non‑classical correlation that enables new protocols 🔗
+- **Bell states** are the building blocks of quantum communication 🔔
+- **Superdense coding** sends 2 bits with 1 qubit ✨
+- **Teleportation** sends a qubit with 2 bits 📦
+- **BB84** uses quantum mechanics for secure key distribution 🔐
 
 ### Why This Matters
 These protocols aren't just theoretical curiosities:
-- BB84 is implemented in real quantum networks
-- Teleportation is used in quantum repeaters for long-distance communication
-- Understanding entanglement is essential for quantum computing
+- BB84 is implemented in real quantum networks 🌐
+- Teleportation is used in quantum repeaters for long‑distance communication 🔁
+- Understanding entanglement is essential for quantum computing 💻
 
 ---
 
-## Next Lecture Preview
+## Next Lecture Preview ⏩
 
-**Week 4: Multi-Qubit Systems & Density Matrices**
+**Week 4: Multi‑Qubit Systems & Density Matrices**
 - Partial trace and reduced density matrices
 - Mixed states vs. pure states
 - Quantifying entanglement
 - Quantum channels and noise
 - Open quantum systems
 
-**Reading:** Nielsen & Chuang Chapter 2
+**Reading:** Nielsen & Chuang Chapter 2 📖
 
 ---
 
-## AI Tool Demo for This Lecture
+## AI Tool Demo for This Lecture 🤖
 
-The code examples and explanations in this lecture were generated with the help of AI tool, DeekSeek-AI
+The code examples and explanations in this lecture were generated with the help of AI tool, DeepSeek‑AI
 
-**Remember:** Always verify AI-generated code by running it and understanding what each line does. The best way to learn is to modify the code and see what breaks!
+**Remember:** Always verify AI-generated code by running it and understanding what each line does. The best way to learn is to modify the code and see what breaks! 💡
 
 ---
 
-*"Entanglement is not one thing but a family of phenomena. The simplest form, the Bell state, is already enough to enable teleportation and superdense coding – two of the most stunning predictions of quantum information theory."*
+*"Entanglement is not one thing but a family of phenomena. The simplest form, the Bell state, is already enough to enable teleportation and superdense coding – two of the most stunning predictions of quantum information theory."* 📜
