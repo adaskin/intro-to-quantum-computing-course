@@ -71,7 +71,7 @@ lecture note: [lecture2](lecture2.md)
 - **Math Supplement:** Complex vector spaces, Hermitian operators
 - **Reading (optional physics for curious): [Geometric Quantum mechanics (physics-geometry)](https://arxiv.org/abs/quant-ph/9906086)**
 
-**Week 3:  From Vectors to Entanglement – Math Foundations & Quantum Communication**
+**Week 3-4:  From Vectors to Entanglement – Math Foundations & Quantum Communication**
 *Bridging Linear Algebra Review with Quantum Protocols*
 lecture note: [lecture3][lecture3.md]  
 - **Math Review:** Vectors, inner products, eigenvalues, Hermitian matrices, tensor products
@@ -85,7 +85,7 @@ lecture note: [lecture3][lecture3.md]
 - **Quantum Key Distribution (BB84):** Real-world application
 - **AI Tool Demo:** Using Numpy and PennyLane Demos for creating and measuring Bell states and simulating BB84
 
-
+---
 #### **Unit 2: Quantum Information Theory (Weeks 4-6)**
 **Week 4: Multi-Qubit Systems & Entanglement**
 - Tensor product spaces
