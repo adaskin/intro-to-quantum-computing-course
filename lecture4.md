@@ -73,7 +73,7 @@ $$ \rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|. $$
 
 ---
 
-- **Trace 1:** $\operatorname{Tr}(\rho) = 1$ (total probability = 1)  
+- **Trace 1:** $\text{Tr}(\rho) = 1$ (total probability = 1)  
 
 ---
 - **Positive semi‑definite:** $\langle\phi|\rho|\phi\rangle \ge 0$ for any $|\phi\rangle$
@@ -81,7 +81,7 @@ $$ \rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|. $$
 ---
 
 A **pure state** satisfies $\rho^2 = \rho$ (a projector).  
-A **mixed state** has $\operatorname{Tr}(\rho^2) < 1$.
+A **mixed state** has $\text{Tr}(\rho^2) < 1$.
 
 ---
 
@@ -106,7 +106,7 @@ $$ \rho = |+\rangle\langle+| = \frac12\begin{bmatrix}1 & 1 \\ 1 & 1\end{bmatrix}
 $$ \rho = \frac12 |0\rangle\langle0| + \frac12 |1\rangle\langle1| = \frac12 \begin{bmatrix}1&0\\0&1\end{bmatrix} = \frac{I}{2}. $$
 
 This is the **maximally mixed state**.  
-Check purity: $\rho^2 = \frac{I}{4}$, so $\operatorname{Tr}(\rho^2) = \frac12 < 1$ (mixed).
+Check purity: $\rho^2 = \frac{I}{4}$, so $\text{Tr}(\rho^2) = \frac12 < 1$ (mixed).
 
 ---
 
@@ -125,13 +125,13 @@ The density matrix captures **all observable statistics**.
 
 The probability of measuring outcome $m$ (with projector $P_m$) is
 
-$$ p(m) = \operatorname{Tr}(P_m \rho). $$
+$$ p(m) = \text{Tr}(P_m \rho). $$
 
 ---
 
 The expectation value of an observable $M$ is
 
-$$ \langle M \rangle = \operatorname{Tr}(M \rho). $$
+$$ \langle M \rangle = \text{Tr}(M \rho). $$
 
 **Why trace?** The trace automatically averages over all possibilities in the mixture.
 
@@ -139,7 +139,7 @@ $$ \langle M \rangle = \operatorname{Tr}(M \rho). $$
 
 For a pure state $\rho = |\psi\rangle\langle\psi|$, 
 
-$$ \operatorname{Tr}(M\rho) = \langle\psi|M|\psi\rangle $$ 
+$$ \text{Tr}(M\rho) = \langle\psi|M|\psi\rangle $$ 
 - consistent with Born rule.
 
 
@@ -177,7 +177,7 @@ When we have a composite system (say two qubits $A$ and $B$) but only care about
 **Intuition:**  
 - You have a joint state of two particles.  
 - You only look at particle $A$ and ignore particle $B$ completely.  
-- What is the state of $A$ alone? It’s given by the **reduced density matrix** $\rho_A = \operatorname{Tr}_B(\rho_{AB})$.
+- What is the state of $A$ alone? It’s given by the **reduced density matrix** $\rho_A = \text{Tr}_B(\rho_{AB})$.
 
 ---
 
@@ -185,7 +185,7 @@ When we have a composite system (say two qubits $A$ and $B$) but only care about
 
 Given a bipartite density matrix $\rho_{AB}$ on $\mathcal{H}_A \otimes \mathcal{H}_B$, the reduced density matrix for subsystem $A$ is
 
-$$ \rho_A = \operatorname{Tr}_B(\rho_{AB}) = \sum_j (I_A \otimes \langle j|_B) \; \rho_{AB} \; (I_A \otimes |j\rangle_B), $$
+$$ \rho_A = \text{Tr}_B(\rho_{AB}) = \sum_j (I_A \otimes \langle j|_B) \; \rho_{AB} \; (I_A \otimes |j\rangle_B), $$
 
 where $\{|j\rangle_B\}$ is any orthonormal basis for $\mathcal{H}_B$.
 
@@ -201,9 +201,9 @@ $$ (\rho_A)_{i,i'} = \sum_j (\rho_{AB})_{ij,i'j}. $$
 
 Let $\rho_{AB} = |0\rangle\langle0|_A \otimes |1\rangle\langle1|_B$.
 
-$$ \rho_A = \operatorname{Tr}_B\big(|0\rangle\langle0|_A \otimes |1\rangle\langle1|_B\big) = |0\rangle\langle0|_A \cdot \operatorname{Tr}(|1\rangle\langle1|_B). $$
+$$ \rho_A = \text{Tr}_B\big(|0\rangle\langle0|_A \otimes |1\rangle\langle1|_B\big) = |0\rangle\langle0|_A \cdot \text{Tr}(|1\rangle\langle1|_B). $$
 
-Since $\operatorname{Tr}(|1\rangle\langle1|) = 1$, we get
+Since $\text{Tr}(|1\rangle\langle1|) = 1$, we get
 
 $$ \rho_A = |0\rangle\langle0|_A. $$
 
@@ -234,9 +234,9 @@ This is a signature of entanglement: the parts are completely random, but the wh
 
 The **purity** is defined as
 
-$$ P = \operatorname{Tr}(\rho^2). $$
+$$ P = \text{Tr}(\rho^2). $$
 
-- For a pure state: $P = 1$ (since $\rho^2 = \rho$ and $\operatorname{Tr}(\rho)=1$).  
+- For a pure state: $P = 1$ (since $\rho^2 = \rho$ and $\text{Tr}(\rho)=1$).  
 - For a maximally mixed state of dimension $d$: $P = 1/d$ (for a qubit, $d=2$, so $P = 1/2$).  
 - For the Bell state reduced density matrix $\rho_A = I/2$: $P = 1/2$.
 
@@ -278,7 +278,7 @@ The $\lambda_i$ satisfy $\sum_i \lambda_i^2 = 1$.
 
 ## How to find the Schmidt decomposition
 
-1. Compute the reduced density matrix $\rho_A = \operatorname{Tr}_B(|\psi\rangle\langle\psi|)$.  
+1. Compute the reduced density matrix $\rho_A = \text{Tr}_B(|\psi\rangle\langle\psi|)$.  
 2. Diagonalize $\rho_A$: its eigenvalues are $\lambda_i^2$, and the eigenvectors are $|u_i\rangle_A$.  
 3. The $|v_i\rangle_B$ are then determined (they are eigenvectors of $\rho_B$ with the same eigenvalues, up to a phase).
 
@@ -312,7 +312,7 @@ For a product state, rank = 1 → no entanglement.
 
 For a bipartite **pure** state, a natural measure of entanglement is the **von Neumann entropy** of the reduced density matrix:
 
-$$ S(\rho_A) = -\operatorname{Tr}(\rho_A \log_2 \rho_A) = -\sum_i \lambda_i^2 \log_2 \lambda_i^2, $$
+$$ S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A) = -\sum_i \lambda_i^2 \log_2 \lambda_i^2, $$
 
 where $\lambda_i$ are the Schmidt coefficients.
 
@@ -473,9 +473,9 @@ You’ll get a value between 0 and 1.
 ## Summary
 
 **Density matrix** $\rho$ General description of quantum states (pure or mixed) 
-**Partial trace** $\operatorname{Tr}_B$ Operation to ignore a subsystem 
+**Partial trace** $\text{Tr}_B$ Operation to ignore a subsystem 
 **Reduced density matrix** $\rho_A$  State of subsystem A alone 
-**Purity** $\operatorname{Tr}(\rho^2)$  Measures how mixed a state is 
+**Purity** $\text{Tr}(\rho^2)$  Measures how mixed a state is 
 **Schmidt decomposition**  Write bipartite pure state as $ \sum \lambda_i \mid u_i\rangle\mid v_i\rangle $ 
  - **Schmidt rank**  Number of terms; >1 means entangled   
 
