@@ -25,6 +25,7 @@
 A **vector** in quantum mechanics represents a state. For a single qubit, we work in **ℂ²** – the space of complex 2‑dimensional vectors.
 
 **Column vector notation (ket):**
+
 $$
 |ψ⟩ = \begin{bmatrix} α \\ 
  β \end{bmatrix}, \quad α,β ∈ ℂ
@@ -33,6 +34,7 @@ $$
 ---
 
 **Row vector notation (bra):**
+
 $$
 ⟨ψ| = \begin{bmatrix} α^* & β^* \end{bmatrix}
 $$
@@ -41,6 +43,7 @@ where $α^*$ is the complex conjugate of $α$.
 ---
 
 **Example:** 
+
 $$
 |0⟩ = \begin{bmatrix} 1 \\ 
  0 \end{bmatrix}, \quad ⟨0| = \begin{bmatrix} 1 & 0 \end{bmatrix}
@@ -64,6 +67,7 @@ Before diving deeper into vectors and inner products, we need to be comfortable 
 ### What is a Complex Number? 
 
 A complex number $z$ is written as:
+
 $$
 z = a + i b,\quad a,b \in \mathbb{R},\; i = \sqrt{-1}
 $$
