@@ -102,7 +102,8 @@ $$
 r = |z| = \sqrt{a^2 + b^2}, \qquad \theta = \arg(z) = \tan^{-1}\!\left(\frac{b}{a}\right)
 $$
 
-**Polar form:**
+**Polar form:**  
+
 $$
 z = r e^{i\theta} = r(\cos\theta + i\sin\theta)
 $$
@@ -180,14 +181,15 @@ The **inner product** $\langle ϕ | ψ \rangle$ tells us how "similar" two state
 
 ---
 
-**Definition:**
+**Definition:**  
+
 $$
 \langle ϕ | ψ \rangle = ϕ_0^* ψ_0 + ϕ_1^* ψ_1
 $$
 
 ---
 
-**Properties:**
+**Properties:**  
 - $\langle ψ | ψ \rangle = |α|^2 + |β|^2 = 1$ (normalization) ✅
 - $\langle ϕ | ψ \rangle = \langle ψ | ϕ \rangle^*$ (conjugate symmetry) 🔄
 - If $\langle ϕ | ψ \rangle = 0$, states are **orthogonal** ⚪
@@ -218,7 +220,8 @@ The **outer product** $|ψ⟩⟨ϕ|$ creates an operator (matrix).
 
 ---
 
-**Example:** Projector onto $|0⟩$:
+**Example:** Projector onto $|0⟩$:  
+
 $$
 |0⟩⟨0| = \begin{bmatrix} 1 \\ 
  0 \end{bmatrix} \begin{bmatrix} 1 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 
@@ -241,7 +244,8 @@ $$
 
 ---
 
-**Pauli Matrices** (from HW1 A.5):
+**Pauli Matrices** (from HW1 A.5):  
+
 $$
 X = \begin{bmatrix} 0 & 1 \\ 
  1 & 0 \end{bmatrix},\quad
@@ -286,7 +290,8 @@ For a matrix $M$, if $M|v⟩ = λ|v⟩$, then:
 
 ---
 
-**From HW1 A.6:** For Pauli Z:
+**From HW1 A.6:** For Pauli Z:  
+
 $$
 Z|0⟩ = (+1)|0⟩, \quad Z|1⟩ = (-1)|1⟩
 $$
@@ -328,7 +333,8 @@ The **tensor product** $\otimes$ combines systems:
 
 ---
 
-**Example:** Two qubits:
+**Example:** Two qubits:  
+
 $$
 |0⟩ ⊗ |0⟩ = \begin{bmatrix} 1 \\ 
  0 \end{bmatrix} ⊗ \begin{bmatrix} 1 \\ 
@@ -402,7 +408,8 @@ $$
 
 ---
 
-**General two-qubit state:**
+**General two-qubit state:**  
+
 $$
 |ψ⟩ = α_{00}|00⟩ + α_{01}|01⟩ + α_{10}|10⟩ + α_{11}|11⟩
 $$
@@ -428,7 +435,8 @@ Example: $|Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩ + |11⟩)$
 
 ---
 
-**Check if entangled:** Try to find $a,b,c,d$ such that:
+**Check if entangled:** Try to find $a,b,c,d$ such that:  
+
 $$
 \frac{1}{\sqrt{2}}(|00⟩ + |11⟩) = (a|0⟩+b|1⟩) ⊗ (c|0⟩+d|1⟩)
 $$
@@ -450,7 +458,8 @@ q1: ────X────
 ```
 
 ---
-**Matrix form** (control = q0, target = q1):
+**Matrix form** (control = q0, target = q1):  
+
 $$
 \text{CNOT} = \begin{bmatrix}
 1 & 0 & 0 & 0\\ 
@@ -490,12 +499,15 @@ The Bell states are maximally entangled two-qubit states:
 $$
 |Φ^+⟩ = \frac{1}{\sqrt{2}}(|00⟩ + |11⟩)
 $$
+
 $$
 |Φ^-⟩ = \frac{1}{\sqrt{2}}(|00⟩ - |11⟩)
 $$
+
 $$
 |Ψ^+⟩ = \frac{1}{\sqrt{2}}(|01⟩ + |10⟩)
 $$
+
 $$
 |Ψ^-⟩ = \frac{1}{\sqrt{2}}(|01⟩ - |10⟩)
 $$
@@ -1109,6 +1121,7 @@ For the state $|Φ^+⟩$, measure:
 - $⟨X⊗X⟩$, $⟨X⊗Z⟩$, $⟨Z⊗X⟩$, $⟨Z⊗Z⟩$
 
 Compute the CHSH value:
+
 $$
 S = ⟨X⊗X⟩ + ⟨X⊗Z⟩ + ⟨Z⊗X⟩ - ⟨Z⊗Z⟩
 $$
