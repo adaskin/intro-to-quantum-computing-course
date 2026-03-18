@@ -33,11 +33,14 @@ $$
 
 ---
 
-**Row vector notation (bra):**
+**Row vector notation (bra):**  
 
 $$
-⟨ψ| = \begin{bmatrix} α^* & β^* \end{bmatrix}
+⟨ψ| = \begin{bmatrix} 
+α^* & β^* 
+\end{bmatrix}
 $$
+
 where $α^*$ is the complex conjugate of $α$.
 
 ---
@@ -103,7 +106,7 @@ We can visualise $z$ as a point in a 2D plane:
 Every complex number has a **modulus** (or **amplitude**) $r$ and a **phase** (or **argument**) $\theta$:
 
 $$
-r = |z| = \sqrt{a^2 + b^2}, \qquad \theta = \arg(z) = \tan^{-1}\!\left(\frac{b}{a}\right)
+r = |z| = \sqrt{a^2 + b^2}, \qquad \theta = \arg(z) = \tan^{-1}\left(\frac{b}{a}\right)
 $$
 
 **Polar form:**  
