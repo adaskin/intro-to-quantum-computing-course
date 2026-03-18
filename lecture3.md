@@ -26,7 +26,8 @@ A **vector** in quantum mechanics represents a state. For a single qubit, we wor
 
 **Column vector notation (ket):**
 $$
-|ψ⟩ = \begin{bmatrix} α \\ β \end{bmatrix}, \quad α,β ∈ ℂ
+|ψ⟩ = \begin{bmatrix} α \\ 
+ β \end{bmatrix}, \quad α,β ∈ ℂ
 $$
 
 ---
@@ -41,13 +42,15 @@ where $α^*$ is the complex conjugate of $α$.
 
 **Example:** 
 $$
-|0⟩ = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad ⟨0| = \begin{bmatrix} 1 & 0 \end{bmatrix}
+|0⟩ = \begin{bmatrix} 1 \\ 
+ 0 \end{bmatrix}, \quad ⟨0| = \begin{bmatrix} 1 & 0 \end{bmatrix}
 $$
 
 ---
 
 $$
-|1⟩ = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \quad ⟨1| = \begin{bmatrix} 0 & 1 \end{bmatrix}
+|1⟩ = \begin{bmatrix} 0 \\ 
+ 1 \end{bmatrix}, \quad ⟨1| = \begin{bmatrix} 0 & 1 \end{bmatrix}
 $$
 
 ---
@@ -111,12 +114,14 @@ $$
 
 ### Complex Conjugate – Mirror Across the Real Axis 🔄
 
-The **complex conjugate** of $z = a + i b$ is:
+The **complex conjugate** of $z = a + i b$ is:  
+
 $$ 
 z^* = a - i b
 $$
 
 In polar form:
+
 $$
 z = r e^{i\theta} \quad\Longrightarrow\quad z^* = r e^{-i\theta}
 $$
@@ -215,8 +220,11 @@ The **outer product** $|ψ⟩⟨ϕ|$ creates an operator (matrix).
 
 **Example:** Projector onto $|0⟩$:
 $$
-|0⟩⟨0| = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}
+|0⟩⟨0| = \begin{bmatrix} 1 \\ 
+ 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 
+ 0 & 0 \end{bmatrix}
 $$
+
 ---
 
 **Why this matters:** Measurement operators are projectors! (Postulate 3) 💡
@@ -235,10 +243,14 @@ $$
 
 **Pauli Matrices** (from HW1 A.5):
 $$
-X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix},\quad
-Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix},\quad
-Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix},\quad
-I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+X = \begin{bmatrix} 0 & 1 \\ 
+ 1 & 0 \end{bmatrix},\quad
+Y = \begin{bmatrix} 0 & -i \\ 
+ i & 0 \end{bmatrix},\quad
+Z = \begin{bmatrix} 1 & 0 \\ 
+ 0 & -1 \end{bmatrix},\quad
+I = \begin{bmatrix} 1 & 0 \\ 
+ 0 & 1 \end{bmatrix}
 $$
 
 ---
@@ -318,7 +330,12 @@ The **tensor product** $\otimes$ combines systems:
 
 **Example:** Two qubits:
 $$
-|0⟩ ⊗ |0⟩ = \begin{bmatrix} 1 \\ 0 \end{bmatrix} ⊗ \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = |00⟩
+|0⟩ ⊗ |0⟩ = \begin{bmatrix} 1 \\ 
+ 0 \end{bmatrix} ⊗ \begin{bmatrix} 1 \\ 
+ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 
+ 0 \\ 
+ 0 \\ 
+ 0 \end{bmatrix} = |00⟩
 $$
 
 ---
@@ -365,10 +382,22 @@ X_I = np.kron(X, I)  # 4x4 matrix
 For two qubits, the computational basis consists of **four** states:
 
 $$
-|00⟩ = \begin{bmatrix}1\\0\\0\\0\end{bmatrix},\quad
-|01⟩ = \begin{bmatrix}0\\1\\0\\0\end{bmatrix},\quad
-|10⟩ = \begin{bmatrix}0\\0\\1\\0\end{bmatrix},\quad
-|11⟩ = \begin{bmatrix}0\\0\\0\\1\end{bmatrix}
+|00⟩ = \begin{bmatrix}1\\ 
+0\\ 
+0\\ 
+0\end{bmatrix},\quad
+|01⟩ = \begin{bmatrix}0\\ 
+1\\ 
+0\\ 
+0\end{bmatrix},\quad
+|10⟩ = \begin{bmatrix}0\\ 
+0\\ 
+1\\ 
+0\end{bmatrix},\quad
+|11⟩ = \begin{bmatrix}0\\ 
+0\\ 
+0\\ 
+1\end{bmatrix}
 $$
 
 ---
@@ -424,9 +453,9 @@ q1: ────X────
 **Matrix form** (control = q0, target = q1):
 $$
 \text{CNOT} = \begin{bmatrix}
-1 & 0 & 0 & 0\\
-0 & 1 & 0 & 0\\
-0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0\\ 
+0 & 1 & 0 & 0\\ 
+0 & 0 & 0 & 1\\ 
 0 & 0 & 1 & 0
 \end{bmatrix}
 $$

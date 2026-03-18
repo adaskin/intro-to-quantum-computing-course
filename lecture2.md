@@ -91,14 +91,17 @@ Any vector can be written as a combination of basis vectors.
 The **computational basis** is:
 
 ```math
-|0\rangle = \begin{bmatrix}1\\0\end{bmatrix},\qquad 
-|1\rangle = \begin{bmatrix}0\\1\end{bmatrix}
+|0\rangle = \begin{bmatrix}1\\ 
+0\end{bmatrix},\qquad 
+|1\rangle = \begin{bmatrix}0\\ 
+1\end{bmatrix}
 ```
 
 A general qubit state is:
 
 ```math
-|\psi\rangle = \alpha|0\rangle + \beta|1\rangle = \begin{bmatrix}\alpha\\\beta\end{bmatrix},\quad \alpha,\beta\in\mathbb{C}.
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle = \begin{bmatrix}\alpha\\ 
+\beta\end{bmatrix},\quad \alpha,\beta\in\mathbb{C}.
 ```
 
 ---
@@ -220,7 +223,7 @@ For a single qubit, rotations around the x, y, and z axes are especially importa
 R_x(\theta) = e^{-i\frac{\theta}{2}X} = 
 \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}X =
 \begin{bmatrix}
-\cos\frac{\theta}{2} & -i\sin\frac{\theta}{2}\\
+\cos\frac{\theta}{2} & -i\sin\frac{\theta}{2}\\ 
 -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2}
 \end{bmatrix}
 ```
@@ -228,7 +231,7 @@ R_x(\theta) = e^{-i\frac{\theta}{2}X} =
 ```math
 R_y(\theta) = e^{-i\frac{\theta}{2}Y} =
 \begin{bmatrix}
-\cos\frac{\theta}{2} & -\sin\frac{\theta}{2}\\
+\cos\frac{\theta}{2} & -\sin\frac{\theta}{2}\\ 
 \sin\frac{\theta}{2} & \cos\frac{\theta}{2}
 \end{bmatrix}
 ```
@@ -236,7 +239,7 @@ R_y(\theta) = e^{-i\frac{\theta}{2}Y} =
 ```math
 R_z(\theta) = e^{-i\frac{\theta}{2}Z} =
 \begin{bmatrix}
-e^{-i\theta/2} & 0\\
+e^{-i\theta/2} & 0\\ 
 0 & e^{i\theta/2}
 \end{bmatrix}
 ```
@@ -244,9 +247,12 @@ e^{-i\theta/2} & 0\\
 Here $X,Y,Z$ are the Pauli matrices:
 
 ```math
-X=\begin{bmatrix}0&1\\1&0\end{bmatrix},\;
-Y=\begin{bmatrix}0&-i\\i&0\end{bmatrix},\;
-Z=\begin{bmatrix}1&0\\0&-1\end{bmatrix}.
+X=\begin{bmatrix}0&1\\ 
+1&0\end{bmatrix},\;
+Y=\begin{bmatrix}0&-i\\ 
+i&0\end{bmatrix},\;
+Z=\begin{bmatrix}1&0\\ 
+0&-1\end{bmatrix}.
 ```
 
 ### **Effect on the Bloch sphere**
@@ -497,7 +503,8 @@ The Pauli matrices are a set of three $2 \times 2$ complex matrices that are fun
 
 ### 1. Pauli-X ($\sigma_x$) – The "bit-flip" matrix
 ```math
-\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+\sigma_x = \begin{pmatrix} 0 & 1 \\ 
+ 1 & 0 \end{pmatrix}
 ```
 - It swaps the $|0\rangle$ and $|1\rangle$ states.
 - Eigenvalues: $+1$ (eigenvector $\frac{|0\rangle+|1\rangle}{\sqrt{2}}$) and $-1$ (eigenvector $\frac{|0\rangle-|1\rangle}{\sqrt{2}}$).
@@ -506,7 +513,8 @@ The Pauli matrices are a set of three $2 \times 2$ complex matrices that are fun
 
 ### 2. Pauli-Y ($\sigma_y$) – The "bit-flip + phase-flip" matrix
 ```math
-\sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}
+\sigma_y = \begin{pmatrix} 0 & -i \\ 
+ i & 0 \end{pmatrix}
 ```
 - It applies a combination of a bit-flip and a phase-flip.
 - Eigenvalues: $+1$ (eigenvector $\frac{|0\rangle - i|1\rangle}{\sqrt{2}}$) and $-1$ (eigenvector $\frac{|0\rangle + i|1\rangle}{\sqrt{2}}$).
@@ -515,7 +523,8 @@ The Pauli matrices are a set of three $2 \times 2$ complex matrices that are fun
 
 ### 3. Pauli-Z ($\sigma_z$) – The "phase-flip" matrix
 ```math
-\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+\sigma_z = \begin{pmatrix} 1 & 0 \\ 
+ 0 & -1 \end{pmatrix}
 ```
 - It leaves $|0\rangle$ unchanged and flips the sign of $|1\rangle$.
 - Eigenvalues: $+1$ (eigenvector $|0\rangle$) and $-1$ (eigenvector $|1\rangle$).
@@ -1024,9 +1033,9 @@ When you encounter tensor networks in later courses, you'll recognize the pictur
 
 ```math
 \text{CNOT} = \begin{bmatrix}
-1 & 0 & 0 & 0\\
-0 & 1 & 0 & 0\\
-0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0\\ 
+0 & 1 & 0 & 0\\ 
+0 & 0 & 0 & 1\\ 
 0 & 0 & 1 & 0
 \end{bmatrix}
 ```

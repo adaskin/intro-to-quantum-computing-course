@@ -110,8 +110,10 @@ Coin: Heads or Tails
  **Mathematical Representation:**
 We can represent a bit as a vector:
 ```math
-0 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad
-1 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+0 = \begin{bmatrix} 1 \\ 
+ 0 \end{bmatrix}, \quad
+1 = \begin{bmatrix} 0 \\ 
+ 1 \end{bmatrix}
 ```
 
 ---
@@ -676,7 +678,8 @@ The middle measurement **destroys** original information
 
  **The Hadamard Gate:**
 ```math
-H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}
+H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 
+ 1 & -1 \end{bmatrix}
 ```
 ```math
 H|0\rangle = |+\rangle, \quad H|1\rangle = |-\rangle
