@@ -89,11 +89,13 @@ A **mixed state** has $\text{Tr}(\rho^2) < 1$.
 
 **Pure $|0\rangle$:**
 
-$$ \rho = |0\rangle\langle0| = \begin{bmatrix}1 & 0 \\ 0 & 0\end{bmatrix}. $$
+$$ \rho = |0\rangle\langle0| = \begin{bmatrix}1 & 0 \\
+ 0 & 0\end{bmatrix}. $$
 
 **Pure $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$:**
 
-$$ \rho = |+\rangle\langle+| = \frac12\begin{bmatrix}1 & 1 \\ 1 & 1\end{bmatrix}. $$
+$$ \rho = |+\rangle\langle+| = \frac12\begin{bmatrix}1 & 1 \\
+1 & 1\end{bmatrix}. $$
 
 ---
 
@@ -103,7 +105,8 @@ $$ \rho = |+\rangle\langle+| = \frac12\begin{bmatrix}1 & 1 \\ 1 & 1\end{bmatrix}
 
 ---
 
-$$ \rho = \frac12 |0\rangle\langle0| + \frac12 |1\rangle\langle1| = \frac12 \begin{bmatrix}1&0\\0&1\end{bmatrix} = \frac{I}{2}. $$
+$$ \rho = \frac12 |0\rangle\langle0| + \frac12 |1\rangle\langle1| = \frac12 \begin{bmatrix}1&0\\
+0&1\end{bmatrix} = \frac{I}{2}. $$
 
 This is the **maximally mixed state**.  
 Check purity: $\rho^2 = \frac{I}{4}$, so $\text{Tr}(\rho^2) = \frac12 < 1$ (mixed).
