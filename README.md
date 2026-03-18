@@ -1,4 +1,4 @@
-# intro-to-quantum-computing-course
+# Introduction to Quantum Information Processing
 *Introduction to quantum information and computing with an emphasis on AI*  
 *Prepared/written with the help of DeepSeek AI*
 
@@ -47,8 +47,6 @@ No required textbook. But, lecture notes are mostly based on
 
 
 ### **Course Schedule and Lecture Notes**
-
-#### **Unit 1: Mathematical Foundations (Weeks 1-3)**
 **Week 1: Classical vs. Quantum Information**
 reading: [Thirty years of quantum computing](https://doi.org/10.1088/2058-9565/ade0e4),David P DiVincenzo, Quantum Sci. Technol. 10 (2025) 030501. 
 lecture note: [lecture1](lecture1.md)  
@@ -85,21 +83,24 @@ lecture note: [lecture3][lecture3.md]
 - **Quantum Key Distribution (BB84):** Real-world application
 - **AI Tool Demo:** Using Numpy and PennyLane Demos for creating and measuring Bell states and simulating BB84
 
+**Week 5: Multi-Qubit Systems & Entanglement**
+- Why we need a more general description than state vectors  
+- **Density matrices**: definition, properties, examples  
+- **Partial trace** – how to “ignore” part of a system  
+- **Reduced density matrices** – what a subsystem looks like alone  
+- **Purity** – measuring how mixed a state is  
+- **Schmidt decomposition** – the mathematical structure of bipartite states  
+- **Quantifying entanglement** – entropy of entanglement  
+- **No‑cloning theorem** – a simple proof  
+- **Applications**: Teleportation & Superdense coding (recap with density matrices)  
+- **PennyLane demos** – computing reduced states and entanglement  
+  
+
+
 ---
-#### **Unit 2: Quantum Information Theory (Weeks 4-6)**
-**Week 4: Multi-Qubit Systems & Entanglement**
-- Tensor product spaces
-- Entangled states: Bell basis and properties
-- Schmidt decomposition
-- Partial trace and reduced density operators
-- **Math Supplement:** Tensor algebra and density matrices
+The remaining part is to be edited
 
-**Week 5: Quantum Protocols & Fundamental Limits**
-- Quantum teleportation: protocol and proof of correctness
-- Superdense coding
-- No-cloning theorem: proof and implications
-- Quantum key distribution (BB84) analysis
-
+---
 
 **Week 6: Quantum Algorithms I: Oracle Problems**
 - Quantum oracle model and query complexity
