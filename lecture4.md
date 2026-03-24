@@ -12,26 +12,35 @@
 - **Reduced density matrices** – what a subsystem looks like alone  
 - **Purity** – measuring how mixed a state is  
 - **Schmidt decomposition** – the mathematical structure of bipartite states  
-- **Quantifying entanglement** – entropy of entanglement  
+  - **Quantifying entanglement** – entropy of entanglement  
 - **No‑cloning theorem** – a simple proof  
-- **Applications**: Teleportation & Superdense coding (recap with density matrices)  
-- **PennyLane demos** – computing reduced states and entanglement  
-- Summary and exercises
+- **Applications and PennyLane demos**: Teleportation & Superdense coding (recap with density matrices), computing reduced states and entanglement  
 
 ---
 
 ## Motivation – Pure vs. Mixed States
 
 So far we have described quantum systems by **state vectors** $|\psi\rangle$ (pure states).  
+
+---
+
 But what if:
 
 - We only have **incomplete knowledge**?  
-  *Example:* “The qubit is in $|0\rangle$ with probability 1/2, and in $|1\rangle$ with probability 1/2” – a **statistical mixture**.
 
+**Example:** “The qubit is in $|0\rangle$ with probability 1/2, and in $|1\rangle$ with probability 1/2” 
+  - a **statistical mixture**.
+
+---
+
+And what if
 - The system is part of a larger entangled system, and we only have access to one part?  
-  *Example:* A Bell state $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$ – if we look only at the first qubit, what do we see?
 
-In both cases, a pure state description is insufficient. We need the **density matrix** (or **density operator**).
+  **Example:** A Bell state $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$ – if we look only at the first qubit, what do we see?
+
+---
+
+In both cases, a pure state description is insufficient. That is why we need the **density matrix** (or **density operator**).
 
 ---
 
@@ -49,7 +58,8 @@ For the superposition $|+\rangle$, measuring in $X$ basis gives **always** $+1$ 
 - Qubit is either $|0\rangle$ or $|1\rangle$ with 50% probability 
 - Density matrix $\rho$ 
 
-For the mixture, measuring in $X$ basis gives $+1$ and $-1$ each with 50% probability.
+For the mixture, 
+  - measuring in $X$ basis gives $+1$ and $-1$ each with 50% probability.
 
 Density matrices capture this difference.
 
@@ -186,17 +196,23 @@ When we have a composite system (say two qubits $A$ and $B$) but only care about
 
 ## Partial Trace – Definition
 
-Given a bipartite density matrix $\rho_{AB}$ on $\mathcal{H}_A \otimes \mathcal{H}_B$, the reduced density matrix for subsystem $A$ is
+Given a bipartite density matrix 
+- $\rho_{AB}$ on $\mathcal{H}_A \otimes \mathcal{H}_B$, 
+
+and let 
+- $\{|j\rangle_B\}$ be any orthonormal basis for $\mathcal{H}_B$
+
+the reduced density matrix for subsystem $A$ is
 
 $$ \rho_A = \text{Tr}_B(\rho_{AB}) = \sum_j (I_A \otimes \langle j|_B) \; \rho_{AB} \; (I_A \otimes |j\rangle_B), $$
 
-where $\{|j\rangle_B\}$ is any orthonormal basis for $\mathcal{H}_B$.
+---
 
-In matrix terms: if $\rho_{AB}$ is written with indices $i,i'$ for $A$ and $j,j'$ for $B$, then
+**In matrix terms**: if $\rho_{AB}$ is written with indices $i,i'$ for $A$ and $j,j'$ for $B$, then
 
 $$ (\rho_A)_{i,i'} = \sum_j (\rho_{AB})_{ij,i'j}. $$
 
-(We sum over the index of the traced-out system.)
+- We sum over the index of the traced-out system.
 
 ---
 
@@ -204,7 +220,13 @@ $$ (\rho_A)_{i,i'} = \sum_j (\rho_{AB})_{ij,i'j}. $$
 
 Let $\rho_{AB} = |0\rangle\langle0|_A \otimes |1\rangle\langle1|_B$.
 
-$$ \rho_A = \text{Tr}_B\big(|0\rangle\langle0|_A \otimes |1\rangle\langle1|_B\big) = |0\rangle\langle0|_A \cdot \text{Tr}(|1\rangle\langle1|_B). $$
+$\rho_A$?
+
+---
+
+$$ 
+\rho_A = \text{Tr}_B\big(|0\rangle\langle0|_A \otimes |1\rangle\langle1|_B\big) = |0\rangle\langle0|_A \cdot \text{Tr}(|1\rangle\langle1|_B). 
+$$
 
 Since $\text{Tr}(|1\rangle\langle1|) = 1$, we get
 
@@ -218,11 +240,17 @@ So $\rho_A$ is pure $|0\rangle$ – the subsystem is in a definite state, as exp
 
 Take $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$. Its density matrix is
 
-$$ \rho_{AB} = \frac12\big(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|\big). $$
+$$ 
+\rho_{AB} = \frac12\big(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|\big). 
+$$
+
+---
 
 Tracing out $B$ (sum over $j=0,1$ for qubit B), we get
 
-$$ \rho_A = \frac12\big( |0\rangle\langle0| + |1\rangle\langle1| \big) = \frac{I}{2}. $$
+$$ 
+\rho_A = \frac12\big( |0\rangle\langle0| + |1\rangle\langle1| \big) = \frac{I}{2}. 
+$$
 
 The same holds for $\rho_B$.
 
@@ -237,7 +265,9 @@ This is a signature of entanglement: the parts are completely random, but the wh
 
 The **purity** is defined as
 
-$$ P = \text{Tr}(\rho^2). $$
+$$ 
+P = \text{Tr}(\rho^2). 
+$$
 
 - For a pure state: $P = 1$ (since $\rho^2 = \rho$ and $\text{Tr}(\rho)=1$).  
 - For a maximally mixed state of dimension $d$: $P = 1/d$ (for a qubit, $d=2$, so $P = 1/2$).  
@@ -270,8 +300,8 @@ Given any pure state $|\psi\rangle_{AB}$ on a bipartite system dimensions $d_A$,
 
 $$ |\psi\rangle_{AB} = \sum_{i=1}^{r} \lambda_i \, |u_i\rangle_A \otimes |v_i\rangle_B, $$
 
-where $r \le \min(d_A, d_B)$ is the **Schmidt rank**.  
-The $\lambda_i$ satisfy $\sum_i \lambda_i^2 = 1$.
+- $r \le \min(d_A, d_B)$ is the **Schmidt rank**.  
+- The $\lambda_i$ satisfy $\sum_i \lambda_i^2 = 1$.
 
 ---
 
@@ -510,11 +540,5 @@ You’ll get a value between 0 and 1.
 - Simon's algorithm  
 
 **Reading:** Nielsen & Chuang Chapter 3 (intro to algorithms)
-
----
-
-## Thank you!
-
-**Questions?**  
 
 *These slides were prepared with the help of AI (DeepSeek). Remember to verify results and understand the mathematics behind the code.*
