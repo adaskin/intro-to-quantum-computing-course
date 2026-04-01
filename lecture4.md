@@ -459,7 +459,8 @@ print("\nFull density matrix:\n", rho_full.round(3))
 # Reduced density matrix for qubit 0 using partial trace
 # Reshape to (2,2,2,2) and trace over qubit 1
 rho_full_reshaped = rho_full.reshape(2,2,2,2)
-rho_A = np.trace(rho_full_reshaped, axis1=2, axis2=3)
+### CHECK the correctness of indices
+rho_A = np.trace(rho_full_reshaped, axis1=1, axis2=3)   # sum over indices 1 and 3
 print("\nReduced density matrix for qubit 0:\n", rho_A.round(3))
 print("Purity of rho_A:", np.trace(rho_A @ rho_A).real)
 ```
