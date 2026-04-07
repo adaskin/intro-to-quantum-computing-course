@@ -83,7 +83,8 @@ lecture note: [lecture3][lecture3.md]
 - **Quantum Key Distribution (BB84):** Real-world application
 - **AI Tool Demo:** Using Numpy and PennyLane Demos for creating and measuring Bell states and simulating BB84
 
-**Week 5: Multi-Qubit Systems & Entanglement**
+**Week 5-6: Multi-Qubit Systems & Entanglement**
+[lecture4](lecture4.md)
 - Why we need a more general description than state vectors  
 - **Density matrices**: definition, properties, examples  
 - **Partial trace** – how to “ignore” part of a system  
@@ -94,20 +95,22 @@ lecture note: [lecture3][lecture3.md]
 - **No‑cloning theorem** – a simple proof  
 - **Applications**: Teleportation & Superdense coding (recap with density matrices)  
 - **PennyLane demos** – computing reduced states and entanglement  
-  
+
+
+
+**Week 8: Quantum Algorithms I: Oracle Problems**
+[lecture5](lecture5.md)
+- Quantum oracle model and query complexity
+- Deutsch-Jozsa algorithm: problem, circuit, and analysis
+- Bernstein-Vazirani algorithm
+- Simon's problem (introduction)
+- **AI Tool Demo:** Using AI to generate oracle functions
 
 
 ---
 The remaining part is to be edited
 
 ---
-
-**Week 6: Quantum Algorithms I: Oracle Problems**
-- Quantum oracle model and query complexity
-- Deutsch-Jozsa algorithm: problem, circuit, and analysis
-- Bernstein-Vazirani algorithm
-- Simon's problem (introduction)
-- **AI Tool Demo:** Using AI to generate oracle functions
 
 
 #### **Unit 3: Core Quantum Algorithms (Weeks 7-9)**
