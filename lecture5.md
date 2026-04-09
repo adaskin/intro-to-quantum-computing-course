@@ -233,8 +233,11 @@ c & t_1 & t_2 & t_1' & t_2' \\
 ```python
 import pennylane as qml
 
-dev = qml.device('default.qubit', wires=3)
+```
 
+---
+```python
+dev = qml.device('default.qubit', wires=3)
 @qml.qnode(dev)
 def toffoli_demo(a, b, t):
     if a: qml.PauliX(0)
@@ -242,11 +245,14 @@ def toffoli_demo(a, b, t):
     if t: qml.PauliX(2)
     qml.Toffoli(wires=[0,1,2])
     return qml.state()
+print("Toffoli(1,1,0):", toffoli_demo(1,1,0))  # target becomes 1
+```
 
+---
+```python
+dev = qml.device('default.qubit', wires=2)
 @qml.qnode(dev)
 def swap_demo(a, b):
-    dev2 = qml.device('default.qubit', wires=2)
-    @qml.qnode(dev2)
     def circuit():
         if a: qml.PauliX(0)
         if b: qml.PauliX(1)
@@ -254,6 +260,12 @@ def swap_demo(a, b):
         return qml.state()
     return circuit()
 
+print("SWAP(1,0):", swap_demo(1,0))  
+```
+
+---
+```python
+dev = qml.device('default.qubit', wires=3)
 @qml.qnode(dev)
 def fredkin_demo(c, t1, t2):
     if c: qml.PauliX(0)
@@ -262,8 +274,6 @@ def fredkin_demo(c, t1, t2):
     qml.CSWAP(wires=[0,1,2])   # CSWAP = Fredkin
     return qml.state()
 
-print("Toffoli(1,1,0):", toffoli_demo(1,1,0))  # target becomes 1
-print("SWAP(1,0):", swap_demo(1,0))            # |01⟩
 print("Fredkin(1,1,0):", fredkin_demo(1,1,0)) # swap → t1=0, t2=1
 ```
 
@@ -332,6 +342,9 @@ Any single‑qubit unitary (upto global phase) \(U=R_z(\alpha) R_y(\beta) R_z(\g
 - This set generates the **Clifford group**.  
   - Clifford gates map Pauli operators to Pauli operators under conjugation (e.g., \( H X H = Z \), \( S X S^\dagger = Y \), etc.).
   - The Clifford group on \(n\) qubits is a **finite group** (size \(\sim 2^{n^2+2n}\)).
+
+---
+
 - Any circuit built only from H, S, and CNOT can only produce a finite set of unitary operations.  
   - You cannot create states like \(|0\rangle + e^{i\pi/4}|1\rangle\) (an eigenstate of the \(T\) gate) exactly or even approximate it arbitrarily well.
   - Without a non‑Clifford gate (e.g., \(T\), or a rotation by an irrational angle), you cannot achieve universality.
@@ -351,7 +364,7 @@ A common universal gate set is
 **Summary Table**
 
 | Gate Set | Universal? | Notes |
-|----------|------------|-------|
+|----------|------------|-----------|
 | CNOT + all single‑qubit rotations | ✅ Yes (exact) | Most common theoretical set |
 | CNOT + H + T | ✅ Yes (approximate) | Standard discrete universal set |
 | Toffoli + H + T | ✅ Yes | Also universal |
@@ -479,7 +492,9 @@ Now examine the two possibilities:
 * If \(f(x)=0\): \(|f(x)\rangle = |0\rangle\), \(|1-f(x)\rangle = |1\rangle\) → \(\frac{|0\rangle - |1\rangle}{\sqrt{2}} = |-\rangle\)
 * If \(f(x)=1\): \(|f(x)\rangle = |1\rangle\), \(|1-f(x)\rangle = |0\rangle\) → \(\frac{|1\rangle - |0\rangle}{\sqrt{2}} = -|-\rangle\)
 
-Thus:
+---
+
+We can then write:
 
 \[
 U_f |x\rangle |-\rangle = (-1)^{f(x)} |x\rangle |-\rangle
@@ -606,11 +621,14 @@ Now \(f : \{0,1\}^n \to \{0,1\}\) with the promise that \(f\) is either **consta
    H^{\otimes n}|x\rangle = \frac{1}{\sqrt{2^n}}\sum_{z\in\{0,1\}^n} (-1)^{x\cdot z} |z\rangle
    \]
    where \(x\cdot z = \sum_{i=1}^n x_i z_i \mod 2\) (bitwise dot product).  
+
+---
    Thus:
    \[
    H^{\otimes n}|\psi_1\rangle = \frac{1}{2^n}\sum_{x,z} (-1)^{f(x) + x\cdot z} |z\rangle
    \]
 
+---
    The amplitude of the **all‑zero** state \(|z=0\rangle\) is:
    \[
    \frac{1}{2^n}\sum_{x} (-1)^{f(x)}
@@ -627,6 +645,8 @@ Now \(f : \{0,1\}^n \to \{0,1\}\) with the promise that \(f\) is either **consta
      Then \(\sum_{x} (-1)^{f(x)} = 0\), so amplitude of \(|0\rangle^{\otimes n} = 0\).  
      The probability to measure \(|0\rangle^{\otimes n}\) is zero.  
      → **We measure some non‑zero bitstring**.
+
+---
 
 **Conclusion:**  
 - Measure \(|0\ldots0\rangle\) → \(f\) is constant.  
@@ -824,15 +844,32 @@ After the first Hadamard we have
 \[
 \frac{1}{\sqrt{2^n}}\sum_{x} |x\rangle|0\rangle.
 \]  
+
+Next apply oracle
+
+---
+
 The oracle produces 
 \[
 \frac{1}{\sqrt{2^n}}\sum_{x} |x\rangle|f(x)\rangle.
 \]
 
-Now we **measure the second register**. Suppose we obtain a value \(f(x_0)\). Because \(f\) is two‑to‑one, the first register collapses to the superposition  
+Now we **measure the second register**. 
+
+---
+
+Suppose we obtain a value \(f(x_0)\). Because \(f\) is two‑to‑one, the first register collapses to the superposition  
 
 \[
 \frac{1}{\sqrt{2}}\big( |x_0\rangle + |x_0 \oplus s\rangle \big).
+\]
+
+---
+
+**Remember the useful identity (again)**
+
+\[
+  H^{\otimes n}|x\rangle = \frac{1}{\sqrt{2^n}}\sum_{z} (-1)^{x\cdot z}|z\rangle
 \]
 
 ---
@@ -876,23 +913,33 @@ Take \(n=2\), \(s=11\). Define \(f\) as:
 \(f(01)=b,\; f(10)=b\)  
 with \(a\neq b\).
 
+---
+
 **Step‑by‑step:**
 
 1. **Initial:** \(|00\rangle|0\rangle\) (the second register has enough qubits to hold \(a,b\); we don’t need to specify \(m\)).
+
+---
 
 2. **Hadamard on first register:**  
    \[
    \frac{1}{2}\big(|00\rangle+|01\rangle+|10\rangle+|11\rangle\big)|0\rangle
    \]
 
+---
+
 3. **Oracle:**  
    \[
    \frac{1}{2}\big(|00\rangle|a\rangle + |01\rangle|b\rangle + |10\rangle|b\rangle + |11\rangle|a\rangle\big)
    \]
 
+---
+
 4. **Measure second register.**  
    - If we get \(a\): first register collapses to \(\frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)\).  
    - If we get \(b\): collapses to \(\frac{1}{\sqrt{2}}(|01\rangle+|10\rangle)\).
+
+---
 
 5. **Apply \(H^{\otimes 2}\) to the first register.**  
    - For the state \(\frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)\):  
@@ -908,7 +955,7 @@ with \(a\neq b\).
 
 
 
-**Let's verify:** the condition \(s\cdot z=0\): for \(s=11\), \(z_1+z_2=0 \mod 2\) ⇒ \(z_1=z_2\). So allowed \(z\) are indeed \(00\) and \(11\). 
+**Verification:** the condition \(s\cdot z=0\): for \(s=11\), \(z_1+z_2=0 \mod 2\) ⇒ \(z_1=z_2\). So allowed \(z\) are indeed \(00\) and \(11\). 
 
 ---
 
