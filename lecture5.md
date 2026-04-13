@@ -443,9 +443,6 @@ Here \(\|\cdot\|\) is the operator norm (distance between unitaries).
 - **The overhead for high precision is very mild** – a key reason why fault‑tolerant quantum computing is possible in theory.
 
 ---
-Below is a **complete, step‑by‑step teaching module** that builds from the basic oracle model to the Deutsch and Deutsch–Jozsa algorithms. It assumes the student has seen basic quantum circuits and superposition.
-
----
 
 # Part 2: The Quantum Algorithms – Oracle Model
 
