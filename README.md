@@ -97,8 +97,7 @@ lecture note: [lecture3][lecture3.md]
 - **PennyLane demos** – computing reduced states and entanglement  
 
 
-
-**Week 8: Quantum Algorithms I: Oracle Problems**
+**Week 8-9: Quantum Algorithms I: Oracle Problems**
 [lecture5](lecture5.md)
 - Quantum oracle model and query complexity
 - Deutsch-Jozsa algorithm: problem, circuit, and analysis
@@ -106,25 +105,23 @@ lecture note: [lecture3][lecture3.md]
 - Simon's problem (introduction)
 - **AI Tool Demo:** Using AI to generate oracle functions
 
+**Week 9-10: Quantum Fourier Transform**
+[lecture6a](lecture6-period-finding-factoring/lecture6a-dft.md)
+[lecture6b](lecture6-period-finding-factoring/lecture6b-qft.md)
+[lecture6c](lecture6-period-finding-factoring/lecture6c-factoring.md)
+- Discrete Fourier transform review
+- Quantum Fourier Transform (QFT) circuit construction
+- Period finding and the factoring problem
+- Shor's algorithm: full circuit analysis
+- Continued fractions and correctness proof
+- Impact on cryptography and RSA
+- **AI Tool Demo:** Using AI to explain periods and number theory concepts, discuss its impact on cryptography
 
 ---
 The remaining part is to be edited
 
 ---
 
-
-#### **Unit 3: Core Quantum Algorithms (Weeks 7-9)**
-**Week 7: Quantum Fourier Transform**
-- Discrete Fourier transform review
-- Quantum Fourier Transform (QFT) circuit construction
-- Phase estimation algorithm
-
-**Week 8: Shor's Algorithm**
-- Period finding and the factoring problem
-- Shor's algorithm: full circuit analysis
-- Continued fractions and correctness proof
-- Impact on cryptography and RSA
-- **AI Tool Demo:** Using AI to explain number theory concepts
 
 **Week 9: Quantum Search & Optimization**
 - Grover's algorithm: geometric analysis

@@ -1,6 +1,4 @@
-# Quantum Fourier Transform (QFT) and Period Finding
-
-## DFT as a Matrix
+### DFT as a Matrix
 
 For $N = 2^n$, the DFT matrix has entries:
 
@@ -9,6 +7,7 @@ F_{jk} = \frac{1}{\sqrt{N}} \, \omega^{jk}, \quad \text{where } \omega = e^{-2\p
 $$
 
 This matrix is **unitary**: $F^\dagger F = I$.
+
 
 $$
 F_N = \frac{1}{\sqrt{N}} \begin{bmatrix}
@@ -31,8 +30,6 @@ $$
 
 The Hadamard gate is the 1‑qubit QFT!
 
-### Example: 4‑point DFT
-
 $$
 F_4 = \frac{1}{2} \begin{bmatrix}
  1 & 1 & 1 & 1 \\
@@ -42,7 +39,7 @@ F_4 = \frac{1}{2} \begin{bmatrix}
 \end{bmatrix}
 $$
 
-## The Quantum Fourier Transform (QFT)
+## Part 2: The Quantum Fourier Transform (QFT)
 
 The QFT is the **exact same transformation** as the DFT, but applied to a **quantum state**:
 
@@ -50,7 +47,7 @@ $$
 \text{QFT}: \quad |j\rangle \;\longrightarrow\; \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i \, j k / N} |k\rangle
 $$
 
-*(Note: The sign convention in quantum literature often uses $+$ in the exponent; the inverse QFT uses the minus sign.)*
+*(Note: The sign convention in quantum literature often uses $+$ in the exponent, but this is just a convention – the inverse QFT uses the minus sign.)*
 
 ### Product Representation (Key for Circuit)
 
@@ -69,7 +66,7 @@ $$
 
 where $0.j_l j_{l+1} \ldots j_n$ denotes the binary fraction $j_l/2 + j_{l+1}/4 + \cdots + j_n/2^{n-l+1}$.
 
-![qft circuit](images/qft.png)
+![qft circuit](qft.png)
 
 $$
 H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \qquad
@@ -95,7 +92,6 @@ x_{j+r} = x_j .
 $$
 
 If we take the DFT of such a signal, the magnitude spectrum will show non‑zero values only at **bin indices** that are integer multiples of $N/r$.  
-
 **Example:** Let $N = 16$ and $r = 4$. We define one period of the signal as the pattern $[1, 0, 0, 0]$, and we shift the starting point by an offset $x_0 = 2$. The resulting 16‑sample signal is:
 
 $$
@@ -131,87 +127,97 @@ Thus, by measuring the distance between bright DFT bins, we can directly extract
 
 > **Note:** When $r$ does **not** divide $N$, the signal is not perfectly periodic on the analysis window (it is truncated), and the DFT exhibits spectral leakage. The peaks are no longer perfectly isolated, but their spacing still *approximately* equals $N/r$. In the quantum case, however, periodicity is defined modulo $N$ on a cyclic group, which avoids truncation artifacts entirely.
 
-### Classical Example: Periodic Pulse Train
+**Classical example:** a sequence of 1s and 0s repeating every 4 samples.
+
 
 ```python
+# Classical period finding with DFT (corrected)
 import numpy as np
 import matplotlib.pyplot as plt
 
 N = 16          # signal length
-r = 6           # period (must divide N for clean illustration)
+r = 6           # period (does NOT need to divide N)
 x0 = 2          # offset
 
+# Build the periodic comb: 1 at indices x0 + m*r (mod N)
 x = np.zeros(N)
-for m in range(N // np.gcd(N, r)):   # M = N / gcd(N,r)
+g = np.gcd(N, r)                # gcd(N, r)
+M = N // g                      # number of distinct elements in the subgroup
+for m in range(M):
     idx = (x0 + m * r) % N
     x[idx] = 1.0
-x = x / np.linalg.norm(x)            # normalize like a quantum state
 
-# DFT
-X = np.fft.fft(x)
-freq = np.fft.fftfreq(N)    # frequencies in cycles/sample
+# Normalize like a quantum state
+x = x / np.linalg.norm(x)
+
+# Compute DFT (unitary normalization: divide by sqrt(N) manually)
+X = np.fft.fft(x) / np.sqrt(N)   # now matches quantum QFT convention
+freq = np.fft.fftfreq(N)         # frequencies in cycles/sample
 
 # Plot
 plt.figure(figsize=(10, 3))
 plt.subplot(1, 2, 1)
-plt.stem(range(N), x)
-plt.title(f'Periodic signal (period r = {r}, offset x0 = {x0})')
+plt.stem(range(N), np.abs(x)**2)   # show probabilities
+plt.title(f'Periodic state (r = {r}, offset = {x0})')
 plt.xlabel('Index j')
-plt.ylabel('x[j]')
+plt.ylabel('Probability |x[j]|²')
 plt.xticks(range(0, N, r))
 
 plt.subplot(1, 2, 2)
-plt.stem(freq, np.abs(X))
-plt.title('DFT magnitude')
+plt.stem(freq, np.abs(X)**2)       # show probabilities after QFT
+plt.title('DFT magnitude squared (quantum probability)')
 plt.xlabel('Frequency (cycles/sample)')
-plt.ylabel('|X[k]|')
+plt.ylabel('|X[k]|²')
 
 # Draw vertical lines at expected peak frequencies
-peak_freqs = np.fft.fftfreq(N)[np.arange(0, N, N//r)]
+# Peaks occur at multiples of g/N (both positive and negative)
+peak_freqs = np.arange(0, N, N//g) * (1/N)   # in cycles/sample
 for f in peak_freqs:
     plt.axvline(f, color='red', linestyle='--', alpha=0.5)
+    plt.axvline(f - 1, color='red', linestyle='--', alpha=0.5)  # wrap negative freqs
 
 plt.tight_layout()
 plt.show()
 
 # Analysis output
-peak_bins = np.arange(0, N, N//r)
-non_zero = np.abs(X) > 1e-10
 print("=" * 50)
 print("DFT PERIOD FINDING ANALYSIS")
 print(f"N = {N}, r = {r}, x0 = {x0}")
-# Define a pattern description instead of an undefined variable
-pattern_desc = "single 1 at each period index"
-print(f"Pattern (one period): {pattern_desc}")
-print(f"Expected peak bins: {peak_bins}")
-print(f"Expected peak frequencies (cycles/sample): {np.fft.fftfreq(N)[peak_bins]}")
-print(f"Actual non‑zero bins: {np.where(non_zero)[0]}")
-print(f"Actual non‑zero frequencies: {freq[non_zero]}")
-print(f"DFT magnitudes at those bins: {np.abs(X[non_zero])}")
+print(f"gcd(N, r) = {g}")
+print(f"Number of distinct states M = N / gcd(N,r) = {M}")
+print(f"Expected DFT peak bins (multiples of N/g = {N//g}): {np.arange(0, N, N//g)}")
+print(f"Expected peak frequencies (cycles/sample): {np.arange(0, N, N//g) * (1/N)}")
+non_zero_bins = np.where(np.abs(X) > 1e-10)[0]
+print(f"Actual non‑zero bins: {non_zero_bins}")
+print(f"Actual non‑zero frequencies: {freq[non_zero_bins]}")
+print(f"DFT probabilities at those bins: {np.abs(X[non_zero_bins])**2}")
 print()
-print(f"Bin spacing Δk = N/r = {N//r}")
-print(f"Frequency spacing Δf = 1/r = {1/r:.3f} cycles/sample")
+print(f"Bin spacing Δk = N / gcd(N,r) = {N//g}")
+print(f"Frequency spacing Δf = gcd(N,r) / N = {g/N:.3f} cycles/sample")
 print("=" * 50)
 ```
 
-*Expected output (approximate):*
-```
-==================================================
-DFT PERIOD FINDING ANALYSIS
-N = 16, r = 6, x0 = 2
-Pattern (one period): single 1 at each period index
-Expected peak bins: [ 0  2  4  6  8 10 12 14]
-...
-Actual non‑zero bins: [0 8]
-Actual non‑zero frequencies: [ 0.  -0.5]
-DFT magnitudes at those bins: [2.82842712 2.82842712]
 
-Bin spacing Δk = N/r = 2
-Frequency spacing Δf = 1/r = 0.167 cycles/sample
-==================================================
-```
+    
+![png](lecture6b-qft_files/lecture6b-qft_10_0.png)
+    
 
-*(Note: The actual non‑zero bins differ from the naïve expectation because `r` does not divide `N`. The true spacing is determined by `N / gcd(N, r)`.)*
+
+    ==================================================
+    DFT PERIOD FINDING ANALYSIS
+    N = 16, r = 6, x0 = 2
+    gcd(N, r) = 2
+    Number of distinct states M = N / gcd(N,r) = 8
+    Expected DFT peak bins (multiples of N/g = 8): [0 8]
+    Expected peak frequencies (cycles/sample): [0.  0.5]
+    Actual non‑zero bins: [0 8]
+    Actual non‑zero frequencies: [ 0.  -0.5]
+    DFT probabilities at those bins: [0.5 0.5]
+    
+    Bin spacing Δk = N / gcd(N,r) = 8
+    Frequency spacing Δf = gcd(N,r) / N = 0.125 cycles/sample
+    ==================================================
+
 
 ### Why This Matters for Quantum Period Finding
 
@@ -220,6 +226,8 @@ The **Quantum Fourier Transform (QFT)** performs exactly the same linear transfo
 - If we encode a periodic signal into the amplitudes of a quantum state `|ψ⟩ = ∑_j x_j |j⟩`, the QFT maps it to `∑_k X_k |k⟩`.  
 - The probability of measuring basis state `|k⟩` is proportional to `|X_k|²`.  
 - As in the classical case, the probability mass concentrates on those `|k⟩` whose indices are multiples of `N/r`.
+
+---
 
 Thus, by preparing a periodic quantum state and applying the QFT, we can **measure the period `r`** from the spacing of the bright computational basis states. This is the core principle behind Shor’s factoring algorithm and many other quantum algorithms that rely on period finding.
 
@@ -230,6 +238,8 @@ In quantum period finding we are given a unitary $U$ that implements a periodic 
 $$  
 f(x) = f(x + r) \quad\text{with unknown period } r.
 $$
+
+---
 
 We prepare the superposition $\frac{1}{\sqrt{N}}\sum_x |x\rangle|f(x)\rangle$, measure the second register, and obtain a state proportional to:
 
@@ -262,7 +272,7 @@ $$
 \frac{k r}{N} \in \mathbb{Z} \quad\Longleftrightarrow\quad k \cdot r \equiv 0 \pmod{N}.
 $$
 
-Let $g = \gcd(N,r)$. Dividing the congruence by $g$ gives  
+Let $g = gcd(N,r)$. Dividing the congruence by $g$ gives  
 
 $$
 k \cdot \frac{r}{g} \equiv 0 \pmod{\frac{N}{g}} .
@@ -280,7 +290,7 @@ $$
 \Delta = \frac{N}{g} = \frac{N}{\gcd(N,r)} .
 $$
 
-The number of such peaks in the interval `[0, N-1]` is exactly $g = \gcd(N,r)$.  
+The number of such peaks in the interval `[0, N-1]` is exactly $g = gcd(N,r)$.  
 (Each peak appears with equal probability when the amplitudes interfere constructively, though the exact distribution of probability among these peaks depends on the offset `x₀`.)
 
 ### Important Observations
@@ -299,11 +309,10 @@ The number of such peaks in the interval `[0, N-1]` is exactly $g = \gcd(N,r)$.
 4. **Relation to Shor’s algorithm:**  
    In Shor’s period‑finding routine, the periodic function is **not** a simple additive step modulo the Hilbert space dimension. Instead, a modular exponentiation function is used, and the QFT is applied to a register of size `Q ≫ r²`. The resulting peak spacing is approximately `Q/r`, and `r` is recovered via continued fractions. The toy model discussed here is an instructive but distinct demonstration of the QFT on a finite cyclic group.
 
-## Quantum Circuit Demonstration (PennyLane)
 
-The following code uses PennyLane to prepare a periodic quantum state, apply the QFT, and analyze the output distribution.
 
 ```python
+import ipywidgets as widgets
 import numpy as np
 import matplotlib.pyplot as plt
 import pennylane as qml
@@ -313,12 +322,12 @@ def to_binary_string(value, n_bits):
     """Return binary string of `value` padded to `n_bits`."""
     return format(value, f'0{n_bits}b')
 
-def print_state_binary(state_vector, n_qubits, top_n=10):
+def print_state_binary(state_vector, n_qubits, top_n=10, label="State"):
     """Print the amplitudes and binary representation of non‑zero basis states."""
     N = len(state_vector)
     nonzero = np.abs(state_vector) > 1e-10
     indices = np.where(nonzero)[0]
-    print(f"Non‑zero basis states (total {len(indices)}):")
+    print(f"{label} – non‑zero basis states (total {len(indices)}):")
     for i in indices[:top_n]:
         amp = state_vector[i]
         prob = np.abs(amp)**2
@@ -330,10 +339,10 @@ def print_state_binary(state_vector, n_qubits, top_n=10):
 def periodic_state(r, n_qubits, x0=0):
     """
     Create state: uniform superposition of |x0 + m·r mod N⟩ for m = 0..M-1.
-    Returns state vector and the offset x0 (reduced modulo r).
+    Returns state vector and the offset x0 (reduced modulo r for display).
     """
     N = 2**n_qubits
-    x0 = x0 % r   # ensure x0 is within [0, r-1]
+    x0 = x0 % r   # for display purposes only; actual offset is x0 modulo N
     state = np.zeros(N, dtype=complex)
     m = 0
     while True:
@@ -364,9 +373,8 @@ def qft_period_demo(r=3, n_qubits=4, x0=0):
     target_state, x0_used = periodic_state(r, n_qubits, x0)
 
     print("\n" + "="*60)
-    print(f"Parameters: r = {r}, n_qubits = {n_qubits}, N = {N}, offset x0 = {x0_used}")
-    print("Input state (non‑zero amplitudes):")
-    print_state_binary(target_state, n_qubits)
+    print(f"Parameters: r = {r}, n_qubits = {n_qubits}, N = {N}, offset x0 = {x0_used} (mod r)")
+    print_state_binary(target_state, n_qubits, label="Input state")
 
     dev = qml.device('default.qubit', wires=n_qubits)
 
@@ -377,6 +385,15 @@ def qft_period_demo(r=3, n_qubits=4, x0=0):
         return qml.probs(wires=range(n_qubits))
 
     probs = apply_qft(target_state)
+
+    # To show actual QFT amplitudes (not just probabilities), we run again to get state vector
+    @qml.qnode(dev)
+    def get_qft_state(state_vec):
+        qml.StatePrep(state_vec, wires=range(n_qubits))
+        qft_circuit(wires=range(n_qubits))
+        return qml.state()
+
+    qft_state = get_qft_state(target_state)
 
     # Plot
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
@@ -397,67 +414,70 @@ def qft_period_demo(r=3, n_qubits=4, x0=0):
     top_indices = np.argsort(probs)[-5:][::-1]
     top_probs = probs[top_indices]
 
-    gcd_val = np.gcd(N, r)
-    spacing = N // gcd_val
-    num_peaks = gcd_val
+    g = np.gcd(N, r)
+    spacing = N // g
+    num_peaks = g
 
     print("\nQFT output analysis:")
-    print(f"  gcd(N, r) = {gcd_val}")
+    print(f"  gcd(N, r) = {g}")
     print(f"  Expected peak spacing = N / gcd(N,r) = {spacing}")
     print(f"  Number of peaks = gcd(N,r) = {num_peaks}")
-    print(f"  Top 5 measured |k⟩:")
+    print(f"  Top 5 measured |k⟩ (by probability):")
     for k, p in zip(top_indices, top_probs):
         print(f"    |{to_binary_string(k, n_qubits)}⟩ (dec {k:3d}) : prob = {p:.4f}")
 
     if N % r != 0:
-        print("\n  ⚠️  r does not divide N, so the QFT shows gcd(N,r) instead of r itself.")
-        print("     This is expected – the Fourier transform reveals the subgroup spacing.")
+        print("\n  ⚠️  r does not divide N, so the QFT reveals the subgroup spacing (gcd(N,r) peaks).")
+        print("     This is expected – the Fourier transform shows the subgroup structure.")
 
-    print("Input state (non‑zero probs):")
-    print_state_binary(np.sqrt(probs), n_qubits)
-
-# Example run
-qft_period_demo(r=3, n_qubits=4, x0=0)
+    print_state_binary(qft_state, n_qubits, label="QFT output state vector")
+qft_period_demo(r=6, n_qubits=4, x0=2)
 ```
 
-*Expected output for `r=3, n_qubits=4, x0=0`:*
-```
-============================================================
-Parameters: r = 3, n_qubits = 4, N = 16, offset x0 = 0
-Input state (non‑zero amplitudes):
-Non‑zero basis states (total 16):
-  |0000⟩ (dec   0) : amp = 0.250+0.000j, prob = 0.062
-  ...
-  (all 16 basis states have equal amplitude)
+    
+    ============================================================
+    Parameters: r = 6, n_qubits = 4, N = 16, offset x0 = 2 (mod r)
+    Input state – non‑zero basis states (total 8):
+      |0000⟩ (dec   0) : amp = 0.354+0.000j, prob = 0.125
+      |0010⟩ (dec   2) : amp = 0.354+0.000j, prob = 0.125
+      |0100⟩ (dec   4) : amp = 0.354+0.000j, prob = 0.125
+      |0110⟩ (dec   6) : amp = 0.354+0.000j, prob = 0.125
+      |1000⟩ (dec   8) : amp = 0.354+0.000j, prob = 0.125
+      |1010⟩ (dec  10) : amp = 0.354+0.000j, prob = 0.125
+      |1100⟩ (dec  12) : amp = 0.354+0.000j, prob = 0.125
+      |1110⟩ (dec  14) : amp = 0.354+0.000j, prob = 0.125
 
-QFT output analysis:
-  gcd(N, r) = 1
-  Expected peak spacing = N / gcd(N,r) = 16
-  Number of peaks = gcd(N,r) = 1
-  Top 5 measured |k⟩:
-    |0000⟩ (dec   0) : prob = 1.0000
-    ...
 
-  ⚠️  r does not divide N, so the QFT shows gcd(N,r) instead of r itself.
-     This is expected – the Fourier transform reveals the subgroup spacing.
-```
 
-### Interactive Widget (Jupyter only)
+    
+![png](lecture6b-qft_files/lecture6b-qft_14_1.png)
+    
 
-*The following code creates interactive sliders; it will only work in a Jupyter environment with `ipywidgets`.*
+
+    
+    QFT output analysis:
+      gcd(N, r) = 2
+      Expected peak spacing = N / gcd(N,r) = 8
+      Number of peaks = gcd(N,r) = 2
+      Top 5 measured |k⟩ (by probability):
+        |1000⟩ (dec   8) : prob = 0.5000
+        |0000⟩ (dec   0) : prob = 0.5000
+        |1101⟩ (dec  13) : prob = 0.0000
+        |1111⟩ (dec  15) : prob = 0.0000
+        |1100⟩ (dec  12) : prob = 0.0000
+    
+      ⚠️  r does not divide N, so the QFT reveals the subgroup spacing (gcd(N,r) peaks).
+         This is expected – the Fourier transform shows the subgroup structure.
+    QFT output state vector – non‑zero basis states (total 2):
+      |0000⟩ (dec   0) : amp = 0.707+0.000j, prob = 0.500
+      |1000⟩ (dec   8) : amp = 0.707+0.000j, prob = 0.500
+
+
 
 ```python
-import ipywidgets as widgets
-
+# ---------- Interactive Widget ----------
 widgets.interact(qft_period_demo,
                  r=widgets.IntSlider(min=2, max=15, step=1, value=3, description='Period r'),
                  n_qubits=widgets.IntSlider(min=3, max=8, step=1, value=4, description='Qubits'),
                  x0=widgets.IntSlider(min=0, max=15, step=1, value=0, description='Offset x0'));
 ```
-
-## Summary
-
-- The QFT is the quantum implementation of the DFT, operating on a superposition of states.
-- A periodic state of the form $\sum_m |x_0 + m r\rangle$ transforms under QFT into a state peaked at multiples of $N / \gcd(N, r)$.
-- The peak spacing reveals information about the period $r$, which is the key to Shor’s factoring algorithm.
-- The interactive demo illustrates how the QFT output depends on $r$, $N$, and the offset $x_0$.
