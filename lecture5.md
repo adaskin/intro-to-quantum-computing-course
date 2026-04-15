@@ -24,6 +24,9 @@
   - [Next Lecture Preview](#next-lecture-preview)
 
 
+**Note:** 
+- Bernstein‑Vazirani and Simon's problems are skipped as exercises
+
 
 ## Lecture Overview
 

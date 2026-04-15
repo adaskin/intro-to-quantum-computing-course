@@ -101,11 +101,14 @@ lecture note: [lecture3][lecture3.md]
 [lecture5](lecture5.md)
 - Quantum oracle model and query complexity
 - Deutsch-Jozsa algorithm: problem, circuit, and analysis
+
 - Bernstein-Vazirani algorithm
 - Simon's problem (introduction)
+**Note:** 
+- Bernstein‑Vazirani and Simon's problems are skipped as exercises
 - **AI Tool Demo:** Using AI to generate oracle functions
 
-**Week 9-10: Quantum Fourier Transform**
+**Week 9: Quantum Fourier Transform-Period Finding**
 [lecture6a](lecture6-period-finding-factoring/lecture6a-dft.md)
 [lecture6b](lecture6-period-finding-factoring/lecture6b-qft.md)
 [lecture6c](lecture6-period-finding-factoring/lecture6c-factoring.md)
@@ -116,6 +119,7 @@ lecture note: [lecture3][lecture3.md]
 - Continued fractions and correctness proof
 - Impact on cryptography and RSA
 - **AI Tool Demo:** Using AI to explain periods and number theory concepts, discuss its impact on cryptography
+  - use AI to explain replacing QFT with Hadamard (Simon's algorithm). What kind of period it is finding.
 
 ---
 The remaining part is to be edited
