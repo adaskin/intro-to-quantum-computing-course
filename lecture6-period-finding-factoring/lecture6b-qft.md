@@ -136,8 +136,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 N = 16          # signal length
-r = 6           # period (does NOT need to divide N)
-x0 = 2          # offset
+r = 2           # period (does NOT need to divide N)
+x0 = 0          # offset
 
 # Build the periodic comb: 1 at indices x0 + m*r (mod N)
 x = np.zeros(N)
@@ -205,7 +205,7 @@ print("=" * 50)
 
     ==================================================
     DFT PERIOD FINDING ANALYSIS
-    N = 16, r = 6, x0 = 2
+    N = 16, r = 2, x0 = 0
     gcd(N, r) = 2
     Number of distinct states M = N / gcd(N,r) = 8
     Expected DFT peak bins (multiples of N/g = 8): [0 8]
@@ -216,6 +216,87 @@ print("=" * 50)
     
     Bin spacing Δk = N / gcd(N,r) = 8
     Frequency spacing Δf = gcd(N,r) / N = 0.125 cycles/sample
+    ==================================================
+
+
+
+```python
+# Classical period finding with DFT (quantum‑style bin indices)
+import numpy as np
+import matplotlib.pyplot as plt
+
+N = 16          # signal length
+r = 2           # period (does NOT need to divide N)
+x0 = 0          # offset
+
+# Build the periodic comb: 1 at indices x0 + m*r (mod N)
+x = np.zeros(N)
+g = np.gcd(N, r)                # gcd(N, r)
+M = N // g                      # number of distinct elements in the subgroup
+for m in range(M):
+    idx = (x0 + m * r) % N
+    x[idx] = 1.0
+
+# Normalize like a quantum state
+x = x / np.linalg.norm(x)
+
+# Compute DFT (unitary normalization: divide by sqrt(N) manually)
+X = np.fft.fft(x) / np.sqrt(N)   # now matches quantum QFT convention
+
+# Plot using bin indices (not frequencies)
+plt.figure(figsize=(10, 3))
+plt.subplot(1, 2, 1)
+plt.stem(range(N), np.abs(x)**2)
+plt.title(f'Periodic state (r = {r}, offset = {x0})')
+plt.xlabel('Index j')
+plt.ylabel('Probability |x[j]|²')
+plt.xticks(range(0, N, r))
+
+plt.subplot(1, 2, 2)
+plt.stem(range(N), np.abs(X)**2)
+plt.title('DFT magnitude squared (quantum probability)')
+plt.xlabel('Basis state |k⟩')
+plt.ylabel('|X[k]|²')
+
+# Draw vertical lines at expected peak bin indices
+peak_bins = np.arange(0, N, N // g)   # multiples of N/g
+for k in peak_bins:
+    plt.axvline(k, color='red', linestyle='--', alpha=0.5)
+
+plt.tight_layout()
+plt.show()
+
+# Analysis output
+print("=" * 50)
+print("DFT PERIOD FINDING ANALYSIS (quantum convention)")
+print(f"N = {N}, r = {r}, x0 = {x0}")
+print(f"gcd(N, r) = {g}")
+print(f"Number of distinct states M = N / gcd(N,r) = {M}")
+print(f"Expected DFT peak bins (multiples of N/g = {N//g}): {peak_bins}")
+non_zero_bins = np.where(np.abs(X) > 1e-10)[0]
+print(f"Actual non‑zero bins: {non_zero_bins}")
+print(f"DFT probabilities at those bins: {np.abs(X[non_zero_bins])**2}")
+print()
+print(f"Bin spacing Δk = N / gcd(N,r) = {N//g}")
+print("=" * 50)
+```
+
+
+    
+![png](lecture6b-qft_files/lecture6b-qft_11_0.png)
+    
+
+
+    ==================================================
+    DFT PERIOD FINDING ANALYSIS (quantum convention)
+    N = 16, r = 2, x0 = 0
+    gcd(N, r) = 2
+    Number of distinct states M = N / gcd(N,r) = 8
+    Expected DFT peak bins (multiples of N/g = 8): [0 8]
+    Actual non‑zero bins: [0 8]
+    DFT probabilities at those bins: [0.5 0.5]
+    
+    Bin spacing Δk = N / gcd(N,r) = 8
     ==================================================
 
 
@@ -250,6 +331,7 @@ $$
 where $x_0$ is the measured value and $M \approx N/r$.
 
 Applying the **QFT** to the first register maps this periodic comb to a state whose amplitudes are sharply peaked near multiples of $N/r$. 
+- In the general case where $r$ does not divide $N$, the peaks are exactly at multiples of $N/\gcd(N,r)$
 
 ## Fourier Analysis of a Periodic Additive State on ℤ_N
 
@@ -450,7 +532,7 @@ qft_period_demo(r=6, n_qubits=4, x0=2)
 
 
     
-![png](lecture6b-qft_files/lecture6b-qft_14_1.png)
+![png](lecture6b-qft_files/lecture6b-qft_15_1.png)
     
 
 
