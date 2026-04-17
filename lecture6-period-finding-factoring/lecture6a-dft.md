@@ -132,7 +132,7 @@ plt.show()
 
 
     
-![png](lecture6-dft_files/lecture6-dft_2_0.png)
+![png](lecture6a-dft_files/lecture6a-dft_2_0.png)
     
 
 
@@ -194,7 +194,7 @@ plt.show()
 
 
     
-![png](lecture6-dft_files/lecture6-dft_6_0.png)
+![png](lecture6a-dft_files/lecture6a-dft_6_0.png)
     
 
 
@@ -223,7 +223,7 @@ plt.show()
 
 
     
-![png](lecture6-dft_files/lecture6-dft_8_0.png)
+![png](lecture6a-dft_files/lecture6a-dft_8_0.png)
     
 
 
@@ -254,7 +254,7 @@ plt.show()
 
 
     
-![png](lecture6-dft_files/lecture6-dft_10_0.png)
+![png](lecture6a-dft_files/lecture6a-dft_10_0.png)
     
 
 
@@ -360,7 +360,7 @@ plt.show()
 
 
     
-![png](lecture6-dft_files/lecture6-dft_14_0.png)
+![png](lecture6a-dft_files/lecture6a-dft_14_0.png)
     
 
 
@@ -394,7 +394,7 @@ plt.show()
 
 
     
-![png](lecture6-dft_files/lecture6-dft_16_0.png)
+![png](lecture6a-dft_files/lecture6a-dft_16_0.png)
     
 
 
@@ -422,7 +422,7 @@ plt.show()
 
 
     
-![png](lecture6-dft_files/lecture6-dft_18_0.png)
+![png](lecture6a-dft_files/lecture6a-dft_18_0.png)
     
 
 
@@ -473,6 +473,17 @@ def update_plot(frequency=5, amp=1.0, fs=1000):
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+update_plot(frequency=5, amp=1.0, fs=100)
+```
+
+
+    
+![png](lecture6a-dft_files/lecture6a-dft_20_0.png)
+    
+
+
+
+```python
 
 # Create interactive widgets
 widgets.interact(update_plot,
@@ -481,26 +492,144 @@ widgets.interact(update_plot,
                  fs=widgets.IntSlider(min=50, max=2000, step=10, value=1000, description='Sampling freq (Hz)'));
 ```
 
-**Try:**  
-- Increase the frequency above 500 Hz (Nyquist). You will see aliasing because the signal is still sampled at 1000 Hz – wait, 1000 Hz Nyquist is 500 Hz, so above 500 Hz will alias.  
-- Change amplitude – the DFT peak magnitude changes proportionally.
+## Building the Periodic Signal from Its Frequency Components
 
----
 
-## 8. Summary
+**a periodic signal with period $r$ is composed of $r$ harmonically related frequency components**.
 
-- The DFT decomposes a signal into its constituent frequencies.
-- A real sine wave of amplitude $A$ appears as two peaks of magnitude $A/2$ (one positive, one negative frequency).
-- A complex exponential gives a single peak of magnitude $A$.
-- The sampling frequency must be at least twice the highest frequency to avoid aliasing.
-- The frequency resolution $\Delta f = 1/T$ improves with longer signal duration.
-- The rotating phasor (clock hand) elegantly links time‑domain periodicity to a single frequency component.
 
----
 
-## Further Exploration
+Any discrete periodic sequence with period $r$ (where $r$ divides $N$) can be written as a **Fourier series** with exactly $r$ terms:
 
-- **Zero‑padding:** Add zeros to the end of a signal before taking the FFT to interpolate the spectrum (does not improve resolution but makes peaks look smoother).
-- **Windowing:** Apply a window (e.g., Hann) to reduce spectral leakage when frequencies are not exactly aligned with DFT bins.
-- **Real‑world signals:** Try loading a short audio recording and look at its spectrum.
+$$ 
+x[j] = \frac{1}{\sqrt{r}} \sum_{m=0}^{r-1} c_m \, e^{2\pi i \, (m/r) \, j} 
+$$
 
+where $c_m$ are the Fourier coefficients. In our case of a uniform comb (all non‑zero amplitudes equal), the coefficients are all equal in magnitude, and the DFT shows $r$ peaks of equal height at frequencies $f = 0, \frac{1}{r}, \frac{2}{r}, \dots, \frac{r-1}{r}$ (cycles per sample).
+
+Thus, the periodic signal **is the sum of $r$ different complex exponentials** (each with its own frequency). The DFT simply reveals those constituent frequencies.
+
+
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+N = 16
+r = 4
+
+# Time indices
+j = np.arange(N)
+
+# 1. Create the periodic comb directly (our "quantum state" amplitude pattern)
+comb = np.zeros(N, dtype=complex)
+for m in range(N // r):
+    comb[m * r] = 1.0
+comb /= np.linalg.norm(comb)   # normalize
+
+# 2. Build the SAME signal as a sum of r complex exponentials (Fourier series)
+freqs = np.arange(r) / r        # frequencies: 0, 1/r, 2/r, 3/r
+components = []
+reconstructed = np.zeros(N, dtype=complex)
+for f in freqs:
+    # Complex exponential: e^{2πi * f * j}
+    comp = np.exp(2j * np.pi * f * j) / np.sqrt(r)  # normalize each component
+    components.append(comp)
+    reconstructed += comp
+
+# 3. Compute DFT of the comb and each component
+dft_comb = np.fft.fft(comb) / np.sqrt(N)
+dft_components = [np.fft.fft(c) / np.sqrt(N) for c in components]
+
+# 4. Plot everything
+fig, axes = plt.subplots(2, r+2, figsize=(16, 8))
+
+# Row 1: Time domain (index domain) signals
+# Original comb
+ax = axes[0, 0]
+ax.stem(j, np.abs(comb)**2, basefmt=' ')
+ax.set_title(f'Original Comb (period r={r})')
+ax.set_xlabel('j')
+ax.set_ylabel('|αⱼ|²')
+
+# Individual frequency components
+for m, (f, comp) in enumerate(zip(freqs, components)):
+    ax = axes[0, m+1]
+    ax.plot(j, comp.real, 'b-', label='Real')
+    ax.plot(j, comp.imag, 'r--', label='Imag')
+    ax.set_title(f'Component: f = {f:.2f} cyc/samp')
+    ax.set_xlabel('j')
+    ax.set_ylabel('Amplitude')
+    ax.legend(fontsize=8)
+
+# Reconstructed signal (sum of components)
+ax = axes[0, -1]
+ax.stem(j, np.abs(reconstructed)**2, basefmt=' ')
+ax.set_title('Sum of Components')
+ax.set_xlabel('j')
+ax.set_ylabel('|αⱼ|²')
+
+# Row 2: Frequency domain (DFT magnitude squared)
+freq_axis = np.fft.fftfreq(N)
+
+ax = axes[1, 0]
+ax.stem(freq_axis, np.abs(dft_comb)**2, basefmt=' ')
+ax.set_title('DFT of Comb')
+ax.set_xlabel('Frequency (cyc/samp)')
+ax.set_ylabel('|X[k]|²')
+for f in freqs:
+    ax.axvline(f, color='red', linestyle='--', alpha=0.5)
+
+for m, (f, dft_c) in enumerate(zip(freqs, dft_components)):
+    ax = axes[1, m+1]
+    ax.stem(freq_axis, np.abs(dft_c)**2, basefmt=' ')
+    ax.set_title(f'DFT of f={f:.2f}')
+    ax.set_xlabel('Frequency')
+    ax.set_ylabel('|X[k]|²')
+    ax.axvline(f, color='red', linestyle='--', alpha=0.5)
+
+ax = axes[1, -1]
+ax.stem(freq_axis, np.abs(np.sum(dft_components, axis=0))**2, basefmt=' ')
+ax.set_title('Sum of DFTs')
+ax.set_xlabel('Frequency')
+ax.set_ylabel('|X[k]|²')
+for f in freqs:
+    ax.axvline(f, color='red', linestyle='--', alpha=0.5)
+
+plt.tight_layout()
+plt.show()
+
+print("="*60)
+print("EXPLANATION:")
+print(f"• The periodic comb with r={r} is exactly equal to the sum of {r} complex exponentials.")
+print(f"• These exponentials have frequencies: {freqs} (cycles/sample).")
+print(f"• Each exponential produces a single peak at its own frequency in the DFT.")
+print(f"• Because the DFT is linear, the DFT of the comb is the sum of the DFTs of these {r} components.")
+print(f"• Therefore, the DFT spectrum contains exactly {r} peaks.")
+print(f"• Measuring the spacing between adjacent peaks (Δf = 1/r = {1/r:.3f}) reveals the period r = 1/Δf = {r}.")
+print("="*60)
+```
+
+
+    
+![png](lecture6a-dft_files/lecture6a-dft_23_0.png)
+    
+
+
+    ============================================================
+    EXPLANATION:
+    • The periodic comb with r=4 is exactly equal to the sum of 4 complex exponentials.
+    • These exponentials have frequencies: [0.   0.25 0.5  0.75] (cycles/sample).
+    • Each exponential produces a single peak at its own frequency in the DFT.
+    • Because the DFT is linear, the DFT of the comb is the sum of the DFTs of these 4 components.
+    • Therefore, the DFT spectrum contains exactly 4 peaks.
+    • Measuring the spacing between adjacent peaks (Δf = 1/r = 0.250) reveals the period r = 1/Δf = 4.
+    ============================================================
+
+
+
+## Connection to Binary Representation
+
+The fact that the index $j$ is written in binary (e.g., $|0100\rangle$) does **not** affect the number of frequency components. The binary label is just a convenient notation for the integer $j$. The underlying mathematics – the Fourier transform over the cyclic group $\mathbb{Z}_N$ – remains identical.
+
+Thus, whether you think of the signal as a classical array `x[0..N-1]` or a quantum state $\sum \alpha_j |j\rangle$, a period‑$r$ pattern is built from $r$ distinct frequencies, and the QFT reveals them as $r$ bright computational basis states $|k\rangle$.
