@@ -132,7 +132,7 @@ The DFT of this sequence has non‑zero magnitude **only** at bin indices $k = 0
 $$
 \begin{aligned}
 X_4 &= \sum_{n=0}^{15} x_n \, e^{-2\pi i \, 4 n / 16}
-    = \sum_{n=0}^{15} x_n \, e^{- \pi i \, n / 2} \$$4pt]
+    = \sum_{n=0}^{15} x_n \, e^{- \pi i \, n / 2} \\
     &= x_0 e^{0} + x_1 e^{-i\pi/2} + x_2 e^{-i\pi} + x_3 e^{-i3\pi/2} + \cdots + x_{15} e^{-i15\pi/2}.
 \end{aligned}
 $$
