@@ -91,7 +91,31 @@ $$
 x_{j+r} = x_j .
 $$
 
-If we take the DFT of such a signal, the magnitude spectrum will show non‑zero values only at **bin indices** that are integer multiples of $N/r$.  
+The DFT of such a signal is defined as
+
+$$
+X_k = \sum_{n=0}^{N-1} x_n \; e^{-2\pi i \, k n / N}, \qquad k = 0,1,\dots,N-1.
+$$
+
+Because the signal repeats every $r$ samples, the DFT sum can be broken into $m = N/r$ identical blocks of length $r$. Let $y_0, y_1, \ldots, y_{r-1}$ denote one period of the signal. Then for any bin index $k$ we have
+
+$$
+X_k = \left( \sum_{j=0}^{r-1} y_j \, e^{-2\pi i \, k j / N} \right) \!
+      \left( 1 + e^{-2\pi i \, k r / N} + e^{-4\pi i \, k r / N} + \cdots + e^{-2\pi i \, k (m-1) r / N} \right).
+$$
+
+The second factor is a geometric series with ratio $e^{-2\pi i \, k r / N}$. It sums to **zero** unless the ratio equals $1$, i.e. unless
+
+$$
+e^{-2\pi i \, k r / N} = 1 \quad\Longleftrightarrow\quad \frac{k r}{N} \in \mathbb{Z}.
+$$
+
+Since $N$ is an integer multiple of $r$, this condition is equivalent to $k$ being a multiple of $\frac{N}{r}$. Therefore, **non‑zero DFT magnitude appears only at bin indices**
+
+$$
+k = 0,\; \frac{N}{r},\; 2\frac{N}{r},\; \dots,\; (r-1)\frac{N}{r}.
+$$
+
 **Example:** Let $N = 16$ and $r = 4$. We define one period of the signal as the pattern $[1, 0, 0, 0]$, and we shift the starting point by an offset $x_0 = 2$. The resulting 16‑sample signal is:
 
 $$
@@ -103,20 +127,30 @@ $$
 
 (Indices: $x_0 = 0$, $x_1 = 0$, $x_2 = 1$, $x_3 = 0$, $x_4 = 0$, $x_5 = 0$, $x_6 = 1$, …, $x_{15} = 0$.)
 
-The DFT of this sequence has non‑zero magnitude **only** at bin indices $k = 0, 4, 8, 12$. The corresponding complex DFT coefficients are:
+The DFT of this sequence has non‑zero magnitude **only** at bin indices $k = 0, 4, 8, 12$, because $\frac{N}{r} = 4$. Let us compute the $k=4$ bin explicitly to see the exponential factors at work:
 
 $$
 \begin{aligned}
-X_0 &= 4, \\
-X_4 &= 1 - i \quad (\text{magnitude } \sqrt{2} \approx 1.414), \\
-X_8 &= 0, \\
-X_{12} &= 1 + i \quad (\text{magnitude } \sqrt{2} \approx 1.414).
+X_4 &= \sum_{n=0}^{15} x_n \, e^{-2\pi i \, 4 n / 16}
+    = \sum_{n=0}^{15} x_n \, e^{- \pi i \, n / 2} \$$4pt]
+    &= x_0 e^{0} + x_1 e^{-i\pi/2} + x_2 e^{-i\pi} + x_3 e^{-i3\pi/2} + \cdots + x_{15} e^{-i15\pi/2}.
 \end{aligned}
 $$
 
-(After normalisation by $1/\sqrt{N}$ these would be the quantum amplitudes.)
+Only the non‑zero samples $x_2=1$, $x_6=1$, $x_{10}=1$, $x_{14}=1$ contribute. Their exponential factors are:
 
-In terms of **normalized frequency** $f = k/N$ (cycles per sample), the peaks occur at $f = 0,\; 0.25,\; 0.5,\; 0.75$.
+- $n=2: \; e^{-i\pi} = -1$
+- $n=6: \; e^{-i3\pi} = -1$
+- $n=10: \; e^{-i5\pi} = -1$
+- $n=14: \; e^{-i7\pi} = -1$
+
+Thus $X_4 = -4$. Similarly, the other non‑zero DFT coefficients are $X_0, X_8, X_{12}$.
+
+In terms of **normalized frequency** $f = k/N$ (cycles per sample), the peaks occur at
+
+$$
+f = 0,\; \frac{4}{16}=0.25,\; \frac{8}{16}=0.5,\; \frac{12}{16}=0.75.
+$$
 
 The **spacing between consecutive peaks** is:
 

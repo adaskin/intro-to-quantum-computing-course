@@ -626,10 +626,3 @@ print("="*60)
     • Measuring the spacing between adjacent peaks (Δf = 1/r = 0.250) reveals the period r = 1/Δf = 4.
     ============================================================
 
-
-
-## Connection to Binary Representation
-
-The fact that the index $j$ is written in binary (e.g., $|0100\rangle$) does **not** affect the number of frequency components. The binary label is just a convenient notation for the integer $j$. The underlying mathematics – the Fourier transform over the cyclic group $\mathbb{Z}_N$ – remains identical.
-
-Thus, whether you think of the signal as a classical array `x[0..N-1]` or a quantum state $\sum \alpha_j |j\rangle$, a period‑$r$ pattern is built from $r$ distinct frequencies, and the QFT reveals them as $r$ bright computational basis states $|k\rangle$.
