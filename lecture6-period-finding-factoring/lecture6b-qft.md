@@ -7,6 +7,14 @@ $$
 \mathbf{x} = \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ \vdots \\ x_{N-1} \end{bmatrix}.
 $$
 
+Remember that the $k$‑th output signal is
+
+$$
+y_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j \, \omega^{jk}.
+$$
+
+
+
 Its **Discrete Fourier Transform** $\mathbf{y}$ is defined by the matrix‑vector product
 
 $$
@@ -52,10 +60,23 @@ $$
 \mathbf{y} = F_4 \mathbf{x} = \frac{1}{2}[1,\,1,\,1,\,1]^\top,
 $$
 
-i.e., every frequency component gets equal amplitude. For a general $\mathbf{x}$, the $k$‑th output entry is
+i.e., every frequency component gets equal amplitude. 
+
+For $N = 2^n$, the DFT matrix is:
 
 $$
-y_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j \, \omega^{jk}.
+F_N = \frac{1}{\sqrt{N}} \begin{bmatrix}
+ 1 & 1 & 1 & 1 & \cdots & 1 \\
+ 1 & \omega & \omega^2 & \omega^3 & \cdots & \omega^{N-1} \\
+ 1 & \omega^2 & \omega^4 & \omega^6 & \cdots & \omega^{2(N-1)} \\
+ 1 & \omega^3 & \omega^6 & \omega^9 & \cdots & \omega^{3(N-1)} \\
+ \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+ 1 & \omega^{N-1} & \omega^{2(N-1)} & \omega^{3(N-1)} & \cdots & \omega^{(N-1)(N-1)}
+\end{bmatrix},
+$$
+
+$$
+F_{jk} = \frac{1}{\sqrt{N}} \, \omega^{jk}, \quad \text{where } \omega = e^{-2\pi i / N}
 $$
 
 Notice that $F_N$ is **unitary** ($F_N^\dagger F_N = I$).
