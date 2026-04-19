@@ -1,26 +1,26 @@
-### DFT as a Matrix
 
-For $N = 2^n$, the DFT matrix has entries:
+### From Signal Vectors to the DFT Matrix
 
-$$
-F_{jk} = \frac{1}{\sqrt{N}} \, \omega^{jk}, \quad \text{where } \omega = e^{-2\pi i / N}
-$$
-
-This matrix is **unitary**: $F^\dagger F = I$.
-
+Imagine you have a discrete signal of length $N = 2^n$, stored as a column vector
 
 $$
-F_N = \frac{1}{\sqrt{N}} \begin{bmatrix}
- 1 & 1 & 1 & 1 & \cdots & 1 \\
- 1 & \omega & \omega^2 & \omega^3 & \cdots & \omega^{N-1} \\
- 1 & \omega^2 & \omega^4 & \omega^6 & \cdots & \omega^{2(N-1)} \\
- 1 & \omega^3 & \omega^6 & \omega^9 & \cdots & \omega^{3(N-1)} \\
- \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
- 1 & \omega^{N-1} & \omega^{2(N-1)} & \omega^{3(N-1)} & \cdots & \omega^{(N-1)(N-1)}
-\end{bmatrix},
+\mathbf{x} = \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ \vdots \\ x_{N-1} \end{bmatrix}.
 $$
 
-### Example: 2‑point DFT (Hadamard Gate)
+Its **Discrete Fourier Transform** $\mathbf{y}$ is defined by the matrix‑vector product
+
+$$
+\mathbf{y} = F_N \, \mathbf{x},
+$$
+
+where the DFT matrix $F_N$ has entries
+
+$$
+(F_N)_{jk} = \frac{1}{\sqrt{N}} \, \omega^{jk}, \qquad \omega = e^{-2\pi i / N}.
+$$
+
+---
+Explicitly, 
 
 For $N=2$, $\omega = -1$:
 
@@ -30,55 +30,129 @@ $$
 
 The Hadamard gate is the 1‑qubit QFT!
 
+---
+
+For $N=4$ ($\omega = e^{-i\pi/2} = -i$),
+
 $$
-F_4 = \frac{1}{2} \begin{bmatrix}
- 1 & 1 & 1 & 1 \\
- 1 & i & -1 & -i \\
- 1 & -1 & 1 & -1 \\
- 1 & -i & -1 & i
-\end{bmatrix}
+F_4 = \frac{1}{2}
+\begin{bmatrix}
+1 & 1 & 1 & 1 \\
+1 & -i & -1 & i \\
+1 & -1 & 1 & -1 \\
+1 & i & -1 & -i
+\end{bmatrix}.
 $$
 
-## Part 2: The Quantum Fourier Transform (QFT)
+---
 
-The QFT is the **exact same transformation** as the DFT, but applied to a **quantum state**:
+If we choose a concrete signal, say $\mathbf{x} = [1,\,0,\,0,\,0]^\top$ (a single impulse), the output is
+
+$$
+\mathbf{y} = F_4 \mathbf{x} = \frac{1}{2}[1,\,1,\,1,\,1]^\top,
+$$
+
+i.e., every frequency component gets equal amplitude. For a general $\mathbf{x}$, the $k$‑th output entry is
+
+$$
+y_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j \, \omega^{jk}.
+$$
+
+Notice that $F_N$ is **unitary** ($F_N^\dagger F_N = I$).
+
+---
+
+### From Classical Vector to Quantum State Vector
+
+In quantum computing we work with **amplitude vectors** of normalised states.  
+Consider an $n$-qubit state
+
+$$
+|\psi\rangle = \sum_{j=0}^{N-1} x_j \,|j\rangle,
+\qquad \sum_{j=0}^{N-1} |x_j|^2 = 1.
+$$
+
+The vector of amplitudes $\mathbf{x} = [x_0,\dots,x_{N-1}]^\top$ is exactly the kind of object the DFT acts on.  
+The **Quantum Fourier Transform** (QFT) is defined as the unitary operation whose matrix in the computational basis is the DFT matrix:
+
+$$
+\text{QFT}: \; |j\rangle \;\longmapsto\; \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i \, j k / N} \,|k\rangle.
+$$
+
+Thus, if we apply QFT to the state $|\psi\rangle$, the new amplitude vector $\mathbf{y}$ is
+
+$$
+\mathbf{y} = F_N \,\mathbf{x},
+$$
+
+exactly the same matrix‑vector multiplication we started with.
+
+*(Note: The sign convention in quantum literature often uses $+$ in the exponent, but this is just a convention – the inverse QFT uses the minus sign.)*
+
+---
+
+### Quantum Circuit from the Product Representation 
+
+For $N=2^n$, we can write the index $j$ in binary as $j = j_1 j_2 \dots j_n$ (most significant bit first).  
 
 $$
 \text{QFT}: \quad |j\rangle \;\longrightarrow\; \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i \, j k / N} |k\rangle
 $$
 
-*(Note: The sign convention in quantum literature often uses $+$ in the exponent, but this is just a convention – the inverse QFT uses the minus sign.)*
+We can write as a tensor product:
 
-### Product Representation (Key for Circuit)
 
-Let $N = 2^n$. Write $j$ in binary: $j = j_1 j_2 \ldots j_n$ (most significant bit first).  
-Then:
+$$
+\text{QFT}|j_1 j_2 \dots j_n\rangle = \frac{1}{\sqrt{2^n}}
+\Bigl(|0\rangle + e^{2\pi i \,0.j_n}|1\rangle\Bigr)
+\otimes
+\Bigl(|0\rangle + e^{2\pi i \,0.j_{n-1}j_n}|1\rangle\Bigr)
+\otimes \cdots \otimes
+\Bigl(|0\rangle + e^{2\pi i \,0.j_1 j_2 \ldots j_n}|1\rangle\Bigr),
+$$
 
+where $0.j_l j_{l+1}\dots j_n = \frac{j_l}{2} + \frac{j_{l+1}}{4} + \cdots + \frac{j_n}{2^{n-l+1}}$ is a binary fraction.
+
+---
+
+More concisely,
 $$
 \text{QFT}|j\rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{l=1}^n \Big( |0\rangle + e^{2\pi i j / 2^{l}} |1\rangle \Big)
 $$
 
-Equivalently:
+**Interpretation:**  
+- The first qubit in the tensor product (originally the most significant bit $j_1$) acquires a phase that depends on **all** bits to its right.  
+- The last qubit (least significant bit $j_n$) gets a phase that depends only on itself.
 
-$$
-\text{QFT}|j_1 j_2 \ldots j_n\rangle = \frac{1}{\sqrt{2^n}} \left(|0\rangle + e^{2\pi i 0.j_n}|1\rangle\right) \otimes \left(|0\rangle + e^{2\pi i 0.j_{n-1}j_n}|1\rangle\right) \otimes \cdots \otimes \left(|0\rangle + e^{2\pi i 0.j_1 j_2 \ldots j_n}|1\rangle\right)
-$$
+This factorised form directly yields the circuit.
 
-where $0.j_l j_{l+1} \ldots j_n$ denotes the binary fraction $j_l/2 + j_{l+1}/4 + \cdots + j_n/2^{n-l+1}$.
 
 ![qft circuit](qft.png)
 
+The circuit implements the product representation using two elementary gates:
+
 $$
-H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \qquad
-\text{and} \qquad  
-R_k = \begin{pmatrix} 1 & 0 \\ 0 & e^{i2\pi/2^k}  \end{pmatrix}
+H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix},
+\qquad
+R_k = \begin{pmatrix} 1 & 0 \\ 0 & e^{2\pi i / 2^k} \end{pmatrix}.
 $$
 
-### Complexity Comparison
-- Each qubit gets one Hadamard gate.
-- Followed by controlled rotations from less significant qubits.
-- Total gate count: $O(n^2)$.
-- **Exponential speedup** over classical FFT ($O(n 2^n)$ classical vs $O(n^2)$ quantum gates).
+**Step‑by‑step for $n$ qubits:**
+
+1. Apply a Hadamard gate $H$ to qubit 1 (the top line, holding $j_1$).  
+2. Apply controlled‑$R_k$ gates, where qubit $l$ (with $l>1$) controls a rotation on qubit 1 by angle $2\pi / 2^{l}$.  
+3. Move to qubit 2: apply $H$, then controlled rotations from qubits $3,4,\dots,n$.  
+4. Continue until all qubits are processed.  
+5. Finally, reverse the order of the qubits (swap gates) to match the standard big‑endian output.
+
+---
+
+### Complexity: Why It Matters
+
+- **Classical FFT**: $O(N \log N) = O(n 2^n)$ operations.  
+- **QFT circuit**: $O(n^2)$ gates – an **exponential reduction** in the number of steps.
+
+The QFT is the heart of Shor’s algorithm and quantum phase estimation, precisely because it turns the heavy matrix‑vector multiplication $F_N \mathbf{x}$ into a shallow circuit of $H$ and controlled phase gates.
 
 ## Periodicity and the DFT
 
