@@ -184,7 +184,7 @@ $$
 The probability of measuring $|0\rangle$ is:
 
 $$
-P(0) = \left|\frac{1+e^{i\phi}}{2}\right|^2 = \cos^2\left(\frac{\phi}{2}\right)
+P(0) = \left|\frac{1+e^{i\phi}}{2}\right|^2 = \frac{1+ cos\phi}{2} = \cos^2\left(\frac{\phi}{2}\right)
 $$
 
 Similarly, $P(1) = \sin^2\left(\frac{\phi}{2}\right)$.
