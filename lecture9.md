@@ -757,7 +757,7 @@ The formula has 3 clauses.
 
 **Tasks:**
 - Enumerate all 4 assignments and compute the number of unsatisfied clauses.
-- Build a quantum circuit that prepares `${1}/{2}∑_{x} |f(x)⟩|x⟩$` (f(x) = unsatisfied clauses).
+- Build a quantum circuit that prepares `∑_{x} |f(x)⟩|x⟩` (f(x) = unsatisfied clauses).
 - Use the Dürr‑Høyer idea to find the minimum (simulate one Grover search to find any assignment with f(x) < 2).
 - Verify that the minimum is 0 (satisfiable) and find the satisfying assignment(s).
 
@@ -765,15 +765,6 @@ The formula has 3 clauses.
 
 ---
 
-## Bonus – Visualization (Optional)
-
-Plot the probability of measuring the marked state as a function of the number of Grover iterations for N=16 with 1 marked state. Compare with the theoretical curve `sin²((2k+1)θ)` where `θ = arcsin(1/√16) = arcsin(0.25)`.
-
-Use PennyLane to collect data and matplotlib to plot.
-
-Here are simple exercises for **Lecture 9b** (QAOA and VQE) and **Lecture 9c** (Quantum Machine Learning + Error Correction). They are designed to be doable in PennyLane with minimal math overhead.
-
----
 
 ## Exercises – Lecture 9b (QAOA and VQE)
 
