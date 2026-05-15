@@ -3,7 +3,7 @@
 *prepared with the help of DeepSeek AI, diagrams are copied from textbook: An Introduction to Quantum Computing, Kaye, Laflamme, Mosca*
 
 ---
-# Lecture 9a – Grover's Search Algorithm (45 min) – *Corrected & Complete*
+# Lecture 9a – Grover's Search Algorithm 
 
 ---
 
